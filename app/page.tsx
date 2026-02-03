@@ -30,10 +30,10 @@ export default function Home() {
             Bağış Yap
           </Link>
           <Link 
-            href="/hakkimizda" 
+            href="/iletisim" 
             className="flex-1 sm:flex-none bg-transparent border-2 border-white/20 text-white px-4 py-3 sm:px-10 sm:py-4 rounded-xl font-bold text-sm sm:text-lg hover:bg-white/10 transition text-center whitespace-nowrap"
           >
-            Hakkımızda
+            İletişim
           </Link>
         </div>
       </div>
