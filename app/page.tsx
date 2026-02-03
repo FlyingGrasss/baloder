@@ -5,7 +5,7 @@ export default function Home() {
     <div className="max-w-7xl mx-auto px-6 py-12 max-sm:my-22 lg:py-32">
       <div className="max-w-3xl space-y-6 lg:space-y-8">
         <div>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-3 lg:mb-4 text-white tracking-tight">
+          <h2 className="text-[2.15rem] lg:text-5xl font-bold mb-3 lg:mb-4 text-white tracking-tight">
             BAL Öğrenci Derneği
           </h2>
           <h3 className="text-xl lg:text-2xl font-semibold mb-4 lg:mb-6 text-white/90">
