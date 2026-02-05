@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.css?inline";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "BALÖDER - BAL Öğrenci Derneği",
   description:
     "Bornova Anadolu Lisesi Öğrenci Derneği Resmi Web Sitesi. BAL ruhunu geleceğe taşıyoruz.",
-  metadataBase: new URL("https://baloder.org"), // Replace with your actual domain later
+  metadataBase: new URL("https://www.balogrenci.org"),
   keywords: [
     "Bornova Anadolu Lisesi",
     "BAL",
@@ -23,25 +23,20 @@ export const metadata: Metadata = {
     title: "BALÖDER - BAL Öğrenci Derneği",
     description:
       "Bornova Anadolu Lisesi Öğrenci Derneği Resmi Web Sitesi. BAL ruhunu geleceğe taşıyoruz.",
-    url: "https://baloder.org",
+    url: "https://www.balogrenci.org",
     siteName: "BALÖDER",
     locale: "tr_TR",
-    images: [
-      {
-        url: "/icon.png",
-        width: 150,
-        height: 150,
-        alt: "BALÖDER Logo",
-      },
-    ],
     type: "website",
+    // Next.js will automatically find opengraph-image.jpg. 
+    // We remove the manual 'images' array here to avoid conflicts 
+    // unless you want to use a specific external URL.
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "BALÖDER - BAL Öğrenci Derneği",
     description:
       "Bornova Anadolu Lisesi Öğrenci Derneği Resmi Web Sitesi.",
-    images: ["/icon.png"],
+    // Next.js automatically associates opengraph-image with Twitter cards too.
   },
 };
 
@@ -53,9 +48,6 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${inter.className} antialiased bg-[#A21A2A]`}>
-        {/* min-h-screen ensures the background covers the whole page.
-            We use flex-col to keep the footer at the bottom if content is short.
-        */}
         <div className="flex flex-col min-h-screen bg-[#A21A2A]">
           <Navbar />
           <main className="grow">
