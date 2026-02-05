@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css?inline";
+import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,16 +28,12 @@ export const metadata: Metadata = {
     siteName: "BALÖDER",
     locale: "tr_TR",
     type: "website",
-    // Next.js will automatically find opengraph-image.jpg. 
-    // We remove the manual 'images' array here to avoid conflicts 
-    // unless you want to use a specific external URL.
   },
   twitter: {
     card: "summary_large_image",
     title: "BALÖDER - BAL Öğrenci Derneği",
     description:
       "Bornova Anadolu Lisesi Öğrenci Derneği Resmi Web Sitesi.",
-    // Next.js automatically associates opengraph-image with Twitter cards too.
   },
 };
 
@@ -55,6 +52,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );
