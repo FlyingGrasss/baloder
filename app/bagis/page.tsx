@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function Bagis() {
   const [copied, setCopied] = useState(false);
-  const iban = "TR00 0000 0000 0000 0000 0000 00";
+  const iban = "TR71 0006 4000 0013 4082 7693 73";
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(iban.replace(/\s/g, '')); // Copy without spaces
@@ -34,7 +34,7 @@ export default function Bagis() {
             </div>
             <div className="space-y-1">
               <span className="text-xs font-bold text-gray-400 uppercase">Banka</span>
-              <p className="text-xl font-bold">Ziraat Bankası</p>
+              <p className="text-xl font-bold">İş Bankası</p>
             </div>
             <div className="col-span-1 md:col-span-2 space-y-2">
               <span className="text-xs font-bold text-gray-400 uppercase">IBAN</span>
