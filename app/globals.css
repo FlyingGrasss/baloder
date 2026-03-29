@@ -6,6 +6,9 @@
 }
 
 @theme inline {
+  --color-bordeaux: #a21a2a;
+  --color-bordeaux-light: #bc2b3c;
+  --color-dark-gray: #1a1a1a;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

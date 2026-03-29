@@ -3,12 +3,102 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider = "postgresql"
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id             String    @id // Supabase Auth ID
+  email          String    @unique
+  name           String
+  tc             String?
+  schoolNumber   String?
+  graduationYear Int?
+  phoneNumber    String?
+  birthDate      DateTime?
+  role           UserRole  @default(USER)
+  verified       Boolean   @default(false)
+  isMember        Boolean   @default(false)
+  isSandikMember  Boolean   @default(false)
+  memberRequested Boolean   @default(false)
+  sandikRequested Boolean   @default(false)
+  balance        Float     @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  depositRequests    DepositRequest[]
+  walletTransactions WalletTransaction[]
+  idCardOrders       IdCardOrder[]
+
+  @@map("users")
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  date      DateTime @default(now())
+  excerpt   String
+  content   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  @@map("announcements")
+}
+
+model Budget {
+  id           String        @id @default(cuid())
+  name         String
+  total        Float
+  spent        Float         @default(0)
+  transactions Transaction[]
+
+  @@map("budgets")
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  date      DateTime @default(now())
+  amount    Float
+  category  String
+  detail    String
+  budgetId  String
+  budget    Budget   @relation(fields: [budgetId], references: [id])
+
+  @@map("transactions")
+}
+
+model DepositRequest {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  amount      Float
+  receiptUrl  String
+  pathname    String?
+  size        Int?
+  contentType String?
+  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  createdAt   DateTime @default(now())
+
+  @@map("deposit_requests")
+}
+
+model WalletTransaction {
+  id        String   @id @default(cuid())
+  items     String[]
+  total     Float
+  date      DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("wallet_transactions")
 }
 
 model ContactMessage {
   id        String   @id @default(cuid())
-  ip        String   // Added this to track the sender
+  ip        String?
   name      String
   email     String
   subject   String
@@ -16,4 +106,38 @@ model ContactMessage {
   createdAt DateTime @default(now())
 
   @@map("contact_messages")
+}
+
+model ContactApplication {
+  trackingNo String   @id
+  studentNo  String
+  firstName  String
+  lastName   String
+  period     String
+  phone      String
+  email      String
+  type       String
+  subject    String
+  message    String   @db.Text
+  status     String   @default("İşlemde")
+  response   String?  @db.Text
+  createdAt  DateTime @default(now())
+
+  @@map("contact_applications")
+}
+
+model IdCardOrder {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  name            String
+  studentNo       String
+  department      String
+  deliveryDetails String
+  receiptUrl      String
+  status          String   @default("PENDING") // PENDING, APPROVED, REJECTED, PRINTED
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("id_card_orders")
 }

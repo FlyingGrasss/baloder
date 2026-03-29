@@ -44,12 +44,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={`${inter.className} antialiased bg-[#A21A2A]`}>
-        <div className="flex flex-col min-h-screen bg-[#A21A2A]">
+      <body className={`${inter.className} antialiased bg-white`}>
+        <div className="flex flex-col min-h-screen relative">
           <Navbar />
-          <main className="grow">
+          <div className="flex-grow">
             {children}
-          </main>
+          </div>
           <Footer />
         </div>
         <Analytics />

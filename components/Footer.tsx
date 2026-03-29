@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 py-6 bg-[#A21A2A]">
+    <footer className="border-t-4 border-red-500 py-12 bg-bordeaux mt-auto">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 max-sm:gap-4">
         <div className="text-center md:text-left">
           <h4 className="font-bold text-white text-xl mb-1">BALÖDER</h4>
