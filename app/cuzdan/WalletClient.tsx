@@ -542,6 +542,15 @@ export default function WalletClient({
 
                     <div className="border-t border-gray-100 pt-5 space-y-4">
 
+
+                      <div className="bg-gray-50 p-5 rounded-2xl space-y-1 border border-gray-100">
+                        <div className="flex justify-between items-center mb-2">
+                          <p className="text-[9px] text-gray-400 font-black uppercase tracking-widest">İBAN (İş Bankası)</p>
+                          <Copy size={14} className="text-gray-400 hover:text-dark-gray cursor-pointer" onClick={() => navigator.clipboard.writeText('TR71 0006 4000 0013 4082 7693 73')} />
+                        </div>
+                        <p className="text-dark-gray font-mono font-bold text-sm tracking-widest break-all">TR71 0006 4000 0013 4082 7693 73</p>
+                        <p className="text-[10px] text-gray-500 font-bold pt-2 border-t border-gray-200/50 mt-2">BALÖDER</p>
+                      </div>
                       <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
                         <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Ödeme Bilgileri</p>
                         <div className="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
@@ -549,7 +558,8 @@ export default function WalletClient({
                           <span className="text-base font-black text-bordeaux">50.00 ₺</span>
                         </div>
                         <p className="text-[10px] font-bold text-gray-400 mt-3 leading-relaxed">
-                          Yukarıdaki İBAN'a ödeme yaparak dekontu yükleyiniz. (İBAN bakiye yükleme ekranındaki ile aynıdır). <br />
+
+                          Yukarıdaki İBAN'a ödeme yaparak dekontu yükleyiniz. <br />
                           <span className="text-bordeaux block mt-1">Not: Fotoğraf çekimi BALÖDER fotoğrafçıları tarafından ayrıca yapılacaktır.</span>
                         </p>
                       </div>

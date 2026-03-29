@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { User, LogOut, Mail, Menu, Home, Bell, Heart, Wallet, CircleAlert } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { User, LogOut, Menu, CircleAlert } from "lucide-react";
 import { logout } from "@/actions/auth";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function NavbarClient({ user }: { user: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   const navItems = [
     { name: "Ana Sayfa", href: "/" },
@@ -109,44 +108,6 @@ export default function NavbarClient({ user }: { user: any }) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center h-16 z-50">
-        <button
-          onClick={() => router.push('/')}
-          className={`flex flex-col items-center gap-1 ${pathname === '/' ? 'text-bordeaux' : 'text-gray-400'}`}
-        >
-          <Home size={20} />
-          <span className="text-[10px] font-bold">Ana Sayfa</span>
-        </button>
-        <button
-          onClick={() => router.push('/duyurular')}
-          className={`flex flex-col items-center gap-1 ${pathname === '/duyurular' ? 'text-bordeaux' : 'text-gray-400'}`}
-        >
-          <Bell size={20} />
-          <span className="text-[10px] font-bold">Duyurular</span>
-        </button>
-        <button
-          onClick={() => router.push('/bagis')}
-          className={`flex flex-col items-center gap-1 ${pathname === '/bagis' ? 'text-bordeaux' : 'text-gray-400'}`}
-        >
-          <Heart size={20} />
-          <span className="text-[10px] font-bold">Bağış</span>
-        </button>
-        <button
-          onClick={() => router.push('/cuzdan')}
-          className={`flex flex-col items-center gap-1 ${pathname === '/cuzdan' ? 'text-bordeaux' : 'text-gray-400'}`}
-        >
-          <Wallet size={20} />
-          <span className="text-[10px] font-bold">Cüzdan</span>
-        </button>
-        <button
-          onClick={() => router.push('/iletisim')}
-          className={`flex flex-col items-center gap-1 ${pathname === '/iletisim' ? 'text-bordeaux' : 'text-gray-400'}`}
-        >
-          <Mail size={20} />
-          <span className="text-[10px] font-bold">İletişim</span>
-        </button>
-      </div>
     </nav>
   );
 }
