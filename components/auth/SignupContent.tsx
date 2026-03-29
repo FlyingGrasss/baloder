@@ -251,10 +251,7 @@ function SignupForm() {
             </div>
             <div className="space-y-2">
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Doğum Tarihi</label>
-              <div className="relative">
-                <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                <input name="birthDate" type="date" value={formData.birthDate} onChange={handleChange} className="signup-input" required />
-              </div>
+              <input name="birthDate" type="date" value={formData.birthDate} onChange={handleChange} className="w-full p-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-[#a21a2a] focus:ring-2 focus:ring-[#a21a2a]/10" required />
             </div>
           </div>
 

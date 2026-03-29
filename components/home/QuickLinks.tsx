@@ -30,7 +30,7 @@ const links = [
 
 export default function QuickLinks() {
   return (
-    <section className="max-w-7xl mx-auto px-6 -mt-24 relative z-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <section className="max-w-7xl mx-auto px-6 -mt-24 max-sm:mt-12 relative z-20 grid grid-cols-1 md:grid-cols-3 gap-8">
       {links.map((link, idx) => (
         <motion.div
           key={idx}
@@ -38,13 +38,13 @@ export default function QuickLinks() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 + idx * 0.1 }}
         >
-          <Link 
+          <Link
             href={link.href}
-            className="group block bg-white p-8 rounded-[2.5rem] shadow-2xl hover:shadow-bordeaux/5 border border-gray-100 transition-all hover:-translate-y-2"
+            className="group block bg-white p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl hover:shadow-bordeaux/5 border border-gray-100 transition-all hover:-translate-y-2"
           >
-            <div className="flex justify-between items-start mb-8">
-              <div className={`w-16 h-16 ${link.color} text-white rounded-[1.25rem] flex items-center justify-center shadow-lg transform group-hover:rotate-6 transition-transform`}>
-                <link.icon size={28} />
+            <div className="flex justify-between items-start mb-6 md:mb-8">
+              <div className={`w-14 h-14 md:w-16 md:h-16 ${link.color} text-white rounded-[1.25rem] flex items-center justify-center shadow-lg transform group-hover:rotate-6 transition-transform`}>
+                <link.icon className="w-6 h-6 md:w-7 md:h-7" />
               </div>
               <div className="bg-gray-50 p-2 rounded-full text-gray-400 group-hover:text-bordeaux transition-colors">
                 <ArrowUpRight size={20} />

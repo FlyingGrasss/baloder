@@ -358,7 +358,7 @@ export default function WalletClient({
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
             >
-              <div className="overflow-y-auto p-8 md:p-10 scrollbar-hide">
+              <div className="overflow-y-auto p-6 md:p-10 scrollbar-hide">
                 <button
                   onClick={() => setIsDepositOpen(false)}
                   className="absolute top-6 right-6 p-2 text-gray-400 hover:text-bordeaux transition-all z-20 hover:rotate-90 bg-gray-50 rounded-full cursor-pointer"
@@ -458,7 +458,7 @@ export default function WalletClient({
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
             >
-              <div className="overflow-y-auto p-8 md:p-10 scrollbar-hide">
+              <div className="overflow-y-auto p-6 md:p-10 scrollbar-hide">
                 <button
                   onClick={() => setShowCardOrderModal(false)}
                   className="absolute top-6 right-6 text-gray-400 hover:text-dark-gray bg-gray-50 p-2 rounded-full z-10 cursor-pointer"
@@ -613,7 +613,7 @@ export default function WalletClient({
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="relative w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
             >
-              <div className="overflow-y-auto p-8 md:p-10 scrollbar-hide">
+              <div className="overflow-y-auto p-6 md:p-10 scrollbar-hide">
                 <button
                   onClick={() => setShowUpgradeModal(false)}
                   className="absolute top-6 right-6 text-gray-400 hover:text-dark-gray bg-gray-50 p-2 rounded-full cursor-pointer z-10"

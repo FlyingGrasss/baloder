@@ -52,13 +52,13 @@ function LoginForm() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-14 border border-gray-100"
+        className="bg-white rounded-[2.5rem] shadow-2xl mx-4 p-10 md:p-14 border border-gray-100"
       >
         <div className="text-center mb-10">
           <div className="w-20 h-20 text-white font-bold text-4xl mx-auto mb-6 shadow-lg shadow-bordeaux/20 rounded-[2rem] overflow-hidden">
             <img src="/icon.png" alt="Logo" className="w-full h-full object-contain rounded-full" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-black text-dark-gray mb-3 tracking-tight">
+          <h1 className="text-2xl md:text-4xl font-black text-dark-gray mb-3 tracking-tight">
             {isForgotMode ? "Şifremi Unuttum" : "BALID'e Giriş Yapın"}
           </h1>
           <p className="text-gray-500 font-medium">
