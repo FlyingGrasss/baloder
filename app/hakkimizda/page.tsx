@@ -15,7 +15,6 @@ export default function AboutPage() {
       <div className="max-w-7xl mx-auto px-6 space-y-24">
         {/* Mission Section */}
         <section className="relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-bordeaux/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -25,7 +24,7 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-6xl font-black text-dark-gray mb-8 tracking-tight border-l-8 border-bordeaux pl-8">
               Misyon ve Değerlerimiz
             </h1>
-            <div className="bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl border border-gray-100 max-w-5xl">
+            <div className="bg-white p-10 md:p-14 rounded-[3rem] border border-gray-100 max-w-5xl">
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-10 font-medium">
                 BAL Öğrenci Derneği (BALÖDER), Bornova Anadolu Lisesi öğrencilerinin sosyal, kültürel ve akademik gelişimlerini desteklemek, haklarını savunmak ve okul içindeki dayanışmayı güçlendirmek amacıyla kurulmuştur.
               </p>
