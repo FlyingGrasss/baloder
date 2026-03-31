@@ -93,9 +93,8 @@ export default function DonationClient({ initialBudgets }: { initialBudgets: any
             {initialBudgets.map((budget) => (
               <motion.button
                 key={budget.id}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setSelectedBudget(selectedBudget === budget.id ? null : budget.id)}
-                className={`text-left p-10 rounded-[2.5rem] border-2 transition-all ${selectedBudget === budget.id ? 'bg-white border-bordeaux shadow-2xl' : 'bg-white border-gray-50 hover:border-bordeaux/20 shadow-xl'}`}
+                onClick={() => setSelectedBudget(selectedBudget === budget.id ? null : null)}
+                className={`text-left p-10 rounded-[2.5rem] border-2 transition-all ${selectedBudget === budget.id ? 'bg-white border-bordeaux shadow-2xl' : 'bg-white border-gray-50 shadow-xl'}`}
               >
                 <div className="flex justify-between items-start mb-8">
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${selectedBudget === budget.id ? 'bg-bordeaux text-white' : 'bg-gray-50 text-gray-400'}`}>

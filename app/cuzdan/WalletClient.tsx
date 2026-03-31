@@ -398,8 +398,8 @@ export default function WalletClient({
                         <p className="text-[9px] text-gray-400 font-black uppercase tracking-widest">İBAN (İş Bankası)</p>
                         <Copy size={14} className="text-gray-400 hover:text-dark-gray cursor-pointer" onClick={() => navigator.clipboard.writeText('TR71 0006 4000 0013 4082 7693 73')} />
                       </div>
-                      <p className="text-dark-gray font-mono font-bold text-sm tracking-widest break-all">TR71 0006 4000 0013 4082 7693 73</p>
-                      <p className="text-[10px] text-gray-500 font-bold pt-2 border-t border-gray-200/50 mt-2">BALÖDER</p>
+                      <p className="text-dark-gray font-mono font-bold text-xs tracking-widest break-all">TR71 0006 4000 0013 4082 7693 73</p>
+                      <p className="text-[10px] text-gray-500 font-bold pt-2 border-t border-gray-200/50 mt-2">BAL Öğrenci Derneği</p>
                     </div>
 
                     <div
@@ -548,8 +548,8 @@ export default function WalletClient({
                           <p className="text-[9px] text-gray-400 font-black uppercase tracking-widest">İBAN (İş Bankası)</p>
                           <Copy size={14} className="text-gray-400 hover:text-dark-gray cursor-pointer" onClick={() => navigator.clipboard.writeText('TR71 0006 4000 0013 4082 7693 73')} />
                         </div>
-                        <p className="text-dark-gray font-mono font-bold text-sm tracking-widest break-all">TR71 0006 4000 0013 4082 7693 73</p>
-                        <p className="text-[10px] text-gray-500 font-bold pt-2 border-t border-gray-200/50 mt-2">BALÖDER</p>
+                        <p className="text-dark-gray font-mono font-bold text-xs tracking-widest break-all">TR71 0006 4000 0013 4082 7693 73</p>
+                        <p className="text-[10px] text-gray-500 font-bold pt-2 border-t border-gray-200/50 mt-2">BAL Öğrenci Derneği</p>
                       </div>
                       <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
                         <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Ödeme Bilgileri</p>
