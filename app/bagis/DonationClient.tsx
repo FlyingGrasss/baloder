@@ -82,14 +82,10 @@ export default function DonationClient({ initialBudgets }: { initialBudgets: any
         </div>
 
         <section className="space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-100 pb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-100 pb-10 max-sm:pb-0">
             <div>
               <h2 className="text-4xl font-black text-dark-gray tracking-tight uppercase mb-2">Mali Şeffaflık</h2>
               <p className="text-lg text-gray-500 font-medium">Bağışlarınızı ve harcamalarımızı anlık olarak takip edin.</p>
-            </div>
-            <div className="mt-8 md:mt-0 px-6 py-4 bg-emerald-50 rounded-2xl border border-emerald-100 flex items-center gap-3">
-              <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-              <span className="text-xs font-black text-emerald-600 uppercase tracking-widest">Sistem Aktif / Canlı Veri</span>
             </div>
           </div>
 
@@ -162,7 +158,7 @@ export default function DonationClient({ initialBudgets }: { initialBudgets: any
                       ))}
                       {(!activeBudget.transactions || activeBudget.transactions.length === 0) && (
                         <tr>
-                           <td colSpan={4} className="px-10 py-8 text-center text-sm font-bold text-gray-400">Henüz bir işlem kaydı bulunmuyor.</td>
+                          <td colSpan={4} className="px-10 py-8 text-center text-sm font-bold text-gray-400">Henüz bir işlem kaydı bulunmuyor.</td>
                         </tr>
                       )}
                     </tbody>

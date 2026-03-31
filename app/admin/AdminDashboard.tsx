@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { UserApprovalButton, ReceiptActions, IdCardOrderActions, UserRoleToggles, BudgetEditor, AnnouncementManager, DeleteAnnouncement } from "./AdminComponents";
+import { UserApprovalButton, ReceiptActions, IdCardOrderActions, UserRoleToggles, BudgetEditor, BudgetManager, AnnouncementManager, DeleteAnnouncement } from "./AdminComponents";
+
 import { Users, ReceiptText, MessageSquare, Download, CheckCircle2, XCircle, Clock, CreditCard, Landmark, Megaphone, AlertTriangle, Search } from "lucide-react";
 
 export default function AdminDashboard({ allUsers, pendingReceipts, messages, pendingIdCardOrders, budgets, announcements }: {
@@ -210,10 +211,18 @@ export default function AdminDashboard({ allUsers, pendingReceipts, messages, pe
           )}
 
           {activeTab === "budgets" && (
-            <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {budgets.map(b => (
-                <BudgetEditor key={b.id} budget={b} />
-              ))}
+            <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+              <div className="lg:col-span-1">
+                <BudgetManager />
+              </div>
+              <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {budgets.map(b => (
+                  <BudgetEditor key={b.id} budget={b} />
+                ))}
+                {budgets.length === 0 && (
+                  <p className="col-span-2 text-xs font-bold text-gray-400 italic">Henüz bütçe bulunmuyor. Soldan yeni bir tane oluşturun.</p>
+                )}
+              </div>
             </div>
           )}
 

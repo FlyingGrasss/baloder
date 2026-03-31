@@ -106,11 +106,38 @@ export async function updateUserStatus(userId: string, data: { isMember?: boolea
 
 export async function updateBudgetAmount(budgetId: string, total: number, spent: number) {
   await assertAdmin();
-  await prisma.budget.upsert({
+  await prisma.budget.update({
     where: { id: budgetId },
-    create: { id: budgetId, name: budgetId === 'burs' ? 'Öğrenci Burs Fonu' : 'Okul İyileştirme Projeleri', total, spent },
-    update: { total, spent }
+    data: { total, spent }
   });
+  revalidatePath('/admin');
+  revalidatePath('/bagis');
+}
+
+export async function updateBudget(id: string, name: string, total: number, spent: number) {
+  await assertAdmin();
+  await prisma.budget.update({
+    where: { id },
+    data: { name, total, spent }
+  });
+  revalidatePath('/admin');
+  revalidatePath('/bagis');
+}
+
+export async function createBudget(name: string, total: number, spent: number) {
+  await assertAdmin();
+  await prisma.budget.create({
+    data: { name, total, spent }
+  });
+  revalidatePath('/admin');
+  revalidatePath('/bagis');
+}
+
+export async function deleteBudget(id: string) {
+  await assertAdmin();
+  // Delete associated transactions first (FK constraint)
+  await prisma.transaction.deleteMany({ where: { budgetId: id } });
+  await prisma.budget.delete({ where: { id } });
   revalidatePath('/admin');
   revalidatePath('/bagis');
 }

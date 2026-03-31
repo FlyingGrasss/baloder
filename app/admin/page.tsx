@@ -21,17 +21,6 @@ export default async function AdminMessages() {
     redirect("/"); // Not an admin
   }
 
-  // Ensure 2 default budgets exist
-  await prisma.budget.upsert({
-    where: { id: "burs" },
-    update: {},
-    create: { id: "burs", name: "Öğrenci Burs Fonu", total: 45000, spent: 32000 }
-  });
-  await prisma.budget.upsert({
-    where: { id: "okul" },
-    update: {},
-    create: { id: "okul", name: "Okul İyileştirme Projeleri", total: 25000, spent: 18500 }
-  });
 
   const [messages, allUsers, pendingReceipts, allIdCardOrders, budgets, announcements] = await Promise.all([
     prisma.contactMessage.findMany({ orderBy: { createdAt: "desc" } }),
