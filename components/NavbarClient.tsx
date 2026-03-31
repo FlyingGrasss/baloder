@@ -85,29 +85,24 @@ export default function NavbarClient({ user }: { user: any }) {
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-16 left-0 right-0 bg-white shadow-xl border-t border-gray-100 md:hidden"
-          >
-            <div className="flex flex-col p-4 gap-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isOpen && (
+        <div
+          className="absolute top-16 left-0 right-0 bg-white shadow-xl border-t border-gray-100 md:hidden"
+        >
+          <div className="flex flex-col p-4 gap-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
