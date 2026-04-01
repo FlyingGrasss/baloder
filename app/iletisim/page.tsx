@@ -110,7 +110,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full md:w-auto px-12 py-5 bg-bordeaux hover:bg-bordeaux/90 text-white rounded-[1.5rem] font-black uppercase tracking-widest shadow-2xl shadow-bordeaux/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+                  className="w-full md:w-auto px-12 py-5 bg-bordeaux hover:bg-bordeaux/90 text-white rounded-[1.5rem] font-black uppercase tracking-widest shadow-2xl shadow-bordeaux/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? <Loader2 className="animate-spin" size={24} /> : <>Mesajı Gönder <Send size={20} /></>}
                 </button>

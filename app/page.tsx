@@ -1,11 +1,15 @@
 import Hero from "@/components/home/Hero";
 import QuickLinks from "@/components/home/QuickLinks";
+import { createClient } from "@/lib/supabase/server";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <main className="min-h-screen bg-[#f4f7f9] pb-24 max-sm:pb-12">
-      <Hero />
-      <QuickLinks />
+      <Hero user={user} />
+      <QuickLinks user={user} />
 
       {/* Additional homepage content can go here (Stats, News preview, etc.) */}
       <section className="max-w-7xl mx-auto px-6 pt-24 max-sm:pt-12 text-center">

@@ -114,7 +114,7 @@ function LoginForm() {
                 <button
                   type="button"
                   onClick={() => setIsForgotMode(true)}
-                  className="text-[10px] font-black text-bordeaux uppercase tracking-widest hover:underline"
+                  className="text-[10px] font-black text-bordeaux uppercase tracking-widest hover:underline cursor-pointer"
                 >
                   Şifremi Unuttum
                 </button>
@@ -136,7 +136,7 @@ function LoginForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-5 bg-bordeaux hover:bg-bordeaux/90 text-white rounded-[1.25rem] font-black uppercase tracking-[0.15em] shadow-lg shadow-bordeaux/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+            className="w-full py-5 bg-bordeaux hover:bg-bordeaux/90 text-white rounded-[1.25rem] font-black uppercase tracking-[0.15em] shadow-lg shadow-bordeaux/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
           >
             {loading ? (
               <Loader2 className="animate-spin" size={20} />
@@ -153,7 +153,7 @@ function LoginForm() {
           {isForgotMode ? (
             <button
               onClick={() => setIsForgotMode(false)}
-              className="text-xs font-bold text-gray-400 hover:text-bordeaux uppercase tracking-widest transition-colors"
+              className="text-xs font-bold text-gray-400 hover:text-bordeaux uppercase tracking-widest transition-colors cursor-pointer"
             >
               Giriş Ekranına Dön
             </button>

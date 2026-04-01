@@ -28,10 +28,12 @@ const links = [
   }
 ];
 
-export default function QuickLinks() {
+export default function QuickLinks({ user }: { user?: any }) {
+  const filteredLinks = links.filter(link => !(user && link.href === "/auth/signup"));
+
   return (
-    <section className="max-w-7xl mx-auto px-6 mt-12 relative z-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-      {links.map((link, idx) => (
+    <section className={`max-w-7xl mx-auto px-6 mt-12 relative z-20 grid grid-cols-1 ${filteredLinks.length === 2 ? 'md:grid-cols-2 max-w-4xl' : 'md:grid-cols-3'} gap-8`}>
+      {filteredLinks.map((link, idx) => (
         <motion.div
           key={idx}
           initial={{ opacity: 0, y: 20 }}
@@ -40,7 +42,7 @@ export default function QuickLinks() {
         >
           <Link
             href={link.href}
-            className="group block bg-white p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl hover:shadow-bordeaux/5 border border-gray-100 transition-all hover:-translate-y-2"
+            className="group block bg-white p-6 md:p-8 rounded-3xl md:rounded-4xl shadow-2xl hover:shadow-bordeaux/5 border border-gray-100 transition-all hover:-translate-y-2 cursor-pointer"
           >
             <div className="flex justify-between items-start mb-6 md:mb-8">
               <div className={`w-14 h-14 md:w-16 md:h-16 ${link.color} text-white rounded-[1.25rem] flex items-center justify-center shadow-lg transform group-hover:rotate-6 transition-transform`}>

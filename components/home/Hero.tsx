@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function Hero() {
+export default function Hero({ user }: { user?: any }) {
   return (
     <section className="bg-dark-gray text-white py-24 md:py-32 px-6 rounded-b-[3rem] sm:rounded-b-[4rem] relative overflow-hidden">
       {/* Background stays but we ensure it's truly behind */}
@@ -49,15 +49,17 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col sm:flex-row gap-4"
         >
-          <Link
-            href="/auth/signup"
-            className="bg-white text-bordeaux px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-all shadow-xl shadow-white/5"
-          >
-            Aramıza Katıl
-          </Link>
+          {!user && (
+            <Link
+              href="/auth/signup"
+              className="bg-white text-bordeaux px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-all shadow-xl shadow-white/5 cursor-pointer"
+            >
+              Aramıza Katıl
+            </Link>
+          )}
           <Link
             href="/cuzdan"
-            className="bg-white/10 backdrop-blur-md text-white border-2 border-white/10 px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/20 transition-all"
+            className="bg-white/10 backdrop-blur-md text-white border-2 border-white/10 px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/20 transition-all cursor-pointer"
           >
             Cüzdanım
           </Link>

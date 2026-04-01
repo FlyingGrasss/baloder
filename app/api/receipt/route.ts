@@ -1,6 +1,5 @@
-import { head } from '@vercel/blob';
-import { NextResponse } from 'next/server';
-import { cookies } from "next/headers";
+import { createClient } from "@/lib/supabase/server";
+import { prisma } from "@/lib/prisma";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -10,11 +9,19 @@ export async function GET(request: Request) {
     return new Response('Missing URL', { status: 400 });
   }
 
-  // Auth check: Only admins can view receipts for now
-  const cookieStore = await cookies();
-  const isAdmin = cookieStore.get("admin_auth")?.value === "true";
+  // Auth check: Only admins can view receipts
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  if (!isAdmin) {
+  if (!user) {
+    return new Response('Oturum açmanız gerekiyor.', { status: 401 });
+  }
+
+  const dbUser = await prisma.user.findUnique({
+    where: { id: user.id }
+  });
+
+  if (dbUser?.role !== "ADMIN") {
     return new Response('Yetkisiz erişim.', { status: 403 });
   }
 

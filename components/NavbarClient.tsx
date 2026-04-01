@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User, LogOut, Menu, CircleAlert } from "lucide-react";
 import { logout } from "@/actions/auth";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function NavbarClient({ user }: { user: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,7 +76,7 @@ export default function NavbarClient({ user }: { user: any }) {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-dark-gray p-2"
+              className="md:hidden text-dark-gray p-2 cursor-pointer"
             >
               <Menu size={24} />
             </button>
@@ -95,11 +94,48 @@ export default function NavbarClient({ user }: { user: any }) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50"
+                className={`text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-50 transition-all ${pathname === item.href ? "text-bordeaux font-bold" : "text-gray-600 hover:text-bordeaux"}`}
               >
                 {item.name}
               </Link>
             ))}
+
+            <div className="h-px bg-gray-100 my-2" />
+
+            {user ? (
+              <>
+                <Link
+                  href="/profile"
+                  onClick={() => setIsOpen(false)}
+                  className="text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50"
+                >
+                  Profilim
+                </Link>
+                <form action={logout}>
+                  <button className="w-full text-left text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center gap-2 cursor-pointer">
+                    <LogOut size={16} />
+                    Çıkış Yap
+                  </button>
+                </form>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/auth/signup"
+                  onClick={() => setIsOpen(false)}
+                  className="text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50"
+                >
+                  Üyelik
+                </Link>
+                <Link
+                  href="/auth/login"
+                  onClick={() => setIsOpen(false)}
+                  className="text-sm font-semibold text-white bg-bordeaux px-4 py-3 rounded-xl mx-4 text-center mt-2"
+                >
+                  Giriş Yap
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

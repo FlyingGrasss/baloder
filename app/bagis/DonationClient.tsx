@@ -130,7 +130,7 @@ export default function DonationClient({ initialBudgets }: { initialBudgets: any
               >
                 <div className="p-10 border-b border-gray-50 flex justify-between items-center">
                   <h4 className="text-2xl font-black text-dark-gray uppercase tracking-tight">{activeBudget.name} Detayları</h4>
-                  <button onClick={() => setSelectedBudget(null)} className="p-2 hover:bg-gray-50 rounded-full transition-colors">
+                  <button onClick={() => setSelectedBudget(null)} className="p-2 hover:bg-gray-50 rounded-full transition-colors cursor-pointer">
                     <X size={24} />
                   </button>
                 </div>

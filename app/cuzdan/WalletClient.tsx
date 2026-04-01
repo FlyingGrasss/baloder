@@ -241,7 +241,7 @@ export default function WalletClient({
             {!cardsToDisplay.length && (
               <button
                 onClick={() => setShowCardOrderModal(true)}
-                className="text-bordeaux text-xs font-black uppercase tracking-widest flex items-center gap-1 hover:text-dark-gray transition-colors"
+                className="text-bordeaux text-xs font-black uppercase tracking-widest flex items-center gap-1 hover:text-dark-gray transition-colors cursor-pointer"
               >
                 <Plus size={14} /> Kart Siparişi
               </button>
@@ -252,20 +252,16 @@ export default function WalletClient({
             {cardsToDisplay.length > 0 ? cardsToDisplay.map((card) => (
               <div
                 key={card.id}
-                className="min-w-[280px] h-[180px] bg-gradient-to-br from-dark-gray to-black p-6 rounded-[2rem] relative overflow-hidden shadow-xl flex flex-col justify-between shrink-0 border border-white/10"
+                className="min-w-[280px] h-[180px] bg-gradient-to-br from-bordeaux to-[#4a0000] p-6 rounded-[2rem] relative overflow-hidden shadow-xl flex flex-col justify-between shrink-0 border border-white/10"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
                 <div className="flex justify-between items-start relative z-10">
                   <div className="w-10 h-8 bg-yellow-500/20 rounded-lg border border-yellow-500/30"></div>
-                  <div className="text-white/40 text-[10px] font-black tracking-widest uppercase bg-white/5 px-2 py-1 rounded-md">
+                  <div className="text-white/80 text-[10px] font-black tracking-widest uppercase bg-white/5 px-2 py-1 rounded-md">
                     BALÖDER ID CARD
                   </div>
                 </div>
 
-                <div className="relative z-10">
-                  <p className="text-white/40 text-[8px] uppercase tracking-widest mb-1">Kimlik No / Kart No</p>
-                  <p className="text-white text-lg font-mono tracking-widest">**** **** **** {card.last4}</p>
-                </div>
 
                 <div className="flex justify-between items-end relative z-10">
                   <div>
@@ -281,7 +277,7 @@ export default function WalletClient({
             )) : (
               <button
                 onClick={() => setShowCardOrderModal(true)}
-                className="w-full h-[180px] bg-white border-2 border-dashed border-gray-200 rounded-[2rem] flex flex-col items-center justify-center gap-3 text-gray-400 hover:bg-gray-50 hover:border-bordeaux/50 transition-all shrink-0 group"
+                className="w-full h-[180px] bg-white border-2 border-dashed border-gray-200 rounded-[2rem] flex flex-col items-center justify-center gap-3 text-gray-400 hover:bg-gray-50 hover:border-bordeaux/50 transition-all shrink-0 group cursor-pointer"
               >
                 <div className="w-12 h-12 bg-gray-50 group-hover:bg-bordeaux/10 group-hover:text-bordeaux rounded-full flex items-center justify-center transition-colors">
                   <Plus size={24} />
@@ -643,7 +639,7 @@ export default function WalletClient({
                     <p className="text-xs text-gray-500 font-medium">Temel cüzdan özellikleri ve ID kart kullanımı.</p>
                   </div>
 
-                  <div className={`p-5 rounded-2xl border-2 transition-all ${accountType === 'Dernek Üyesi' ? 'border-bordeaux bg-bordeaux/5' : 'border-gray-100'}`}>
+                  <div className={`p-5 rounded-2xl border-2 transition-all ${accountType === 'Dernek Üyesi' ? 'border-bordeaux bg-bordeaux/5' : (accountType === 'Sandık Üyesi' ? 'border-gray-100 opacity-50' : 'border-gray-100')}`}>
                     <div className="flex justify-between items-center mb-1">
                       <span className="font-bold text-sm uppercase tracking-wide flex items-center gap-2">Dernek Üyesi <Zap size={14} className="text-yellow-500 fill-yellow-500" /></span>
                       {accountType === 'Dernek Üyesi' && <span className="text-[10px] font-black text-bordeaux uppercase tracking-widest bg-bordeaux/10 px-2 py-1 rounded-md">Aktif</span>}

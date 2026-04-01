@@ -124,7 +124,7 @@ function SignupForm() {
             <button
               type="submit"
               disabled={loading || otp.length !== 8}
-              className="w-full py-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-[1.25rem] font-black uppercase tracking-[0.15em] shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+              className="w-full py-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-[1.25rem] font-black uppercase tracking-[0.15em] shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
             >
               {loading ? <Loader2 className="animate-spin" size={20} /> : "Kodu Doğrula"}
             </button>
@@ -134,7 +134,7 @@ function SignupForm() {
             <button
               onClick={handleResendOtp}
               disabled={loading}
-              className="text-xs font-bold text-gray-400 hover:text-bordeaux uppercase tracking-widest transition-colors"
+              className="text-xs font-bold text-gray-400 hover:text-bordeaux uppercase tracking-widest transition-colors cursor-pointer"
             >
               Kod gelmedi mi? Tekrar Gönder
             </button>
@@ -251,14 +251,14 @@ function SignupForm() {
             </div>
             <div className="space-y-2">
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Doğum Tarihi</label>
-              <input name="birthDate" type="date" value={formData.birthDate} onChange={handleChange} className="w-full p-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-[#a21a2a] focus:ring-2 focus:ring-[#a21a2a]/10" required />
+              <input name="birthDate" type="date" value={formData.birthDate} onChange={handleChange} className="w-full p-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-bordeaux focus:ring-2 focus:ring-bordeaux/10" required />
             </div>
           </div>
 
           <button
             type="submit"
             disabled={loading || !isPasswordValid(formData.password)}
-            className="w-full py-5 bg-bordeaux hover:bg-bordeaux/90 text-white rounded-[1.25rem] font-black uppercase tracking-[0.15em] shadow-lg shadow-bordeaux/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50 mt-4"
+            className="w-full py-5 bg-bordeaux hover:bg-bordeaux/90 text-white rounded-[1.25rem] font-black uppercase tracking-[0.15em] shadow-lg shadow-bordeaux/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50 mt-4 cursor-pointer"
           >
             {loading ? <Loader2 className="animate-spin" size={20} /> : <>Kaydı Tamamla <ArrowRight size={20} /></>}
           </button>
