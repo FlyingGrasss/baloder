@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendContactMessage } from "@/actions/contact";
 import { Send, MapPin, Mail, Phone, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,14 +19,18 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
 
-    // Simulate API call
-    await new Promise(r => setTimeout(r, 1500));
+    const result = await sendContactMessage(formData);
 
     setLoading(false);
-    setSuccess(true);
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setTimeout(() => setSuccess(false), 5000);
+    if (result.success) {
+      setSuccess(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setSuccess(false), 5000);
+    } else {
+      setError(result.error || "Bir hata oluştu.");
+    }
   };
 
   return (
@@ -52,9 +58,19 @@ export default function ContactPage() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="mb-8 p-6 bg-emerald-50 border border-emerald-100 text-emerald-600 rounded-[1.5rem] font-bold flex items-center gap-4"
+                    className="mb-8 p-6 bg-emerald-50 border border-emerald-100 text-emerald-600 rounded-3xl font-bold flex items-center gap-4"
                   >
                     <CheckCircle2 size={24} /> Mesajınız başarıyla iletildi. En kısa sürede size döneceğiz.
+                  </motion.div>
+                )}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mb-8 p-6 bg-red-50 border border-red-100 text-red-600 rounded-3xl font-bold flex items-center gap-4"
+                  >
+                    <AlertCircle size={24} /> {error}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -69,7 +85,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Ad Soyad"
-                      className="w-full px-8 py-4 bg-gray-50 border border-gray-100 rounded-[1.5rem] text-dark-gray font-medium focus:ring-2 ring-bordeaux/10 focus:border-bordeaux outline-none transition-all"
+                      className="w-full px-8 py-4 bg-gray-50 border border-gray-100 rounded-3xl text-dark-gray font-medium focus:ring-2 ring-bordeaux/10 focus:border-bordeaux outline-none transition-all"
                     />
                   </div>
                   <div className="space-y-2">
@@ -80,7 +96,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
                       placeholder="ornek@bal.k12.tr"
-                      className="w-full px-8 py-4 bg-gray-50 border border-gray-100 rounded-[1.5rem] text-dark-gray font-medium focus:ring-2 ring-bordeaux/10 focus:border-bordeaux outline-none transition-all"
+                      className="w-full px-8 py-4 bg-gray-50 border border-gray-100 rounded-3xl text-dark-gray font-medium focus:ring-2 ring-bordeaux/10 focus:border-bordeaux outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -92,7 +108,7 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={e => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="Mesaj Konusu"
-                    className="w-full px-8 py-4 bg-gray-50 border border-gray-100 rounded-[1.5rem] text-dark-gray font-medium focus:ring-2 ring-bordeaux/10 focus:border-bordeaux outline-none transition-all"
+                    className="w-full px-8 py-4 bg-gray-50 border border-gray-100 rounded-3xl text-dark-gray font-medium focus:ring-2 ring-bordeaux/10 focus:border-bordeaux outline-none transition-all"
                   />
                 </div>
                 <div className="space-y-2">
@@ -103,14 +119,14 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={e => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Nasıl yardımcı olabiliriz?"
-                    className="w-full px-8 py-4 bg-gray-50 border border-gray-100 rounded-[1.5rem] text-dark-gray font-medium focus:ring-2 ring-bordeaux/10 focus:border-bordeaux outline-none transition-all resize-none"
+                    className="w-full px-8 py-4 bg-gray-50 border border-gray-100 rounded-3xl text-dark-gray font-medium focus:ring-2 ring-bordeaux/10 focus:border-bordeaux outline-none transition-all resize-none"
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full md:w-auto px-12 py-5 bg-bordeaux hover:bg-bordeaux/90 text-white rounded-[1.5rem] font-black uppercase tracking-widest shadow-2xl shadow-bordeaux/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
+                  className="w-full md:w-auto px-12 py-5 bg-bordeaux hover:bg-bordeaux/90 text-white rounded-3xl font-black uppercase tracking-widest shadow-2xl shadow-bordeaux/20 transition-all flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? <Loader2 className="animate-spin" size={24} /> : <>Mesajı Gönder <Send size={20} /></>}
                 </button>
