@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import LoginContent from "@/components/auth/LoginContent";
 
@@ -7,7 +8,10 @@ export default async function LoginPage() {
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
-    redirect("/");
+    // Only redirect if they already have a complete profile
+    const profile = await prisma.user.findUnique({ where: { id: user.id }, select: { id: true } })
+    if (profile) redirect("/");
+    else redirect("/auth/complete-profile");
   }
 
   return (

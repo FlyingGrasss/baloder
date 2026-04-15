@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
+import { redirect } from "next/navigation";
 import {
   User as UserIcon,
   Mail,
@@ -12,25 +13,13 @@ import {
   AlertCircle
 } from "lucide-react";
 import Link from "next/link";
+import DeleteAccountButton from "@/components/profile/DeleteAccountButton";
 
 export default async function ProfilePage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-        <div className="bg-white rounded-3xl p-8 text-center max-w-sm shadow-xl border border-gray-100">
-          <UserIcon size={40} className="text-gray-400 mx-auto mb-4" />
-          <h1 className="text-xl font-black text-dark-gray mb-2 uppercase">Giriş Gerekli</h1>
-          <p className="text-sm text-gray-500 font-medium mb-6">Lütfen önce giriş yapın.</p>
-          <Link href="/auth/login" className="block w-full py-3 bg-bordeaux text-white rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-bordeaux/90 transition-all shadow-lg">
-            Giriş Yap
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  if (!user) redirect('/auth/login')
 
   const [dbUser, depositRequests] = await Promise.all([
     prisma.user.findUnique({ where: { id: user.id } }),
@@ -39,6 +28,8 @@ export default async function ProfilePage() {
       orderBy: { createdAt: "desc" }
     })
   ]);
+
+  if (!dbUser) redirect('/auth/complete-profile')
 
   const meta = user.user_metadata || {};
   const profileData = {
@@ -163,6 +154,11 @@ export default async function ProfilePage() {
               )}
             </div>
           </div>
+        </div>
+
+        {/* Danger Zone */}
+        <div className="mt-12 flex justify-center">
+          <DeleteAccountButton />
         </div>
       </div>
     </main>

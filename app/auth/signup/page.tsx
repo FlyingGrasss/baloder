@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import SignupContent from "@/components/auth/SignupContent";
 
@@ -7,7 +8,9 @@ export default async function SignupPage() {
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
-    redirect("/");
+    const profile = await prisma.user.findUnique({ where: { id: user.id }, select: { id: true } })
+    if (profile) redirect("/");
+    else redirect("/auth/complete-profile");
   }
 
   return (

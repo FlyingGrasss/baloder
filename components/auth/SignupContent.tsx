@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState, Suspense } from "react";
 import Link from "next/link";
-import { signup, resendOtp, verifyOtp } from "@/actions/auth";
+import { signup, resendOtp, verifyOtp, signInWithGoogle } from "@/actions/auth";
 import { isPasswordValid } from "@/lib/passwordValidation";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, Lock, Phone, Calendar, Hash, ArrowRight, Loader2, AlertCircle, CheckCircle2, ShieldCheck } from "lucide-react";
@@ -26,6 +26,7 @@ function SignupForm() {
 
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
@@ -145,7 +146,7 @@ function SignupForm() {
   }
 
   return (
-    <div className="w-full max-w-2xl px-4">
+    <div className="w-full max-w-xl px-4 mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -163,19 +164,49 @@ function SignupForm() {
         )}
 
         <form onSubmit={handleSignup} className="space-y-6">
+          {/* Google Sign-In Button */}
+          <button
+            type="button"
+            disabled={googleLoading || loading}
+            onClick={async () => {
+              setGoogleLoading(true);
+              await signInWithGoogle();
+              setGoogleLoading(false);
+            }}
+            className="w-full py-4 flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-dark-gray font-bold rounded-2xl transition-all shadow-sm disabled:opacity-50 cursor-pointer"
+          >
+            {googleLoading ? (
+              <Loader2 className="animate-spin" size={20} />
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M47.532 24.5528C47.532 22.9214 47.3997 21.2811 47.1175 19.6761H24.48V28.9181H37.4434C36.9055 31.8988 35.177 34.5356 32.6461 36.2111V42.2078H40.3801C44.9217 38.0278 47.532 31.8547 47.532 24.5528Z" fill="#4285F4"/>
+                <path d="M24.48 48.0016C30.9529 48.0016 36.4116 45.8764 40.3888 42.2078L32.6549 36.2111C30.5031 37.675 27.7252 38.5039 24.4888 38.5039C18.2275 38.5039 12.9187 34.2798 11.0139 28.6006H3.03296V34.7825C7.10718 42.8868 15.4056 48.0016 24.48 48.0016Z" fill="#34A853"/>
+                <path d="M11.0051 28.6006C9.99973 25.6199 9.99973 22.3922 11.0051 19.4115V13.2296H3.03298C-0.371021 20.0112 -0.371021 28.0009 3.03298 34.7825L11.0051 28.6006Z" fill="#FBBC04"/>
+                <path d="M24.48 9.49932C27.9016 9.44641 31.2086 10.7339 33.6866 13.0973L40.5387 6.24523C36.2 2.17101 30.4414 -0.068932 24.48 0.00161733C15.4055 0.00161733 7.10718 5.11644 3.03296 13.2296L11.0051 19.4115C12.901 13.7235 18.2187 9.49932 24.48 9.49932Z" fill="#EA4335"/>
+              </svg>
+            )}
+            Google ile Kayıt Ol
+          </button>
+
+          <div className="relative flex items-center gap-4">
+            <div className="flex-1 h-px bg-gray-200" />
+            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">veya</span>
+            <div className="flex-1 h-px bg-gray-200" />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Ad Soyad</label>
               <div className="relative">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                <input name="name" value={formData.name} onChange={handleChange} placeholder="Ad Soyad" className="signup-input" required />
+                <input name="name" value={formData.name} onChange={handleChange} placeholder="Ad Soyad" className="w-full py-4 pl-12 pr-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-bordeaux focus:ring-2 focus:ring-bordeaux/10" required />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">E-posta</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="ornek@bal.k12.tr" className="signup-input" required />
+                <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="ornek@bal.k12.tr" className="w-full py-4 pl-12 pr-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-bordeaux focus:ring-2 focus:ring-bordeaux/10" required />
               </div>
             </div>
             <div className="space-y-4">
@@ -188,7 +219,7 @@ function SignupForm() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="signup-input"
+                  className="w-full py-4 pl-12 pr-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-bordeaux focus:ring-2 focus:ring-bordeaux/10"
                   required
                 />
               </div>
@@ -225,28 +256,28 @@ function SignupForm() {
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">T.C. Kimlik No</label>
               <div className="relative">
                 <Hash className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                <input name="tc" value={formData.tc} onChange={handleChange} placeholder="11 haneli" className="signup-input" maxLength={11} required />
+                <input name="tc" value={formData.tc} onChange={handleChange} placeholder="11 haneli" className="w-full py-4 pl-12 pr-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-bordeaux focus:ring-2 focus:ring-bordeaux/10" maxLength={11} required />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Öğrenci No</label>
               <div className="relative">
                 <Hash className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                <input name="schoolNumber" value={formData.schoolNumber} onChange={handleChange} placeholder="Okul No" className="signup-input" required />
+                <input name="schoolNumber" value={formData.schoolNumber} onChange={handleChange} placeholder="Okul No" className="w-full py-4 pl-12 pr-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-bordeaux focus:ring-2 focus:ring-bordeaux/10" required />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Mezuniyet Yılı</label>
               <div className="relative">
                 <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                <input name="graduationYear" type="number" value={formData.graduationYear} onChange={handleChange} placeholder="Örn: 2026" className="signup-input" required />
+                <input name="graduationYear" type="number" value={formData.graduationYear} onChange={handleChange} placeholder="Örn: 2026" className="w-full py-4 pl-12 pr-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-bordeaux focus:ring-2 focus:ring-bordeaux/10" required />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Telefon</label>
               <div className="relative">
                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                <input name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="05XX XXX XX XX" className="signup-input" required />
+                <input name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} placeholder="05XX XXX XX XX" className="w-full py-4 pl-12 pr-4 bg-[#f9f9f9] border border-[#eee] rounded-2xl text-[#2c3e50] font-medium outline-none transition-all focus:border-bordeaux focus:ring-2 focus:ring-bordeaux/10" required />
               </div>
             </div>
             <div className="space-y-2">
@@ -274,24 +305,7 @@ function SignupForm() {
         </div>
       </motion.div>
 
-      <style jsx>{`
-        .signup-input {
-          width: 100%;
-          padding: 1rem 1rem 1rem 3rem;
-          background: #f9f9f9;
-          border: 1px solid #eee;
-          border-radius: 1rem;
-          color: #2c3e50;
-          outline: none;
-          transition: all 0.2s;
-          font-weight: 500;
-        }
-        .signup-input:focus {
-          ring: 2px;
-          ring-color: rgba(162, 26, 42, 0.1);
-          border-color: #a21a2a;
-        }
-      `}</style>
+
     </div>
   );
 }

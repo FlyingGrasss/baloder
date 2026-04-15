@@ -6,6 +6,71 @@ import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 
+export async function signInWithGoogle() {
+  const supabase = await createClient()
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: `${siteUrl}/auth/callback`,
+    },
+  })
+
+  if (error) return { error: error.message }
+  if (data.url) redirect(data.url)
+}
+
+export async function completeGoogleProfile(formData: FormData) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) return { error: 'Oturum bulunamadı. Lütfen tekrar giriş yapın.' }
+
+  // Verify no record already exists (idempotency guard)
+  const existing = await prisma.user.findUnique({
+    where: { id: user.id },
+    select: { id: true },
+  })
+  if (existing) {
+    revalidatePath('/', 'layout')
+    redirect('/')
+  }
+
+  const tc = formData.get('tc') as string
+  const schoolNumber = formData.get('schoolNumber') as string
+  const graduationYear = formData.get('graduationYear') as string
+  const phoneNumber = formData.get('phoneNumber') as string
+  const birthDate = formData.get('birthDate') as string
+
+  if (!tc || !schoolNumber || !graduationYear || !phoneNumber || !birthDate) {
+    return { error: 'Lütfen tüm zorunlu alanları doldurun.' }
+  }
+
+  try {
+    await prisma.user.create({
+      data: {
+        id: user.id,
+        email: user.email!,
+        name: user.user_metadata?.full_name || user.user_metadata?.name || '',
+        tc,
+        schoolNumber,
+        graduationYear: parseInt(graduationYear),
+        phoneNumber,
+        birthDate: new Date(birthDate),
+        role: 'USER',
+        verified: true,
+      },
+    })
+  } catch (dbError) {
+    console.error('completeGoogleProfile error:', dbError)
+    return { error: 'Profil oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.' }
+  }
+
+  revalidatePath('/', 'layout')
+  redirect('/')
+}
+
 export async function signup(formData: FormData) {
   const email = formData.get('email') as string
   const password = formData.get('password') as string
