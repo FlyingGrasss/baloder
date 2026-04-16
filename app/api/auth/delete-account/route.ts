@@ -29,7 +29,18 @@ export async function DELETE(request: Request) {
       await tx.user.delete({ where: { id: userId } });
     });
 
-    // 2. Delete the user from Supabase Auth
+    // 2. Delete the user from the Supabase public 'users' table (Balid's DB)
+    // This is required so the Supabase trigger doesn't fail with "Database error saving new user" on re-signup.
+    const { error: dbDeleteError } = await supabase
+      .from('users')
+      .delete()
+      .eq('id', userId);
+
+    if (dbDeleteError) {
+      console.warn("Could not delete from balid public.users table or it didn't exist:", dbDeleteError);
+    }
+
+    // 3. Delete the user from Supabase Auth
     const { error: deletionError } = await supabase.auth.admin.deleteUser(userId);
     
     if (deletionError) {
@@ -37,7 +48,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Kullanıcı silinirken bir hata oluştu.' }, { status: 500 });
     }
 
-    // 3. Sign out the user
+    // 4. Sign out the user
     await regularClient.auth.signOut();
 
     return NextResponse.json({ success: true });
