@@ -157,3 +157,83 @@ export async function deleteAnnouncementAction(id: string) {
   });
   revalidatePath('/admin');
 }
+
+// ---------------------------------------------------------------------------
+// Kooperatif — Market Items
+// ---------------------------------------------------------------------------
+
+export async function createMarketItem(
+  name: string,
+  imageUrl: string,
+  sellPrice: number,
+  initialStock: number,
+) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+  const dbUser = await prisma.user.findUnique({ where: { id: user.id } });
+  if (dbUser?.role !== 'ADMIN') throw new Error('Unauthorized');
+
+  await prisma.$transaction(async (tx) => {
+    const item = await tx.marketItem.create({
+      data: { name, imageUrl, sellPrice, stock: initialStock },
+    });
+    if (initialStock !== 0) {
+      await tx.stockHistory.create({
+        data: {
+          marketItemId: item.id,
+          delta: initialStock,
+          note: 'İlk stok girişi',
+          updatedBy: user.id,
+        },
+      });
+    }
+  });
+
+  revalidatePath('/admin');
+}
+
+export async function updateMarketItem(
+  id: string,
+  name: string,
+  imageUrl: string,
+  sellPrice: number,
+) {
+  await assertAdmin();
+  await prisma.marketItem.update({
+    where: { id },
+    data: { name, imageUrl, sellPrice },
+  });
+  revalidatePath('/admin');
+}
+
+export async function deleteMarketItem(id: string) {
+  await assertAdmin();
+  // StockHistory rows cascade via DB
+  await prisma.marketItem.delete({ where: { id } });
+  revalidatePath('/admin');
+}
+
+export async function updateMarketStock(
+  itemId: string,
+  delta: number,
+  note?: string,
+) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+  const dbUser = await prisma.user.findUnique({ where: { id: user.id } });
+  if (dbUser?.role !== 'ADMIN') throw new Error('Unauthorized');
+
+  await prisma.$transaction(async (tx) => {
+    await tx.marketItem.update({
+      where: { id: itemId },
+      data: { stock: { increment: delta } },
+    });
+    await tx.stockHistory.create({
+      data: { marketItemId: itemId, delta, note, updatedBy: user.id },
+    });
+  });
+
+  revalidatePath('/admin');
+}

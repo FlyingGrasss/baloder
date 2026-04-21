@@ -22,7 +22,7 @@ export default async function AdminMessages() {
   }
 
 
-  const [messages, allUsers, pendingReceipts, allIdCardOrders, budgets, announcements] = await Promise.all([
+  const [messages, allUsers, pendingReceipts, allIdCardOrders, budgets, announcements, marketItems] = await Promise.all([
     prisma.contactMessage.findMany({ orderBy: { createdAt: "desc" } }),
     prisma.user.findMany({ 
       orderBy: { createdAt: "desc" } 
@@ -37,7 +37,16 @@ export default async function AdminMessages() {
       orderBy: { createdAt: "desc" }
     }),
     prisma.budget.findMany(),
-    prisma.announcement.findMany({ orderBy: { createdAt: "desc" } })
+    prisma.announcement.findMany({ orderBy: { createdAt: "desc" } }),
+    prisma.marketItem.findMany({
+      orderBy: { createdAt: "desc" },
+      include: {
+        stockHistory: {
+          orderBy: { createdAt: "desc" },
+          include: { user: { select: { id: true, name: true } } },
+        },
+      },
+    }),
   ]);
 
   return (
@@ -57,6 +66,7 @@ export default async function AdminMessages() {
           pendingIdCardOrders={allIdCardOrders}
           budgets={budgets}
           announcements={announcements}
+          marketItems={marketItems}
         />
       </div>
     </div>

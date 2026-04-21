@@ -1,19 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { UserApprovalButton, ReceiptActions, IdCardOrderActions, UserRoleToggles, BudgetEditor, BudgetManager, AnnouncementManager, DeleteAnnouncement } from "./AdminComponents";
+import { UserApprovalButton, ReceiptActions, IdCardOrderActions, UserRoleToggles, BudgetEditor, BudgetManager, AnnouncementManager, DeleteAnnouncement, KooperatifTab } from "./AdminComponents";
 
-import { Users, ReceiptText, MessageSquare, Download, CheckCircle2, XCircle, Clock, CreditCard, Landmark, Megaphone, AlertTriangle, Search } from "lucide-react";
+import { Users, ReceiptText, MessageSquare, Download, CheckCircle2, XCircle, Clock, CreditCard, Landmark, Megaphone, AlertTriangle, Search, ShoppingBag } from "lucide-react";
 
-export default function AdminDashboard({ allUsers, pendingReceipts, messages, pendingIdCardOrders, budgets, announcements }: {
+export default function AdminDashboard({ allUsers, pendingReceipts, messages, pendingIdCardOrders, budgets, announcements, marketItems }: {
   allUsers: any[],
   pendingReceipts: any[],
   messages: any[],
   pendingIdCardOrders: any[],
   budgets: any[],
-  announcements: any[]
+  announcements: any[],
+  marketItems: any[],
 }) {
-  const [activeTab, setActiveTab] = useState<"users" | "receipts" | "idcards" | "budgets" | "announcements" | "messages">("users");
+  const [activeTab, setActiveTab] = useState<"users" | "receipts" | "idcards" | "budgets" | "announcements" | "messages" | "kooperatif">("users");
   const [userSearch, setUserSearch] = useState("");
 
   const pendingUsersCount = allUsers.filter(u => !u.verified).length;
@@ -51,6 +52,7 @@ export default function AdminDashboard({ allUsers, pendingReceipts, messages, pe
     { id: "idcards", label: "Kimlik Kartları", count: pendingIdCardOrders.length, icon: CreditCard, color: "bg-orange-500", warning: pendingIdCardOrders.length > 0 },
     { id: "budgets", label: "Bütçe ve Bağışlar", count: budgets.length, icon: Landmark, color: "bg-indigo-500", warning: false },
     { id: "announcements", label: "Duyurular", count: announcements.length, icon: Megaphone, color: "bg-purple-500", warning: false },
+    { id: "kooperatif", label: "Kooperatif", count: marketItems.length, icon: ShoppingBag, color: "bg-teal-500", warning: false },
     { id: "messages", label: "İletişim Mesajları", count: messages.length, icon: MessageSquare, color: "bg-blue-500", warning: messages.length > 0 },
   ];
 
@@ -245,6 +247,10 @@ export default function AdminDashboard({ allUsers, pendingReceipts, messages, pe
                 {announcements.length === 0 && <p className="text-xs font-bold text-gray-400 italic">Duyuru bulunmuyor.</p>}
               </div>
             </div>
+          )}
+
+          {activeTab === "kooperatif" && (
+            <KooperatifTab marketItems={marketItems} />
           )}
 
           {activeTab === "messages" && (

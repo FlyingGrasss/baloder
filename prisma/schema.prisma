@@ -33,6 +33,7 @@ model User {
   depositRequests    DepositRequest[]
   walletTransactions WalletTransaction[]
   idCardOrders       IdCardOrder[]
+  stockHistories     StockHistory[]
 
   @@map("users")
 }
@@ -140,4 +141,30 @@ model IdCardOrder {
   updatedAt       DateTime @updatedAt
 
   @@map("id_card_orders")
+}
+
+model MarketItem {
+  id           String         @id @default(cuid())
+  name         String
+  imageUrl     String
+  sellPrice    Float
+  stock        Int            @default(0)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  stockHistory StockHistory[]
+
+  @@map("market_items")
+}
+
+model StockHistory {
+  id           String     @id @default(cuid())
+  marketItemId String
+  marketItem   MarketItem @relation(fields: [marketItemId], references: [id], onDelete: Cascade)
+  delta        Int        // positive = restock, negative = sold/removed
+  note         String?    // optional reason
+  createdAt    DateTime   @default(now())
+  updatedBy    String     // User.id
+  user         User       @relation(fields: [updatedBy], references: [id])
+
+  @@map("stock_history")
 }
