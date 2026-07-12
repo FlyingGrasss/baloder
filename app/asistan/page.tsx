@@ -10,7 +10,14 @@ import {
   useRef,
   useState,
 } from "react";
-import { ArrowUp, RotateCcw, X } from "lucide-react";
+import {
+  ArrowUp,
+  MessageCircle,
+  RotateCcw,
+  ThumbsDown,
+  ThumbsUp,
+  X,
+} from "lucide-react";
 import { estimateTokens } from "../../src/lib/tokenCounter";
 
 type Role = "user" | "assistant";
@@ -87,7 +94,7 @@ const SUGGESTION_GROUPS = [
       "Pansiyona nasıl başvurulur?",
       "Okulu ziyaret etmek için nasıl randevu alınır?",
       "2026 LGS taban puanları açıklandı mı?",
-      "Hazırlık seviye belirleme sınavı nedir?",
+      "Hazırlık seviye belirleme sınavında neye bakılır?",
     ],
   },
   {
@@ -101,7 +108,7 @@ const SUGGESTION_GROUPS = [
       "AP dersleri nelerdir?",
       "Bilim ve matematik olimpiyatları nasıl?",
       "Seçmeli dersler nasıl belirleniyor?",
-      "Hazırlık sınıfı atlama sınavı nasıl?",
+      "Hazırlık sınıfı nasıl atlanır?",
     ],
   },
   {
@@ -149,7 +156,7 @@ const ABOUT_PARAGRAPHS = [
   "BAL Asistan, BALÖDER bünyesinde Bornova Anadolu Lisesi ile ilgili bilgilere daha hızlı ve düzenli ulaşılabilmesi için geliştirilen yapay zeka destekli bir sohbet asistanıdır. Proje; okulun akademik yapısı, kampüsü, gelenekleri, ulaşım bilgileri, sosyal etkinlikleri ve sık sorulan konular hakkında kısa, anlaşılır ve kaynak odaklı yanıtlar vermeyi amaçlar.",
   "Asistan, hazırlanmış bilgi setinden ilgili parçaları bulur ve kullanıcının sorusuna göre yanıt üretir. Bu nedenle resmi bir okul sistemi değildir; bilgilendirme ve teknoloji geliştirme amacıyla hazırlanmış bir öğrenci çalışmasıdır.",
   "Proje kendi yapay zeka modelini eğitmez. Yanıt üretiminde öncelikli olarak Gemini modelleri kullanılır; Bornova Anadolu Lisesi hakkında hazırlanan özel veri seti ve kaynak sistemi yanıtların okula özgü bilgilerle desteklenmesini sağlar.",
-  "Web sitesi Next.js ile geliştirilmiştir. Veri seti düzenlenebilir ve kaynak metninden yeniden indekslenebilir.",
+  "Web sitesi Next.js ile geliştirilmiştir. Veri setinin yaklaşık üçte ikisi Burak Güldilek tarafından hazırlanmış; Emre Bozkurt da veri setinin temizlenmesi ve son düzenlemelerine katkı vermiştir. Veri seti düzenlenebilir ve kaynak metninden yeniden indekslenebilir.",
   "Proje şu anda test aşamasındadır. Yanıt kalitesi, kaynak kapsamı ve kullanıcı deneyimi zamanla geliştirilebilir.",
 ];
 
@@ -172,7 +179,7 @@ export default function Home() {
   const [gateChecked, setGateChecked] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [isStreaming, setIsStreaming] = useState(false);
+  const [activeRequests, setActiveRequests] = useState(0);
   const [quota, setQuota] = useState<QuotaInfo>(INITIAL_QUOTA);
   const [notices, setNotices] = useState<Notice[]>([]);
   const [fingerprint, setFingerprint] = useState("");
@@ -308,7 +315,6 @@ export default function Home() {
     const message = value.trim();
     if (
       !message ||
-      isStreaming ||
       !fingerprint ||
       estimateTokens(message) > MAX_MESSAGE_TOKENS
     ) {
@@ -317,7 +323,7 @@ export default function Home() {
 
     const assistantId = createId();
     stickToBottom.current = true;
-    setIsStreaming(true);
+    setActiveRequests((current) => current + 1);
     setInput("");
     setTokenEstimate({ messageTokens: 0 });
     setMessages((current) => [
@@ -381,8 +387,8 @@ export default function Home() {
         sources: Source[];
         questionIndex?: number;
       } | null = null;
-      const renderCharsPerTick = 3;
-      const renderIntervalMs = 32;
+      const renderCharsPerTick = 4;
+      const renderIntervalMs = 28;
 
       const renderStep = () => {
         if (displayedText.length >= rawText.length) return;
@@ -546,7 +552,7 @@ export default function Home() {
         ),
       );
     } finally {
-      setIsStreaming(false);
+      setActiveRequests((current) => Math.max(current - 1, 0));
     }
   }
 
@@ -684,7 +690,7 @@ export default function Home() {
                   }}
                   onKeyDown={handleInputKeyDown}
                   onPaste={handleInputPaste}
-                  disabled={isStreaming || !fingerprint}
+                  disabled={!fingerprint}
                 />
                 <div className="composer-actions">
                   {tokenEstimate.messageTokens > 100 ? (
@@ -708,7 +714,6 @@ export default function Home() {
                     type="submit"
                     disabled={
                       !input.trim() ||
-                      isStreaming ||
                       !fingerprint ||
                       tokenEstimate.messageTokens > MAX_MESSAGE_TOKENS
                     }
@@ -723,6 +728,19 @@ export default function Home() {
                   </button>
                 </div>
               </form>
+
+              <p className="assistant-watermark">
+                Bu website{" "}
+                <a
+                  className="credit-link"
+                  href="https://www.instagram.com/emre.bozqurt"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Emre Bozkurt&apos;28
+                </a>{" "}
+                tarafından yapılmıştır.
+              </p>
 
             </div>
           </section>
@@ -809,9 +827,9 @@ function EntryGate({
             <div>
               <h2>Proje Hakkında</h2>
               <div className="gate-author">
-                Bu Websiteyi Hazırlayan: <a className="credit-link" href="https://www.instagram.com/emre.bozqurt" target="_blank" rel="noreferrer">Emre Bozkurt&apos;28</a> - 10/C
+                Websiteyi ve veri setinin temizleme/finalleştirme çalışmalarını hazırlayan: <a className="credit-link" href="https://www.instagram.com/emre.bozqurt" target="_blank" rel="noreferrer">Emre Bozkurt&apos;28</a> - 10/C
                 <br />
-                Veri Hazırlamada Yardımcı: Burak Güldilek'29 - 9/K
+                Veri setinin yaklaşık üçte ikisini hazırlayan ve kaynak araştırmalarına katkı veren: Burak Güldilek&apos;29 - 9/K
               </div>
               {ABOUT_PARAGRAPHS.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
@@ -1025,24 +1043,24 @@ function FeedbackBar({
           type="button"
           className={active === "like" ? "active" : ""}
           onClick={() => sendFeedback("like")}
-          title="Yararlı"
+          title="Beğen"
         >
-          ↑
+          <ThumbsUp aria-hidden="true" size={15} strokeWidth={2.2} />
         </button>
         <button
           type="button"
           className={active === "dislike" ? "active" : ""}
           onClick={() => sendFeedback("dislike")}
-          title="Yanlış veya yetersiz"
+          title="Beğenme"
         >
-          ↓
+          <ThumbsDown aria-hidden="true" size={15} strokeWidth={2.2} />
         </button>
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          title="Geri bildirim yaz"
+          title="Yorum yaz"
         >
-          ✎
+          <MessageCircle aria-hidden="true" size={15} strokeWidth={2.2} />
         </button>
       </div>
 

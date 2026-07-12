@@ -37,14 +37,19 @@ export default function AboutPage() {
             Web sitesi Next.js ile geliştirilmiştir. Veri seti düzenli olarak
             güncellenebilir ve kaynak metninden yeniden indekslenebilir.
           </p>
+          <p>
+            Veri setinin yaklaşık üçte ikisi Burak Güldilek tarafından
+            hazırlanmış; Emre Bozkurt da veri temizleme ve son düzenleme
+            çalışmalarına katkı vermiştir.
+          </p>
         </section>
 
         <section className="info-section">
           <h2>Hazırlayanlar</h2>
           <p>
-            Bu Websiteyi Hazırlayan: <a className="credit-link" href="https://www.instagram.com/emre.bozqurt" target="_blank" rel="noreferrer">Emre Bozkurt&apos;28</a> - 10/C
+            Websiteyi ve veri setinin temizleme/finalleştirme çalışmalarını hazırlayan: <a className="credit-link" href="https://www.instagram.com/emre.bozqurt" target="_blank" rel="noreferrer">Emre Bozkurt&apos;28</a> - 10/C
             <br />
-            Veri Hazırlamada Yardımcı: Burak Güldilek&apos;29 9/K
+            Veri setinin yaklaşık üçte ikisini hazırlayan ve kaynak araştırmalarına katkı veren: Burak Güldilek&apos;29 - 9/K
           </p>
         </section>
 

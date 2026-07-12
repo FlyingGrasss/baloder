@@ -1094,17 +1094,17 @@ Almanya Dışişleri Bakanlığı'nın PASCH (Schulen: Partner der Zukunft) ağ�
 
 ### B.8 BALÖDER — BAL Öğrenci Derneği
 
+#### B.8.0 BAL Asistan Projesi ve Veri Hazırlama
+
+BAL Asistan'ın web sitesi Emre Bozkurt'28 tarafından Next.js ile geliştirilmiştir. Emre Bozkurt ayrıca veri setinin temizlenmesi ve son düzenlemelerine katkı vermiştir. Veri setinin yaklaşık üçte ikisi Burak Güldilek'29 tarafından hazırlanmış ve kaynak araştırmalarına katkı sağlanmıştır. Proje, web geliştirme ve veri hazırlama çalışmaları birlikte yürütülerek geliştirilmiştir.
+
 **BALÖDER (BAL Öğrenci Derneği)** okulun veya MEB'in resmi öğrenci temsilciliği değildir; öğrenci öncülüğünde ve diğer kurumlardan bağımsız örgütlenen bir öğrenci oluşumudur. BALÖDER'in web sitesi **https://balogrenci.org**, resmi haber platformu **BAL Times** (**https://baltimes.org**), sosyal medya hesabı ise **https://www.instagram.com/balogrenci/** adresindedir. BALÖDER bağış kabul eder; bağış bilgileri **https://balogrenci.org/bagis** adresinde bulunabilir.
 
 BALÖDER hakkındaki bilgiler derneğin kendi beyanlarına dayanır; okulun veya MEB'in resmi görüşü olarak sunulmamalıdır.
 
-#### B.8.1 BAL Okul Kooperatifi
+#### B.8.1 BAL Öğrenci Kooperatifi
 
-**BALKOOP**, BAL Okul Kooperatifi'nin kullanılan kısa adıdır. BALÖDER bünyesinde yer alan ve öğrenciler tarafından yürütülen bu öğrenci oluşumu; öğrencilere uygun fiyatlı, kaliteli ve güvenilir gıda ve içecekler sunmayı amaçlar. BALKOOP, Ege Tanrıverdi tarafından 2023 yılında kurulmuş; 2025–2026 eğitim-öğretim yılında en aktif dönemlerinden birini yaşamıştır. 11 Temmuz 2026 itibariyle mevcut başkanı Emre Bozkurt'tur. Güncel çalışmalar ve iletişim için **https://balogrenci.org** takip edilebilir.
-
-**BAL Okul Kooperatifi**, BALÖDER bünyesinde yer alan, öğrenciler tarafından yürütülen bir öğrenci oluşumudur. Amacı öğrencilere uygun fiyatlı, kaliteli ve güvenilir gıda ve içecekler sunmaktır.
-
-Okul Kooperatifi, Ege Tanrıverdi tarafından 2023 yılında kurulmuştur. En aktif dönemlerinden biri 2025–2026 eğitim-öğretim yılı olmuş; 11 Temmuz 2026 itibariyle mevcut başkanı Emre Bozkurt'tur. Kooperatifin çalışmaları ve BALÖDER ile ilişkisi hakkında güncel bilgi için **https://balogrenci.org** takip edilmelidir.
+**BALKOOP**, BAL Öğrenci Kooperatifi'nin kullanılan kısa adıdır. BALÖDER bünyesinde yer alan ve öğrenciler tarafından yürütülen bu oluşum, öğrencilere uygun fiyatlı, kaliteli ve güvenilir gıda ve içecekler sunmayı amaçlar. 2023 yılında Ege Tanrıverdi tarafından kurulmuştur. Mevcut başkanı Emre Bozkurt'tur. Güncel çalışmalar ve iletişim için **https://balogrenci.org** takip edilebilir.
 
 ### B.9 Kulüplere ve Topluluklara Katılım
 
@@ -1869,7 +1869,7 @@ Bu belge aşağıdaki konularda yapılandırılmış veri içermektedir:
 - **Spor:** BALspor (12 branş, kuruluş 2004), Ultimate Frizbi (Türkiye'deki tek lise), pickleball
 - **Kulüp ve Topluluk Katılımı:** Kulüplerin sınıf öğretmenleri aracılığıyla seçilmesi, toplulukların sene başında tanıtılması ve öğrencilerin topluluklara katılım süreci
 - **Uluslararası:** PASCH, DSD (2008'den itibaren), eTwinning, AP programı (2024–2025, 5 ders)
-- **Mezun ve Öğrenci Ağı:** BALEV (kuruluş 1981, burs kulübü 1983, 2024–25'te 483 burslu), BALMED, BALÖDER, balogrenci.org, BAL Okul Kooperatifi ve Bi'BALlı
+- **Mezun ve Öğrenci Ağı:** BALEV (kuruluş 1981, burs kulübü 1983, 2024–25'te 483 burslu), BALMED, BALÖDER, balogrenci.org, BAL Öğrenci Kooperatifi ve Bi'BALlı
 - **Topluluklar:** 2025–2026 listesindeki 25 topluluk; başkan adları, kamuya açık Instagram hesapları ve katılım modeli
 - **Çevre:** Fidan dikimi etkinliği, yeşil kampüs anlayışı
 - **BAL360:** Sanal kampüs turu, Türkiye'de bir ilk olma özelliği

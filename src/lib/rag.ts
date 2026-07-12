@@ -13,6 +13,40 @@ type VectorChunk = {
 
 const chunks = vectorstore.chunks as VectorChunk[];
 
+const RETRIEVAL_STOP_WORDS = new Set([
+  "acaba",
+  "bir",
+  "bu",
+  "da",
+  "de",
+  "hangi",
+  "hakkında",
+  "ile",
+  "kim",
+  "kimdir",
+  "mi",
+  "mı",
+  "mu",
+  "mü",
+  "nasıl",
+  "ne",
+  "nedir",
+  "nelerdir",
+  "olan",
+  "ve",
+  "ya",
+]);
+
+function retrievalTokens(value: string) {
+  return value
+    .toLocaleLowerCase("tr-TR")
+    .normalize("NFC")
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter(
+      (token) => token.length >= 3 && !RETRIEVAL_STOP_WORDS.has(token),
+    );
+}
+
 const BAL_TOPIC_TERMS = [
   "bal",
   "bornova",
@@ -41,6 +75,9 @@ const BAL_TOPIC_TERMS = [
   "balpod",
   "balspor",
   "balkoop",
+  "ege tanrıverdi",
+  "emre bozkurt",
+  "burak güldilek",
   "tiyatro",
   "müzik",
   "spor",
@@ -115,7 +152,16 @@ export function buildRetrievalQuery(message: string, history: ChatMessage[]) {
 
 export function isBalRelatedQuery(query: string) {
   const normalized = query.toLocaleLowerCase("tr-TR");
-  return BAL_TOPIC_TERMS.some((term) => normalized.includes(term));
+  if (BAL_TOPIC_TERMS.some((term) => normalized.includes(term))) return true;
+
+  const queryTokens = retrievalTokens(query);
+  if (queryTokens.length < 2) return false;
+
+  return chunks.some((chunk) => {
+    const source = chunk.text.toLocaleLowerCase("tr-TR");
+    const matchedTokens = queryTokens.filter((token) => source.includes(token));
+    return matchedTokens.length >= 2;
+  });
 }
 
 export function shouldUseGoogleSearch(query: string) {
@@ -126,20 +172,38 @@ export function shouldUseGoogleSearch(query: string) {
 export async function retrieve(query: string, topK = CONFIG.retrievalTopK): Promise<RetrievedChunk[]> {
   const queryEmbedding = await embedQuery(query);
   const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
+  const queryTokens = retrievalTokens(query);
   const exactMatches = chunks
     .filter((chunk) =>
       chunk.text.toLocaleLowerCase("tr-TR").includes(normalizedQuery),
     )
     .map((chunk) => ({ ...chunk, relevance_score: 1 }));
+
   const exactIds = new Set(exactMatches.map((chunk) => chunk.id));
+  const lexicalMatches = chunks
+    .filter((chunk) => !exactIds.has(chunk.id) && queryTokens.length >= 2)
+    .map((chunk) => {
+      const source = chunk.text.toLocaleLowerCase("tr-TR");
+      const matchedTokens = queryTokens.filter((token) => source.includes(token));
+      return {
+        ...chunk,
+        relevance_score:
+          0.9 + 0.1 * (matchedTokens.length / queryTokens.length),
+        matchedTokenCount: matchedTokens.length,
+      };
+    })
+    .filter((chunk) => chunk.matchedTokenCount >= 2)
+    .sort((a, b) => b.relevance_score - a.relevance_score)
+    .map(({ matchedTokenCount: _matchedTokenCount, ...chunk }) => chunk);
+  const lexicalIds = new Set(lexicalMatches.map((chunk) => chunk.id));
   const semanticMatches = chunks
     .map((chunk) => ({
       ...chunk,
       relevance_score: dot(queryEmbedding, chunk.embedding),
     }))
-    .filter((chunk) => !exactIds.has(chunk.id));
+    .filter((chunk) => !exactIds.has(chunk.id) && !lexicalIds.has(chunk.id));
 
-  return [...exactMatches, ...semanticMatches]
+  return [...exactMatches, ...lexicalMatches, ...semanticMatches]
     .sort((a, b) => b.relevance_score - a.relevance_score)
     .slice(0, topK)
     .map(({ embedding: _embedding, ...chunk }) => chunk);

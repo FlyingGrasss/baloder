@@ -787,6 +787,14 @@ button {
     text-align: center;
 }
 
+.assistant-watermark {
+    margin: 8px 4px 0;
+    color: var(--soft);
+    font-size: 0.64rem;
+    font-weight: 650;
+    text-align: center;
+}
+
 .credit-link {
     color: inherit;
     font-weight: 800;
