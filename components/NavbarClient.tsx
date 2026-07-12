@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User, LogOut, Menu, CircleAlert } from "lucide-react";
-import { logout } from "@/actions/auth";
+import { logout } from "@/actions/logout";
 
 export default function NavbarClient({ user }: { user: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,7 @@ export default function NavbarClient({ user }: { user: any }) {
 
   const navItems = [
     { name: "Ana Sayfa", href: "/" },
+    { name: "BAL Asistan", href: "/asistan" },
     { name: "Duyurular", href: "/duyurular" },
     { name: "Bağış", href: "/bagis" },
     { name: "Hakkımızda", href: "/hakkimizda" },

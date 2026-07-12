@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "BALÖDER - BAL Öğrenci Derneği",
   description:
     "Bornova Anadolu Lisesi Öğrenci Derneği Resmi Web Sitesi. BAL ruhunu geleceğe taşıyoruz.",
-  metadataBase: new URL("https://www.balogrenci.com"),
+  metadataBase: new URL("https://balogrenci.org"),
   keywords: [
     "Bornova Anadolu Lisesi",
     "BAL",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "BALÖDER - BAL Öğrenci Derneği",
     description:
       "Bornova Anadolu Lisesi Öğrenci Derneği Resmi Web Sitesi. BAL ruhunu geleceğe taşıyoruz.",
-    url: "https://www.balogrenci.com",
+    url: "https://balogrenci.org",
     siteName: "BALÖDER",
     locale: "tr_TR",
     type: "website",

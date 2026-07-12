@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
+    "dev:turbo": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -22,6 +23,7 @@
     "lucide-react": "^1.8.0",
     "nanoid": "^5.1.9",
     "next": "16.1.0",
+    "pg": "^8.22.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^3.5.0"
@@ -29,6 +31,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.4",
     "@types/node": "^20.19.39",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
