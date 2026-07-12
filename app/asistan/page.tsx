@@ -598,17 +598,9 @@ export default function Home() {
     });
   }
 
-  if (gateOpen === null) {
-    return (
-      <main className="asistan-route app-shell">
-        <div className="app-loading">BALÖDER Asistan yükleniyor...</div>
-      </main>
-    );
-  }
-
   return (
     <main className="asistan-route app-shell">
-      {gateOpen ? (
+      {gateOpen !== false ? (
         <EntryGate
           activeTab={activeGateTab}
           checked={gateChecked}

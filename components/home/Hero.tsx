@@ -23,7 +23,7 @@ export default function Hero({ user }: { user?: unknown }) {
           className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 tracking-tight leading-tight max-w-4xl"
         >
           Geleceği  {" "}
-          <span className="text-bordeaux underline decoration-white/20 underline-offset-8">Birlikte</span> {" "}
+          <span className="text-white underline decoration-white/40 underline-offset-8">Birlikte</span> {" "}
           İnşa Ediyoruz
         </motion.h1>
 
