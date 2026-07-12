@@ -1094,6 +1094,8 @@ BALÖDER hakkındaki bilgiler derneğin kendi beyanlarına dayanır; okulun veya
 
 #### B.8.1 BAL Okul Kooperatifi
 
+**BALKOOP**, BAL Okul Kooperatifi'nin kullanılan kısa adıdır. BALÖDER bünyesinde yer alan ve öğrenciler tarafından yürütülen bu öğrenci oluşumu; öğrencilere uygun fiyatlı, kaliteli ve güvenilir gıda ve içecekler sunmayı amaçlar. BALKOOP, Ege Tanrıverdi tarafından 2023 yılında kurulmuş; 2025–2026 eğitim-öğretim yılında en aktif dönemlerinden birini yaşamıştır. 11 Temmuz 2026 itibariyle mevcut başkanı Emre Bozkurt'tur. Güncel çalışmalar ve iletişim için **https://balogrenci.org** takip edilebilir.
+
 **BAL Okul Kooperatifi**, BALÖDER bünyesinde yer alan, öğrenciler tarafından yürütülen bir öğrenci oluşumudur. Amacı öğrencilere uygun fiyatlı, kaliteli ve güvenilir gıda ve içecekler sunmaktır.
 
 Okul Kooperatifi, Ege Tanrıverdi tarafından 2023 yılında kurulmuştur. En aktif dönemlerinden biri 2025–2026 eğitim-öğretim yılı olmuş; 11 Temmuz 2026 itibariyle mevcut başkanı Emre Bozkurt'tur. Kooperatifin çalışmaları ve BALÖDER ile ilişkisi hakkında güncel bilgi için **https://balogrenci.org** takip edilmelidir.

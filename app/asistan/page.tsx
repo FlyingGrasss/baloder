@@ -73,6 +73,7 @@ const SUGGESTION_GROUPS = [
       "Kampüste hangi imkânlar var?",
       "Hazırlık sınıfı nasıl?",
       "BALÖDER nedir?",
+      "BAL'da hangi yabancı dil bölümleri var?",
     ],
   },
   {
@@ -85,6 +86,8 @@ const SUGGESTION_GROUPS = [
       "Dil bölümleri ve kontenjanları nasıl?",
       "Pansiyona nasıl başvurulur?",
       "Okulu ziyaret etmek için nasıl randevu alınır?",
+      "2026 LGS taban puanları açıklandı mı?",
+      "Hazırlık seviye belirleme sınavı nedir?",
     ],
   },
   {
@@ -97,6 +100,8 @@ const SUGGESTION_GROUPS = [
       "DELF-DALF sınav merkezi ne demek?",
       "AP dersleri nelerdir?",
       "Bilim ve matematik olimpiyatları nasıl?",
+      "Seçmeli dersler nasıl belirleniyor?",
+      "Hazırlık sınıfı atlama sınavı nasıl?",
     ],
   },
   {
@@ -109,6 +114,8 @@ const SUGGESTION_GROUPS = [
       "BALEV bursu hakkında bilgi ver",
       "BALPOD nedir?",
       "Tiyatro, müzik ve spor faaliyetleri nasıl?",
+      "Okul forması nasıl?",
+      "Okulda telefon kullanımı nasıl?",
     ],
   },
   {
@@ -121,6 +128,8 @@ const SUGGESTION_GROUPS = [
       "Ders giriş ve çıkış saatleri nedir?",
       "Okulun adresi ve telefonu nedir?",
       "Kampüs haritasına nereden ulaşabilirim?",
+      "Öğle yemeği saatleri nedir?",
+      "Kütüphane hangi saatlerde açık?",
     ],
   },
 ] as const;
