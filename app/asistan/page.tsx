@@ -94,7 +94,7 @@ const SUGGESTION_GROUPS = [
       "Pansiyona nasıl başvurulur?",
       "Okulu ziyaret etmek için nasıl randevu alınır?",
       "2026 LGS taban puanları açıklandı mı?",
-      "Hazırlık seviye belirleme sınavında neye bakılır?",
+      "Okulda yılda kaç yazılı sınav yapılıyor?",
     ],
   },
   {

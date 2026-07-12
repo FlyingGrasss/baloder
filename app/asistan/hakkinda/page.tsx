@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { SEO_PAGES, SEO_SLUGS } from "@/src/lib/seoPages";
+
 export default function AboutPage() {
   return (
     <main className="info-page-shell">
@@ -42,6 +45,23 @@ export default function AboutPage() {
             hazırlanmış; Emre Bozkurt da veri temizleme ve son düzenleme
             çalışmalarına katkı vermiştir.
           </p>
+        </section>
+
+        <section className="info-section">
+          <h2>BAL hakkında bilgi sayfaları</h2>
+          <p>
+            Google'da ve sitede daha kolay bulunabilmesi için hazırlanan
+            kaynak odaklı BAL bilgi sayfalarına buradan ulaşabilirsiniz.
+          </p>
+          <ul className="info-link-list">
+            {SEO_SLUGS.map((slug) => (
+              <li key={slug}>
+                <Link href={`/asistan/bilgi/${slug}`}>
+                  {SEO_PAGES[slug].title.split("|")[0].trim()}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="info-section">

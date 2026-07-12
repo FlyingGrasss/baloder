@@ -13,6 +13,14 @@ type VectorChunk = {
 
 const chunks = vectorstore.chunks as VectorChunk[];
 
+function foldForRetrieval(value: string) {
+  return value
+    .toLocaleLowerCase("tr-TR")
+    .replace(/ı/g, "i")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
 const RETRIEVAL_STOP_WORDS = new Set([
   "acaba",
   "bir",
@@ -38,9 +46,7 @@ const RETRIEVAL_STOP_WORDS = new Set([
 ]);
 
 function retrievalTokens(value: string) {
-  return value
-    .toLocaleLowerCase("tr-TR")
-    .normalize("NFC")
+  return foldForRetrieval(value)
     .split(/[^\p{L}\p{N}]+/u)
     .filter(
       (token) => token.length >= 3 && !RETRIEVAL_STOP_WORDS.has(token),
@@ -151,14 +157,20 @@ export function buildRetrievalQuery(message: string, history: ChatMessage[]) {
 }
 
 export function isBalRelatedQuery(query: string) {
-  const normalized = query.toLocaleLowerCase("tr-TR");
-  if (BAL_TOPIC_TERMS.some((term) => normalized.includes(term))) return true;
+  const normalized = foldForRetrieval(query);
+  if (
+    BAL_TOPIC_TERMS.some((term) =>
+      normalized.includes(foldForRetrieval(term)),
+    )
+  ) {
+    return true;
+  }
 
   const queryTokens = retrievalTokens(query);
   if (queryTokens.length < 2) return false;
 
   return chunks.some((chunk) => {
-    const source = chunk.text.toLocaleLowerCase("tr-TR");
+    const source = foldForRetrieval(chunk.text);
     const matchedTokens = queryTokens.filter((token) => source.includes(token));
     return matchedTokens.length >= 2;
   });
@@ -171,11 +183,11 @@ export function shouldUseGoogleSearch(query: string) {
 
 export async function retrieve(query: string, topK = CONFIG.retrievalTopK): Promise<RetrievedChunk[]> {
   const queryEmbedding = await embedQuery(query);
-  const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
+  const normalizedQuery = foldForRetrieval(query.trim());
   const queryTokens = retrievalTokens(query);
   const exactMatches = chunks
     .filter((chunk) =>
-      chunk.text.toLocaleLowerCase("tr-TR").includes(normalizedQuery),
+      foldForRetrieval(chunk.text).includes(normalizedQuery),
     )
     .map((chunk) => ({ ...chunk, relevance_score: 1 }));
 
@@ -183,7 +195,7 @@ export async function retrieve(query: string, topK = CONFIG.retrievalTopK): Prom
   const lexicalMatches = chunks
     .filter((chunk) => !exactIds.has(chunk.id) && queryTokens.length >= 2)
     .map((chunk) => {
-      const source = chunk.text.toLocaleLowerCase("tr-TR");
+      const source = foldForRetrieval(chunk.text);
       const matchedTokens = queryTokens.filter((token) => source.includes(token));
       return {
         ...chunk,

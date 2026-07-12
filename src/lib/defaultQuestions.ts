@@ -32,7 +32,7 @@ export const DEFAULT_QUESTIONS = new Set([
   "Kampüs haritasına nereden ulaşabilirim?",
   "BAL'da hangi yabancı dil bölümleri var?",
   "2026 LGS taban puanları açıklandı mı?",
-  "Hazırlık seviye belirleme sınavında neye bakılır?",
+  "Okulda yılda kaç yazılı sınav yapılıyor?",
   "Seçmeli dersler nasıl belirleniyor?",
   "Hazırlık sınıfı nasıl atlanır?",
   "Okul forması nasıl?",

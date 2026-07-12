@@ -47,6 +47,14 @@ export default function Footer() {
           >
             Linktree
           </a>
+          <a
+            href="https://baltimes.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 hover:text-white transition text-sm font-bold tracking-widest"
+          >
+            BAL Times
+          </a>
           <Link
             href="/bagis"
             className="text-white/80 hover:text-white transition text-sm font-bold tracking-widest"

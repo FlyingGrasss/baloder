@@ -9,6 +9,7 @@ import { logout } from "@/actions/logout";
 export default function NavbarClient({ user }: { user: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isAssistant = pathname.startsWith("/asistan");
 
   const navItems = [
     { name: "Ana Sayfa", href: "/" },
@@ -22,7 +23,13 @@ export default function NavbarClient({ user }: { user: any }) {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 h-16 flex items-center">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 flex h-16 items-center ${
+        isAssistant
+          ? "border-b border-[#dce3ec] bg-[#f7f8fb]/95 shadow-sm backdrop-blur-md"
+          : "bg-white shadow-md"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 w-full">
         <div className="flex justify-between items-center h-full">
           {/* Logo Section */}

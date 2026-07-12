@@ -7,6 +7,35 @@ import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
+const siteStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://balogrenci.org/#organization",
+      name: "BALÖDER",
+      alternateName: "Bornova Anadolu Lisesi Öğrenci Derneği",
+      url: "https://balogrenci.org",
+      logo: "https://balogrenci.org/icon.png",
+      description:
+        "Bornova Anadolu Lisesi öğrencilerinin sosyal, kültürel ve akademik gelişimini destekleyen bağımsız öğrenci derneği.",
+      sameAs: [
+        "https://www.instagram.com/balogrenci/",
+        "https://linktr.ee/baloder",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://balogrenci.org/#website",
+      url: "https://balogrenci.org",
+      name: "BALÖDER",
+      alternateName: "BAL Öğrenci Derneği",
+      inLanguage: "tr-TR",
+      publisher: { "@id": "https://balogrenci.org/#organization" },
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "BALÖDER - BAL Öğrenci Derneği",
   description:
@@ -45,9 +74,13 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${inter.className} antialiased bg-white`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteStructuredData) }}
+        />
         <div className="flex flex-col min-h-screen relative">
           <Navbar />
-          <div className="flex-grow">
+          <div className="flex-grow min-h-0">
             {children}
           </div>
           <Footer />
