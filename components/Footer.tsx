@@ -12,11 +12,11 @@ export default function Footer() {
     <footer className="border-t-4 max-sm:hidden border-red-500 py-12 bg-bordeaux mt-auto">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 max-sm:gap-4">
         <div className="text-center md:text-left">
-          <h4 className="font-bold text-white text-xl mb-1">BALÖDER</h4>
-          <p className="text-sm text-white/60 font-medium">
+          <p className="font-bold text-white text-xl mb-1">BALÖDER</p>
+          <p className="text-sm text-white/85 font-medium">
             Bornova Anadolu Lisesi Öğrenci Derneği © 2026
           </p>
-          <p className="mt-3 text-xs text-white/70">
+          <p className="mt-3 text-xs text-white/85">
             Bu website{" "}
             <a
               href="https://www.instagram.com/emre.bozqurt"

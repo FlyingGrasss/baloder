@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { User, LogOut, Menu, CircleAlert } from "lucide-react";
 import { logout } from "@/actions/logout";
 
-export default function NavbarClient({ user }: { user: any }) {
+export default function NavbarClient({ user }: { user: unknown }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isAssistant = pathname.startsWith("/asistan");
@@ -35,8 +36,8 @@ export default function NavbarClient({ user }: { user: any }) {
           {/* Logo Section */}
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2 cursor-pointer">
-              <img src="/icon.png" alt="BALÖDER" className="w-10 h-10 object-contain rounded-full" />
-              <span className="font-bold text-xl tracking-tight text-dark-gray hidden sm:inline uppercase">
+              <Image src="/icon.png" alt="BALÖDER" width={40} height={40} className="h-10 w-10 object-contain rounded-full" />
+              <span className="whitespace-nowrap text-sm font-bold tracking-tight text-dark-gray sm:text-xl">
                 BALÖDER
               </span>
             </Link>
@@ -85,6 +86,9 @@ export default function NavbarClient({ user }: { user: any }) {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden text-dark-gray p-2 cursor-pointer"
+              aria-label={isOpen ? "Menüyü kapat" : "Menüyü aç"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
             >
               <Menu size={24} />
             </button>
@@ -94,6 +98,7 @@ export default function NavbarClient({ user }: { user: any }) {
 
       {isOpen && (
         <div
+          id="mobile-navigation"
           className="absolute top-16 left-0 right-0 bg-white shadow-xl border-t border-gray-100 md:hidden"
         >
           <div className="flex flex-col p-4 gap-4">

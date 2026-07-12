@@ -28,7 +28,7 @@ const links = [
   }
 ];
 
-export default function QuickLinks({ user }: { user?: any }) {
+export default function QuickLinks({ user }: { user?: unknown }) {
   const filteredLinks = links.filter(link => !(user && link.href === "/auth/signup"));
 
   return (
@@ -52,8 +52,8 @@ export default function QuickLinks({ user }: { user?: any }) {
                 <ArrowUpRight size={20} />
               </div>
             </div>
-            <h3 className="text-2xl font-black text-dark-gray mb-3 tracking-tight group-hover:text-bordeaux transition-colors">{link.title}</h3>
-            <p className="text-gray-500 font-medium leading-relaxed">{link.desc}</p>
+            <h2 className="text-2xl font-black text-dark-gray mb-3 tracking-tight group-hover:text-bordeaux transition-colors">{link.title}</h2>
+            <p className="text-gray-600 font-medium leading-relaxed">{link.desc}</p>
           </Link>
         </motion.div>
       ))}

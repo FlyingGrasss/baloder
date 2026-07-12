@@ -14,7 +14,7 @@ export default async function Home() {
       {/* Additional homepage content can go here (Stats, News preview, etc.) */}
       <section className="max-w-7xl mx-auto px-6 pt-24 max-sm:pt-12 text-center">
         <h2 className="text-4xl md:text-5xl font-black text-dark-gray mb-8 md:mb-12 tracking-tight">Değişime Ortak Olun</h2>
-        <p className="text-lg md:text-xl text-gray-500 font-medium max-w-2xl mx-auto mb-16">
+        <p className="text-lg md:text-xl text-gray-600 font-medium max-w-2xl mx-auto mb-16">
           BALÖDER olarak okulumuzun geleceğini öğrencilerimizle birlikte şekillendiriyoruz.
           Siz de bu yolculukta bize katılın.
         </p>

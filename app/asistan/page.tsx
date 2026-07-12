@@ -18,6 +18,7 @@ import {
   ThumbsUp,
   X,
 } from "lucide-react";
+import Image from "next/image";
 import { estimateTokens } from "../../src/lib/tokenCounter";
 
 type Role = "user" | "assistant";
@@ -179,7 +180,6 @@ export default function Home() {
   const [gateChecked, setGateChecked] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [activeRequests, setActiveRequests] = useState(0);
   const [quota, setQuota] = useState<QuotaInfo>(INITIAL_QUOTA);
   const [notices, setNotices] = useState<Notice[]>([]);
   const [fingerprint, setFingerprint] = useState("");
@@ -323,7 +323,6 @@ export default function Home() {
 
     const assistantId = createId();
     stickToBottom.current = true;
-    setActiveRequests((current) => current + 1);
     setInput("");
     setTokenEstimate({ messageTokens: 0 });
     setMessages((current) => [
@@ -551,8 +550,6 @@ export default function Home() {
             : item,
         ),
       );
-    } finally {
-      setActiveRequests((current) => Math.max(current - 1, 0));
     }
   }
 
@@ -772,7 +769,13 @@ function EntryGate({
   return (
     <section className="gate">
       <div className="gate-hero">
-        <img src="/icon.png" alt="Bornova Anadolu Lisesi logosu" />
+        <Image
+          src="/icon.png"
+          alt="Bornova Anadolu Lisesi logosu"
+          width={150}
+          height={150}
+          priority
+        />
         <p className="eyebrow">Bornova Anadolu Lisesi</p>
         <h1>BAL Asistan</h1>
         <p className="gate-copy">
@@ -902,7 +905,7 @@ function Welcome({
           >
             <X aria-hidden="true" size={22} strokeWidth={1.8} />
           </button>
-          <img src="/icon.png" alt="BAL" />
+          <Image src="/icon.png" alt="BAL" width={150} height={150} />
           <h2>{title}</h2>
           <p>{description}</p>
         </div>
@@ -948,10 +951,12 @@ function MessageBubble({
   return (
     <article className={`message-row ${message.role}`}>
       {message.role === "assistant" ? (
-        <img
+        <Image
           className="message-avatar"
           src="/icon.png"
           alt="BAL Asistan"
+          width={40}
+          height={40}
         />
       ) : null}
       <div className="message-content">
