@@ -40,6 +40,10 @@ const BAL_TOPIC_TERMS = [
   "balöder",
   "balpod",
   "balspor",
+  "balkoop",
+  "tiyatro",
+  "müzik",
+  "spor",
   "dsd",
   "delf",
   "dalf",
@@ -62,6 +66,9 @@ const BAL_TOPIC_TERMS = [
   "fransızca",
   "mezun",
   "öğle arası",
+  "öğle yemeği",
+  "kahvaltı",
+  "akşam yemeği",
   "giriş saati",
   "çıkış saati",
   "olimpiyat",
@@ -118,11 +125,21 @@ export function shouldUseGoogleSearch(query: string) {
 
 export async function retrieve(query: string, topK = CONFIG.retrievalTopK): Promise<RetrievedChunk[]> {
   const queryEmbedding = await embedQuery(query);
-  return chunks
+  const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
+  const exactMatches = chunks
+    .filter((chunk) =>
+      chunk.text.toLocaleLowerCase("tr-TR").includes(normalizedQuery),
+    )
+    .map((chunk) => ({ ...chunk, relevance_score: 1 }));
+  const exactIds = new Set(exactMatches.map((chunk) => chunk.id));
+  const semanticMatches = chunks
     .map((chunk) => ({
       ...chunk,
       relevance_score: dot(queryEmbedding, chunk.embedding),
     }))
+    .filter((chunk) => !exactIds.has(chunk.id));
+
+  return [...exactMatches, ...semanticMatches]
     .sort((a, b) => b.relevance_score - a.relevance_score)
     .slice(0, topK)
     .map(({ embedding: _embedding, ...chunk }) => chunk);

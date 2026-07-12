@@ -492,6 +492,9 @@ Evet. BAL, eTwinning platformunda aktif uluslararası projeler yürütmekte; ayr
 
 ### Bölüm C: Günlük Okul Hayatı
 
+**S15: Öğle yemeği saatleri nedir?**
+Öğle yemeği servisi 11:40–13:15 saatleri arasında yapılır. Hazırlık sınıfları 11:40'ta, diğer sınıflar 12:30'da yemek arasına çıkar. Kahvaltı 07:30–08:30, akşam yemeği ise 17:00–19:00 saatleri arasındadır.
+
 **S14: Okul kaçta başlıyor, kaçta bitiyor?**
 Resmi MEB verilerine göre sabah girişi **08:30**, ders sonu **15:35**. Öğle yemeği servisi **11:40–13:15** arasındadır; hazırlık sınıfları 11:40'ta, diğer sınıflar 12:30'da yemek arasına çıkar.
 
@@ -570,6 +573,9 @@ Evet. BALEV tarafından 1990'dan beri desteklenen Öğrenci Tiyatro Topluluğu m
 
 **S28: BAL'ın özel bir spor başarısı var mı?**
 Evet. BAL, Ultimate Frizbi takımına sahip Türkiye'deki tek lisedir. BALspor Kulübü ise 2004'ten beri 12 branşta faaliyet göstermektedir.
+
+**S28b: Tiyatro, müzik ve spor faaliyetleri nasıl?**
+BAL'da tiyatro, müzik ve spor faaliyetleri oldukça çeşitlidir. BALEV tarafından 1990'dan beri desteklenen Öğrenci Tiyatro Topluluğu her yıl Ekim ayında çalışmalara başlar ve Mayıs ayında bir oyun sahneler. Okulun köklü bir müzik geleneği, öğrenci müzik grupları ve yarışma başarıları vardır. BALspor Kulübü 12 spor branşında faaliyet gösterir; BAL ayrıca Türkiye'de lise düzeyinde Ultimate Frizbi takımına sahip tek okuldur.
 
 **S29: Öğrenci kulüpleri var mı?**
 Evet. 2025–2026 listesinde kayıtlı 25 topluluk bulunmaktadır:
