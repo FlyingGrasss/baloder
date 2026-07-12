@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next"
-import BottomBar from "@/components/BottomBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,13 +45,12 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${inter.className} antialiased bg-white`}>
-        <div className="flex flex-col min-h-screen max-sm:pb-16 relative">
+        <div className="flex flex-col min-h-screen relative">
           <Navbar />
           <div className="flex-grow">
             {children}
           </div>
           <Footer />
-          <BottomBar />
         </div>
         <Analytics />
       </body>

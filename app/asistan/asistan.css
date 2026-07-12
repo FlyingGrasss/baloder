@@ -25,6 +25,11 @@
     box-sizing: border-box;
 }
 
+html:has(.asistan-route),
+body:has(.asistan-route) {
+    height: 100%;
+}
+
 html,
 .asistan-route {
     height: 100%;
@@ -245,9 +250,10 @@ button {
 }
 
 .welcome img {
+    display: block;
     width: 92px;
     height: 92px;
-    margin-bottom: 22px;
+    margin: 0 auto 22px;
     border: 0;
     border-radius: 50%;
     background: transparent;
@@ -344,6 +350,8 @@ button {
 }
 
 .message-row {
+    width: 100%;
+    flex: 0 0 auto;
     display: flex;
     gap: 9px;
     animation: fade-up 0.18s ease both;
@@ -355,8 +363,10 @@ button {
 }
 
 .message-row.assistant {
+    align-self: stretch;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .message-content {
@@ -803,8 +813,8 @@ button {
 
 .gate {
     width: 100%;
-    height: 100dvh;
-    min-height: 100dvh;
+    height: 100%;
+    min-height: 100%;
     margin: 0;
     display: block;
     overflow-x: hidden;
@@ -1379,8 +1389,8 @@ button {
     }
 
     .asistan-route.app-shell {
-        height: calc(100dvh - 128px);
-        min-height: calc(100dvh - 128px);
+        height: calc(100dvh - 64px);
+        min-height: calc(100dvh - 64px);
     }
 
     .topbar {
@@ -1453,7 +1463,7 @@ button {
         width: 29px;
         height: 29px;
         flex-basis: 29px;
-        border-radius: 9px;
+        border-radius: 50%;
     }
 
     .message-row.assistant .bubble {
@@ -1481,14 +1491,26 @@ button {
 
     .gate {
         width: 100%;
-        height: 100dvh;
-        min-height: 100dvh;
+        height: 100%;
+        min-height: 100%;
         border-radius: 0;
     }
 
     .asistan-route.admin-shell {
-        min-height: calc(100dvh - 128px);
+        min-height: calc(100dvh - 64px);
         margin-top: 64px;
+    }
+
+    .messages,
+    .gate,
+    .gate-content {
+        scrollbar-width: none;
+    }
+
+    .messages::-webkit-scrollbar,
+    .gate::-webkit-scrollbar,
+    .gate-content::-webkit-scrollbar {
+        display: none;
     }
 
     .gate-panel {

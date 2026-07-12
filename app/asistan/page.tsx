@@ -72,6 +72,7 @@ const SUGGESTION_GROUPS = [
       "BAL ruhu nedir?",
       "Kampüste hangi imkânlar var?",
       "Hazırlık sınıfı nasıl?",
+      "BALÖDER nedir?",
     ],
   },
   {
@@ -104,7 +105,7 @@ const SUGGESTION_GROUPS = [
     questions: [
       "Ayran Günü nedir?",
       "Hangi kulüp ve topluluklar var?",
-      "BALÖDER nedir?",
+      "BALKOOP nedir?",
       "BALEV bursu hakkında bilgi ver",
       "BALPOD nedir?",
       "Tiyatro, müzik ve spor faaliyetleri nasıl?",
@@ -614,7 +615,7 @@ export default function Home() {
         />
       ) : (
         <>
-          <section className="chat-layout">
+            <section className="chat-layout">
             <div className="messages" ref={messagesRef} onScroll={handleMessagesScroll}>
               {!messages.length ? (
                 <Welcome
@@ -744,12 +745,12 @@ function EntryGate({
   return (
     <section className="gate">
       <div className="gate-hero">
-        <img src="/icon.png" alt="BALÖDER logosu" />
-        <p className="eyebrow">BALÖDER • Bornova Anadolu Lisesi</p>
+        <img src="/icon.png" alt="Bornova Anadolu Lisesi logosu" />
+        <p className="eyebrow">Bornova Anadolu Lisesi</p>
         <h1>BAL Asistan</h1>
         <p className="gate-copy">
-          BALÖDER bünyesinde Bornova Anadolu Lisesi hakkında hızlı, sade ve
-          kaynaklı bilgi almak için geliştirilen yapay zeka destekli öğrenci projesi.
+          Bornova Anadolu Lisesi hakkında hızlı, sade ve kaynaklı bilgi almak
+          için geliştirilen yapay zeka destekli öğrenci projesi.
         </p>
         <div className="gate-meta">
           <span>Bilgilendirme amaçlıdır.</span>
@@ -787,7 +788,7 @@ function EntryGate({
           </button>
         </div>
 
-        <div className="gate-content">
+        <div className="gate-content" key={activeTab}>
           {activeTab === "terms" ? (
             <div>
               <h2>Kullanım Şartları</h2>
@@ -874,7 +875,7 @@ function Welcome({
           >
             <X aria-hidden="true" size={22} strokeWidth={1.8} />
           </button>
-          <img src="/icon.png" alt="BALÖDER" />
+          <img src="/icon.png" alt="BAL" />
           <h2>{title}</h2>
           <p>{description}</p>
         </div>
@@ -923,7 +924,7 @@ function MessageBubble({
         <img
           className="message-avatar"
           src="/icon.png"
-          alt="BALÖDER Asistan"
+          alt="BAL Asistan"
         />
       ) : null}
       <div className="message-content">
