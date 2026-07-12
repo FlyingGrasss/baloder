@@ -246,6 +246,7 @@ export default function Home() {
   }, [fingerprint, headersForApi]);
 
   useEffect(() => {
+    if (gateOpen !== false) return;
     let cancelled = false;
     resolveFingerprint().then((value) => {
       if (!cancelled) setFingerprint(value);
@@ -253,7 +254,7 @@ export default function Home() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [gateOpen]);
 
   useEffect(() => {
     loadAuthStatus();

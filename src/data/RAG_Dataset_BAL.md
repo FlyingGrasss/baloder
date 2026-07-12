@@ -107,10 +107,10 @@ Bu bilgiler okulun resmi MEB sayfasından alınmıştır:
 - **Sabah Girişi:** 08:30
 - **Ders Sonu:** 15:35
 - **Öğle yemeği servisi:** 11:40 – 13:15
-- **Hazırlık sınıflarının yemek arasına çıkışı:** 11:40
-- **Diğer sınıfların yemek arasına çıkışı:** 12:30
+- **Hazırlık sınıflarının yemek arası:** 11:40 – 12:25
+- **Diğer sınıfların yemek arası:** 12:30 – 13:15
 
-Hazırlık sınıfları yemek arasına daha erken çıkar. Böylece diğer sınıflar derslerinden çıktığında yemekhane sırasında yoğunluk azalır; yemek servisi toplamda iki ders süresini kapsayacak şekilde 11:40–13:15 arasında devam eder.
+Hazırlık sınıfları dördüncü dersten sonra 11:40'ta yemek arasına çıkar ve 12:25'te beşinci derse başlar. Diğer sınıflar beşinci dersi 11:50–12:30 arasında işler, ardından 12:30–13:15 arasında yemek arasına çıkar. Böylece yemek servisi toplamda 11:40–13:15 arasında devam eder ve yemekhane yoğunluğu azaltılır.
 
 ### 1.8 Kampüs Fiziksel Altyapısı — MEB Resmi Verileri
 
@@ -343,7 +343,7 @@ BAL kampüsünde yemekhane bulunmaktadır. Bu yemekhane, yalnızca okulun yurdun
 
 #### 3.7.2 Yemek Saatleri
 
-Kahvaltı **07:30–08:30**, öğle yemeği **11:40–13:15**, akşam yemeği ise **17:00–19:00** arasında servis edilmektedir. Öğle yemeği servisi iki ders süresini kapsar: hazırlık sınıfları 11:40'ta, diğer sınıflar 12:30'da yemek arasına çıkar.
+Kahvaltı **07:30–08:30**, öğle yemeği **11:40–13:15**, akşam yemeği ise **17:00–19:00** arasında servis edilmektedir. Hazırlık sınıfları 11:40–12:25, diğer sınıflar 12:30–13:15 arasında yemek arasına çıkar.
 
 #### 3.7.3 Menü Yapısı
 
@@ -493,10 +493,10 @@ Evet. BAL, eTwinning platformunda aktif uluslararası projeler yürütmekte; ayr
 ### Bölüm C: Günlük Okul Hayatı
 
 **S15: Öğle yemeği saatleri nedir?**
-Öğle yemeği servisi 11:40–13:15 saatleri arasında yapılır. Hazırlık sınıfları 11:40'ta, diğer sınıflar 12:30'da yemek arasına çıkar. Kahvaltı 07:30–08:30, akşam yemeği ise 17:00–19:00 saatleri arasındadır.
+Öğle yemeği servisi 11:40–13:15 saatleri arasında yapılır. Hazırlık sınıfları 11:40–12:25, diğer sınıflar 12:30–13:15 arasında yemek arasına çıkar. Kahvaltı 07:30–08:30, akşam yemeği ise 17:00–19:00 saatleri arasındadır.
 
 **S14: Okul kaçta başlıyor, kaçta bitiyor?**
-Resmi MEB verilerine göre sabah girişi **08:30**, ders sonu **15:35**. Öğle yemeği servisi **11:40–13:15** arasındadır; hazırlık sınıfları 11:40'ta, diğer sınıflar 12:30'da yemek arasına çıkar.
+Resmi MEB verilerine göre sabah girişi **08:30**, ders sonu **15:35**. Öğle yemeği servisi **11:40–13:15** arasındadır. Hazırlık sınıfları dördüncü dersten sonra 11:40–12:25 arasında, diğer sınıflar beşinci dersten sonra 12:30–13:15 arasında yemek arasına çıkar.
 
 40 dakikalık ders ve 10 dakikalık teneffüs düzenine göre ders saatleri şöyledir:
 
@@ -509,15 +509,20 @@ Resmi MEB verilerine göre sabah girişi **08:30**, ders sonu **15:35**. Öğle 
 | 3. ders | 10:10–10:50 |
 | Teneffüs | 10:50–11:00 |
 | 4. ders | 11:00–11:40 |
-| Hazırlık sınıflarının öğle arası | 11:40–12:30 |
+| Hazırlık sınıflarının öğle arası | 11:40–12:25 |
+| Diğer sınıfların 5. dersi | 11:50–12:30 |
+| Hazırlık sınıflarının 5. dersi | 12:25–13:05 |
 | Diğer sınıfların öğle arası | 12:30–13:15 |
-| 5. ders | 13:15–13:55 |
+| 6. ders (ortak devam) | 13:15–13:55 |
 | Teneffüs | 13:55–14:05 |
-| 6. ders | 14:05–14:45 |
+| 7. ders | 14:05–14:45 |
 | Teneffüs | 14:45–14:55 |
-| 7. ders | 14:55–15:35 |
+| 8. ders | 14:55–15:35 |
 
-Bu çizelge, verilen 40 dakika ders + 10 dakika teneffüs düzeninden hesaplanmış pratik zaman çizelgesidir; özel günlerdeki program değişikliklerinde okul duyuruları esas alınmalıdır.
+Bu çizelge, verilen 40 dakika ders + 10 dakika teneffüs düzeni ile hazırlık ve diğer sınıfların farklı öğle arası düzenine göre hazırlanmış pratik zaman çizelgesidir. Beşinci dersin bitişi sınıf grubuna göre değişir: diğer sınıflarda **12:30**, hazırlık sınıflarında **13:05**. Özel günlerdeki program değişikliklerinde okul duyuruları esas alınmalıdır.
+
+**S14a: 5. ders ne zaman bitiyor?**
+Öğrencinin sınıf grubuna göre değişir. Hazırlık sınıflarında öğle arası dördüncü dersten sonra olduğu için 5. ders **12:25–13:05** arasındadır ve **13:05'te** biter. Diğer sınıflarda 5. ders öğle arasından önce **11:50–12:30** arasındadır ve **12:30'da** biter.
 
 **S15: Devamsızlık sınırı kaç gündür?**
 MEB Ortaöğretim Yönetmeliği'ne göre mazeretsiz **10 günü** aşan devamsızlık sınıf tekrarına yol açabilir. Mazeretli devamsızlıklar resmi belgeyle değerlendirilir.
@@ -1854,7 +1859,7 @@ Bu belge aşağıdaki konularda yapılandırılmış veri içermektedir:
 - **Vizyon / Misyon:** Resmi tam metin (4 başlık altında)
 - **Eğitim Yapısı:** 5 yıllık sistem, 2026–2027'den itibaren yeni Fransızca alımı olmayan 7 yeni öğrenci şubesi, beklenen kontenjan 210
 - **Kayıt ve Hazırlık:** Kesin kayıt için okula gelme, kimlik ve ikametgâh belgesi, ikinci yabancı dil seçenekleri, hazırlığın ilk haftasındaki yabancı dil yeterlilik sınavı ve hazırlık atlama imkânı
-- **Ders Programı:** Giriş (08:30), çıkış (15:35), öğle yemeği servisi (11:40–13:15), hazırlıkların 11:40'ta ve diğer sınıfların 12:30'da çıkması
+- **Ders Programı:** Giriş (08:30), çıkış (15:35), hazırlık öğle arası (11:40–12:25), diğer sınıfların 5. dersi (11:50–12:30), hazırlıkların 5. dersi (12:25–13:05) ve öğle yemeği servisi (11:40–13:15)
 - **Sınav Sistemi:** Her ders için yılda 4 yazılı sınav, bazı derslerde ortak sınav uygulaması
 - **Fiziksel Altyapı:** MEB resmi tablosu (50 derslik, 3 fen lab, 1 BT sınıfı, 4 spor salonu, 5 çok amaçlı salon, 2 konferans salonu, 2 toplantı salonu, 2 yemekhane, 1 kütüphane / 20.563 kitap, 2 revir, 1 halısaha, pansiyon 240 kişi)
 - **Günlük Okul Yaşamı:** Telefonların 08:30'da toplanıp 15:30–15:35'te verilmesi, okul kartının arka kapı/pansiyon/yemekhane kullanımı, öğle arasında çıkış ve sipariş yasağı, kütüphane saatleri ve dolap kuralları
