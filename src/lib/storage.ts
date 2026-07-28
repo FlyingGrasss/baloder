@@ -66,7 +66,10 @@ const globalState = globalThis as typeof globalThis & {
 };
 
 function getPool() {
-  const databaseUrl = process.env.BAL_ASISTAN_DATABASE_URL;
+  // Keep the assistant database isolated when its dedicated URL exists, but
+  // remain durable on deployments where only BALÖDER's DATABASE_URL is set.
+  const databaseUrl =
+    process.env.BAL_ASISTAN_DATABASE_URL || process.env.DATABASE_URL;
   if (!databaseUrl) return null;
   if (!globalState.balPool) {
     const connectionString = normalizeDatabaseUrl(databaseUrl);
