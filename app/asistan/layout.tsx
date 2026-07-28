@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import "./asistan.css";
+import { SITE_URL } from "@/src/lib/site";
 
 export const metadata: Metadata = {
   title: "BAL Asistan | Bornova Anadolu Lisesi Yapay Zeka Asistanı",
   description:
     "BALÖDER bünyesindeki BAL Asistan ile Bornova Anadolu Lisesi hakkında yapay zeka destekli, kaynaklı ve hızlı bilgi alın.",
-  metadataBase: new URL("https://balogrenci.org"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/asistan",
   },
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: "BAL Asistan | Bornova Anadolu Lisesi Yapay Zeka Asistanı",
     description:
       "Bornova Anadolu Lisesi'nin akademik yapısı, kampüsü, gelenekleri, ulaşımı ve öğrenci yaşamı hakkında BALÖDER destekli bilgi asistanı.",
-    url: "https://balogrenci.org/asistan",
+    url: `${SITE_URL}/asistan`,
     siteName: "BALÖDER",
     locale: "tr_TR",
     type: "website",

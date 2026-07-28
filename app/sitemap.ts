@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SEO_SLUGS, SEO_PAGES } from "@/src/lib/seoPages";
+import { SITE_URL } from "@/src/lib/site";
 
-const baseUrl = "https://balogrenci.org";
+const baseUrl = SITE_URL;
 const siteUpdated = new Date("2026-07-12T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {

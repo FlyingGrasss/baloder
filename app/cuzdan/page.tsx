@@ -1,8 +1,14 @@
 import { prisma } from "@/lib/prisma";
 import { createClient } from "@/lib/supabase/server";
 import WalletClient from "./WalletClient";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { LogIn, UserPlus, Wallet as WalletIcon, ShieldCheck, Zap, ThumbsUp } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Dijital Cüzdan | BALÖDER",
+  robots: { index: false, follow: true },
+};
 
 export default async function WalletPage() {
   const supabase = await createClient();

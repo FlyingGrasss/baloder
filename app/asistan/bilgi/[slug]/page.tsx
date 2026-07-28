@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SEO_PAGES, SEO_SLUGS } from "@/src/lib/seoPages";
+import { SITE_URL } from "@/src/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
-
-const SITE_URL = "https://balogrenci.org";
 
 export const dynamicParams = false;
 
@@ -53,7 +52,7 @@ export default async function SeoInfoPage({ params }: PageProps) {
         name: page.title,
         description: page.description,
         inLanguage: "tr-TR",
-        isPartOf: { "@id": `${SITE_URL}#website` },
+        isPartOf: { "@id": `${SITE_URL}/#website` },
         dateModified: page.updatedAt,
       },
       {

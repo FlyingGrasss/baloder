@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next"
+import { SITE_URL } from "@/src/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,11 +17,11 @@ const siteStructuredData = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://balogrenci.org/#organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "BALÖDER",
       alternateName: "Bornova Anadolu Lisesi Öğrenci Derneği",
-      url: "https://balogrenci.org",
-      logo: "https://balogrenci.org/icon.png",
+      url: SITE_URL,
+      logo: `${SITE_URL}/icon.png`,
       description:
         "Bornova Anadolu Lisesi öğrencilerinin sosyal, kültürel ve akademik gelişimini destekleyen bağımsız öğrenci derneği.",
       sameAs: [
@@ -30,12 +31,12 @@ const siteStructuredData = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://balogrenci.org/#website",
-      url: "https://balogrenci.org",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
       name: "BALÖDER",
       alternateName: "BAL Öğrenci Derneği",
       inLanguage: "tr-TR",
-      publisher: { "@id": "https://balogrenci.org/#organization" },
+      publisher: { "@id": `${SITE_URL}/#organization` },
     },
   ],
 };
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
   title: "BALÖDER - BAL Öğrenci Derneği",
   description:
     "Bornova Anadolu Lisesi Öğrenci Derneği Resmi Web Sitesi. BAL ruhunu geleceğe taşıyoruz.",
-  metadataBase: new URL("https://balogrenci.org"),
+  metadataBase: new URL(SITE_URL),
   keywords: [
     "Bornova Anadolu Lisesi",
     "BAL",
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     title: "BALÖDER - BAL Öğrenci Derneği",
     description:
       "Bornova Anadolu Lisesi Öğrenci Derneği Resmi Web Sitesi. BAL ruhunu geleceğe taşıyoruz.",
-    url: "https://balogrenci.org",
+    url: SITE_URL,
     siteName: "BALÖDER",
     locale: "tr_TR",
     type: "website",

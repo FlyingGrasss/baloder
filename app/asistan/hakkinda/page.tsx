@@ -1,5 +1,21 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { SEO_PAGES, SEO_SLUGS } from "@/src/lib/seoPages";
+import { SITE_URL } from "@/src/lib/site";
+
+export const metadata: Metadata = {
+  title: "BAL Asistan Hakkında | BALÖDER",
+  description:
+    "BAL Asistan'ın amacı, kullandığı kaynak sistemi ve Bornova Anadolu Lisesi hakkında sunduğu bilgilendirme hizmeti.",
+  alternates: { canonical: "/asistan/hakkinda" },
+  openGraph: {
+    title: "BAL Asistan Hakkında | BALÖDER",
+    description:
+      "BAL Asistan'ın amacı, kullandığı kaynak sistemi ve Bornova Anadolu Lisesi hakkında sunduğu bilgilendirme hizmeti.",
+    url: `${SITE_URL}/asistan/hakkinda`,
+    type: "article",
+  },
+};
 
 export default function AboutPage() {
   return (

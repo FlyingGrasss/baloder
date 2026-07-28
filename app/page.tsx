@@ -1,6 +1,11 @@
 import Hero from "@/components/home/Hero";
 import QuickLinks from "@/components/home/QuickLinks";
 import { createClient } from "@/lib/supabase/server";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default async function Home() {
   const supabase = await createClient();

@@ -26,6 +26,6 @@ pnpm dev
 The default local command uses webpack for reliable Windows development with
 pnpm. `pnpm dev:turbo` is available on systems with symlink support.
 
-The production canonical URL for the assistant is `https://balogrenci.org/asistan`.
+The production canonical URL for the assistant is `https://www.balogrenci.org/asistan`.
 Assistant storage uses the separate `BAL_ASISTAN_DATABASE_URL` connection;
 the main BALÖDER `DATABASE_URL` remains reserved for the BALÖDER application.
