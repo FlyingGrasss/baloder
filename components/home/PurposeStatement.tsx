@@ -40,9 +40,13 @@ export default function PurposeStatement() {
       ).matches;
       const question = section.querySelector(".purpose-question");
       const answer = section.querySelector(".purpose-answer");
+      const questionLetters = gsap.utils.toArray<HTMLElement>(
+        ".purpose-question-letter",
+      );
       const questionTitle = section.querySelector(".purpose-question h2");
       const answerTitle = section.querySelector(".purpose-answer h2");
       const questionRule = section.querySelector(".purpose-question-rule");
+      const questionKicker = section.querySelector(".purpose-question-kicker");
       const answerCopy = section.querySelector(".purpose-answer-copy");
       const impactRing = section.querySelector(".purpose-impact-ring");
       const progress = section.querySelector(".purpose-progress-fill");
@@ -76,14 +80,14 @@ export default function PurposeStatement() {
           trigger: section,
           start: "top top+=64",
           end: "bottom bottom",
-          scrub: 0.75,
+          scrub: 1.15,
           invalidateOnRefresh: true,
         },
       });
 
       timeline
-        .to(questionTitle, { scale: 1.018, duration: 0.42 }, 0)
-        .to(questionTitle, { scale: 1, duration: 0.48 }, 0.42)
+        .to(questionTitle, { scale: 1.018, duration: 0.65 }, 0)
+        .to(questionTitle, { scale: 1, duration: 0.65 }, 0.65)
         .from(
           questionRule,
           {
@@ -92,39 +96,46 @@ export default function PurposeStatement() {
             duration: 0.55,
             ease: "power3.out",
           },
-          0.15,
+          0.25,
         )
-        .to(progress, { scaleX: 0.48, duration: 1.05 }, 0)
+        .to(progress, { scaleX: 0.46, duration: 1.45 }, 0)
         .to(
-          question,
+          questionLetters,
           {
             autoAlpha: 0,
-            y: -12,
-            scale: 0.985,
-            duration: 0.38,
+            yPercent: -22,
+            rotate: -6,
+            scale: 0.96,
+            stagger: { each: 0.055, from: "end" },
+            duration: 0.48,
             ease: "power3.in",
           },
-          1.08,
+          1.45,
+        )
+        .to(
+          questionKicker,
+          { autoAlpha: 0, y: -8, duration: 0.35, ease: "power2.in" },
+          1.45,
         )
         .to(
           questionRule,
           {
             scaleX: 0,
             transformOrigin: "100% 50%",
-            duration: 0.32,
+            duration: 0.5,
           },
-          1.06,
+          1.58,
         )
-        .set(answer, { autoAlpha: 1 }, 1.36)
+        .set(answer, { autoAlpha: 1 }, 2.7)
         .to(
           impactRing,
           {
             autoAlpha: 0.34,
             scale: 1,
-            duration: 0.32,
+            duration: 0.55,
             ease: "expo.out",
           },
-          1.36,
+          2.7,
         )
         .to(
           answerTitle,
@@ -132,32 +143,32 @@ export default function PurposeStatement() {
             autoAlpha: 1,
             rotate: 0,
             scale: 1,
-            duration: 0.68,
+            duration: 0.82,
             ease: "expo.out",
           },
-          1.39,
+          2.74,
         )
         .to(
           impactRing,
           {
             autoAlpha: 0,
             scale: 1.7,
-            duration: 0.65,
+            duration: 0.85,
             ease: "power2.out",
           },
-          1.67,
+          3.15,
         )
         .to(
           answerCopy,
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.46,
+            duration: 0.55,
             ease: "power3.out",
           },
-          1.92,
+          3.65,
         )
-        .to(progress, { scaleX: 1, duration: 1.35 }, 1.3);
+        .to(progress, { scaleX: 1, duration: 1.6 }, 2.7);
     }, section);
 
     return () => context.revert();

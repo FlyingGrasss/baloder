@@ -9,7 +9,7 @@ export default function Footer() {
   if (pathname.startsWith("/asistan")) return null;
 
   return (
-    <footer className="border-t-4 max-sm:hidden border-red-500 py-12 bg-bordeaux mt-auto">
+    <footer className="mt-auto hidden bg-bordeaux py-12 sm:block">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 max-sm:gap-4">
         <div className="text-center md:text-left">
           <p className="font-bold text-white text-xl mb-1">BALÖDER</p>

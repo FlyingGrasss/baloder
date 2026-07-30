@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
 import { Analytics } from "@vercel/analytics/next"
 import { SITE_URL } from "@/src/lib/site";
 
@@ -84,6 +85,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteStructuredData) }}
         />
         <div className="flex flex-col min-h-screen relative">
+          <SmoothScroll />
           <Navbar />
           <div className="flex-grow min-h-0">
             {children}

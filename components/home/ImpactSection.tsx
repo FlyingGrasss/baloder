@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRight,
+  Bot,
   BookOpenCheck,
   Droplets,
   Eye,
@@ -156,6 +157,38 @@ export default function ImpactSection() {
               etkileyen bir sorun varsa onu dinlemek, kayda geçirmek ve açıkça
               konuşulabilir hâle getirmek de derneğin işi.
             </p>
+          </article>
+
+          <article className="relative overflow-hidden rounded-[2rem] bg-dark-gray p-8 text-white sm:p-10 lg:col-span-8">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-[radial-gradient(circle_at_82%_25%,rgba(162,26,42,0.72),transparent_32%),linear-gradient(120deg,transparent_48%,rgba(255,255,255,0.035)_48%)]"
+            />
+            <div className="relative flex h-full flex-col justify-between gap-10 lg:flex-row lg:items-end">
+              <div className="max-w-2xl">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-[#ff8994]">
+                  <Bot aria-hidden="true" size={27} />
+                </div>
+                <p className="mt-8 text-xs font-black uppercase tracking-[0.22em] text-white/45">
+                  Bilgiye daha hızlı erişim
+                </p>
+                <h3 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
+                  BAL Asistan
+                </h3>
+                <p className="mt-4 max-w-xl font-medium leading-7 text-white/70">
+                  Okulla ilgili sık sorulan bilgileri, adres ve ulaşım detaylarını
+                  ve BAL&apos;ın gündemini tek yerde daha anlaşılır hâle getiren
+                  öğrenci odaklı bilgi asistanımız.
+                </p>
+              </div>
+              <Link
+                className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-black text-dark-gray transition hover:-translate-y-0.5 hover:bg-[#ffeaed]"
+                href="/asistan"
+              >
+                BAL Asistan&apos;ı aç
+                <ArrowUpRight aria-hidden="true" size={17} />
+              </Link>
+            </div>
           </article>
         </div>
 

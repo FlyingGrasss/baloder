@@ -22,12 +22,25 @@ body {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
 }
 
 .purpose-manifesto {
   position: relative;
-  height: 270svh;
+  height: 320svh;
   background: #151515;
 }
 
@@ -104,7 +117,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(1.5rem, 6dvh, 4.5rem) clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(2rem, 7dvh, 5.5rem) clamp(2rem, 5vw, 5rem);
 }
 
 .purpose-question {
@@ -112,9 +125,17 @@ html {
   text-align: center;
 }
 
-.purpose-question-kicker,
-.purpose-answer-kicker {
+.purpose-question-kicker {
   margin-bottom: clamp(0.75rem, 2.5dvh, 2.5rem);
+  font-size: clamp(0.62rem, 1vw, 0.75rem);
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.purpose-answer-kicker {
+  margin-bottom: clamp(2rem, 4dvh, 3.5rem);
   font-size: clamp(0.62rem, 1vw, 0.75rem);
   font-weight: 900;
   letter-spacing: 0.24em;
@@ -199,7 +220,7 @@ html {
 
 @media (max-width: 640px) {
   .purpose-manifesto {
-    height: 235svh;
+    height: 285svh;
   }
 
   .purpose-stage {

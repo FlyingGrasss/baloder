@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -9,8 +9,33 @@ import { logout } from "@/actions/logout";
 
 export default function NavbarClient({ user }: { user: unknown }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
   const isAssistant = pathname.startsWith("/asistan");
+  const isHome = pathname === "/";
+  const isDarkNav = isHome;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY.current;
+
+      if (currentScrollY < 48 || scrollDelta < -6) {
+        setIsVisible(true);
+      } else if (currentScrollY > 112 && scrollDelta > 6) {
+        setIsVisible(false);
+        setIsOpen(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    lastScrollY.current = window.scrollY;
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "Ana Sayfa", href: "/" },
@@ -18,39 +43,49 @@ export default function NavbarClient({ user }: { user: unknown }) {
     { name: "Duyurular", href: "/duyurular" },
     { name: "Bağış", href: "/bagis" },
     { name: "Hakkımızda", href: "/hakkimizda" },
-    ...(!user ? [{ name: "Üyelik", href: "/auth/signup" }] : []),
     { name: "Cüzdan", href: "/cuzdan" },
     { name: "İletişim", href: "/iletisim" },
   ];
 
+  const surfaceClass = isAssistant
+    ? "border-b border-[#dce3ec] bg-[#f7f8fb]/95 shadow-sm backdrop-blur-md"
+    : isDarkNav
+      ? "border-b border-white/10 bg-[#171717]/90 shadow-2xl shadow-black/20 backdrop-blur-xl"
+      : "border-b border-gray-100 bg-white/95 shadow-md backdrop-blur-xl";
+  const navItemClass = isDarkNav
+    ? "text-white/60 hover:text-white"
+    : "text-gray-500 hover:text-bordeaux";
+  const mobileItemClass = isDarkNav
+    ? "text-white/70 hover:bg-white/10 hover:text-white"
+    : "text-gray-600 hover:bg-gray-50 hover:text-bordeaux";
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex h-16 items-center ${
-        isAssistant
-          ? "border-b border-[#dce3ec] bg-[#f7f8fb]/95 shadow-sm backdrop-blur-md"
-          : "bg-white shadow-md"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 flex h-16 items-center transition-transform duration-300 ease-out ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      } ${surfaceClass}`}
     >
-      <div className="max-w-7xl mx-auto px-4 w-full">
-        <div className="flex justify-between items-center h-full">
-          {/* Logo Section */}
-          <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-2 cursor-pointer">
-              <Image src="/icon.png" alt="BALÖDER" width={40} height={40} className="h-10 w-10 object-contain rounded-full" />
-              <span className="whitespace-nowrap text-sm font-bold tracking-tight text-dark-gray sm:text-xl">
-                BALÖDER
-              </span>
-            </Link>
-          </div>
+      <div className="mx-auto w-full max-w-7xl px-4">
+        <div className="flex h-full items-center justify-between">
+          <Link href="/" className="flex cursor-pointer items-center gap-2">
+            <Image
+              src="/icon.png"
+              alt="BALÖDER"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-full object-contain"
+            />
+            <span className={`whitespace-nowrap text-sm font-bold tracking-tight sm:text-xl ${isDarkNav ? "text-white" : "text-dark-gray"}`}>
+              BALÖDER
+            </span>
+          </Link>
 
-          {/* Desktop Items */}
-          <div className="hidden md:flex space-x-8 items-center">
+          <div className="hidden items-center space-x-7 lg:flex">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition-colors flex items-center gap-1 ${pathname === item.href ? "text-bordeaux" : "text-gray-500 hover:text-bordeaux"
-                  }`}
+                className={`flex items-center gap-1 text-sm font-medium transition-colors ${pathname === item.href ? "text-[#ff6b79]" : navItemClass}`}
               >
                 {item.name}
                 {item.name === "Cüzdan" && (
@@ -63,29 +98,43 @@ export default function NavbarClient({ user }: { user: unknown }) {
           <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-4">
-                <Link href="/profile" className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-all">
+                <Link
+                  href="/profile"
+                  className={`flex h-8 w-8 items-center justify-center rounded-full transition-all ${isDarkNav ? "bg-white/10 text-white/70 hover:bg-white/20" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                >
                   <User size={16} />
                 </Link>
                 <form action={logout}>
-                  <button className="p-2 cursor-pointer text-gray-400 hover:text-bordeaux transition-colors">
+                  <button
+                    className={`cursor-pointer p-2 transition-colors ${isDarkNav ? "text-white/55 hover:text-white" : "text-gray-400 hover:text-bordeaux"}`}
+                  >
                     <LogOut size={20} />
                   </button>
                 </form>
               </div>
             ) : (
               <div className="flex items-center gap-4">
-                <Link href="/auth/signup" className="hidden md:flex text-sm font-medium text-gray-500 hover:text-bordeaux transition-colors">
+                <Link
+                  href="/auth/signup"
+                  className={`hidden text-sm font-medium transition-colors lg:flex ${navItemClass}`}
+                >
                   Üyelik
                 </Link>
-                <Link href="/auth/login" className="hidden md:flex text-sm font-semibold text-white bg-bordeaux px-4 py-2 rounded-xl hover:bg-bordeaux/90 transition-all">
+                <Link
+                  href="/auth/login"
+                  className={`hidden rounded-xl px-4 py-2 text-sm font-semibold transition-all lg:flex ${isDarkNav ? "bg-white text-dark-gray hover:bg-gray-100" : "bg-bordeaux text-white hover:bg-bordeaux/90"}`}
+                >
                   Giriş Yap
                 </Link>
               </div>
             )}
 
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-dark-gray p-2 cursor-pointer"
+              onClick={() => {
+                setIsVisible(true);
+                setIsOpen((open) => !open);
+              }}
+              className={`cursor-pointer p-2 lg:hidden ${isDarkNav ? "text-white" : "text-dark-gray"}`}
               aria-label={isOpen ? "Menüyü kapat" : "Menüyü aç"}
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"
@@ -99,33 +148,35 @@ export default function NavbarClient({ user }: { user: unknown }) {
       {isOpen && (
         <div
           id="mobile-navigation"
-          className="absolute top-16 left-0 right-0 bg-white shadow-xl border-t border-gray-100 md:hidden"
+          className={`absolute top-16 left-0 right-0 border-t shadow-xl lg:hidden ${isDarkNav ? "border-white/10 bg-[#171717] text-white" : "border-gray-100 bg-white"}`}
         >
-          <div className="flex flex-col p-4 gap-4">
+          <div className="flex flex-col gap-4 p-4">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-50 transition-all ${pathname === item.href ? "text-bordeaux font-bold" : "text-gray-600 hover:text-bordeaux"}`}
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${pathname === item.href ? "font-bold text-[#ff6b79]" : mobileItemClass}`}
               >
                 {item.name}
               </Link>
             ))}
 
-            <div className="h-px bg-gray-100 my-2" />
+            <div className={`my-2 h-px ${isDarkNav ? "bg-white/10" : "bg-gray-100"}`} />
 
             {user ? (
               <>
                 <Link
                   href="/profile"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50"
+                  className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${mobileItemClass}`}
                 >
                   Profilim
                 </Link>
                 <form action={logout}>
-                  <button className="w-full text-left text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50 flex items-center gap-2 cursor-pointer">
+                  <button
+                    className={`flex w-full cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-left text-sm font-medium transition-all ${mobileItemClass}`}
+                  >
                     <LogOut size={16} />
                     Çıkış Yap
                   </button>
@@ -136,14 +187,14 @@ export default function NavbarClient({ user }: { user: unknown }) {
                 <Link
                   href="/auth/signup"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-medium text-gray-600 hover:text-bordeaux px-4 py-2 rounded-lg hover:bg-gray-50"
+                  className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${mobileItemClass}`}
                 >
                   Üyelik
                 </Link>
                 <Link
                   href="/auth/login"
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-semibold text-white bg-bordeaux px-4 py-3 rounded-xl mx-4 text-center mt-2"
+                  className="mx-4 mt-2 rounded-xl bg-bordeaux px-4 py-3 text-center text-sm font-semibold text-white"
                 >
                   Giriş Yap
                 </Link>

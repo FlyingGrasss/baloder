@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Hero({ user }: { user?: unknown }) {
   return (
-    <section className="relative overflow-hidden rounded-b-[2.5rem] bg-dark-gray px-5 pb-20 pt-28 text-white sm:rounded-b-[4rem] sm:px-6 sm:pb-24 sm:pt-32">
+    <section className="relative overflow-hidden bg-dark-gray px-5 pb-20 pt-28 text-white sm:px-6 sm:pb-24 sm:pt-32">
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(circle_at_78%_20%,rgba(162,26,42,0.38),transparent_30%),linear-gradient(120deg,transparent_45%,rgba(255,255,255,0.025)_45%)]"
@@ -149,9 +149,8 @@ export default function Hero({ user }: { user?: unknown }) {
                   Tarafımız belli
                 </p>
                 <p className="mt-3 text-4xl font-black leading-[0.9] tracking-[-0.04em] sm:text-5xl">
-                  ÖĞRENCİ
-                  <br />
-                  DERNEĞİ.
+                  <span className="block">ÖĞRENCİ</span>
+                  <span className="mt-2 block">DERNEĞİ.</span>
                 </p>
               </div>
             </div>
