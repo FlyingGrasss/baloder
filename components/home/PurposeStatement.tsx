@@ -40,25 +40,19 @@ export default function PurposeStatement() {
       ).matches;
       const question = section.querySelector(".purpose-question");
       const answer = section.querySelector(".purpose-answer");
-      const questionLetters = gsap.utils.toArray<HTMLElement>(
-        ".purpose-question-letter",
-      );
-      const answerLetters = gsap.utils.toArray<HTMLElement>(
-        ".purpose-answer-letter",
-      );
+      const questionTitle = section.querySelector(".purpose-question h2");
+      const answerTitle = section.querySelector(".purpose-answer h2");
       const questionRule = section.querySelector(".purpose-question-rule");
-      const questionKicker = section.querySelector(".purpose-question-kicker");
       const answerCopy = section.querySelector(".purpose-answer-copy");
       const impactRing = section.querySelector(".purpose-impact-ring");
       const progress = section.querySelector(".purpose-progress-fill");
 
       if (reduceMotion) {
         section.classList.add("purpose-static");
-        gsap.set(question, { autoAlpha: 1, yPercent: -105, scale: 0.58 });
+        gsap.set(question, { autoAlpha: 0 });
         gsap.set(answer, { autoAlpha: 1 });
-        gsap.set([questionLetters, answerLetters, answerCopy], {
+        gsap.set([answerTitle, answerCopy], {
           autoAlpha: 1,
-          yPercent: 0,
           rotate: 0,
           scale: 1,
         });
@@ -66,11 +60,11 @@ export default function PurposeStatement() {
       }
 
       gsap.set(answer, { autoAlpha: 0 });
-      gsap.set(answerLetters, {
+      gsap.set(answerTitle, {
         autoAlpha: 0,
-        yPercent: 130,
-        rotate: 7,
-        scale: 1.35,
+        rotate: -2,
+        scale: 0.92,
+        transformOrigin: "0% 50%",
       });
       gsap.set(answerCopy, { autoAlpha: 0, y: 28 });
       gsap.set(impactRing, { autoAlpha: 0, scale: 0.25 });
@@ -88,14 +82,8 @@ export default function PurposeStatement() {
       });
 
       timeline
-        .from(questionLetters, {
-          autoAlpha: 0,
-          yPercent: 120,
-          rotateX: -80,
-          stagger: 0.035,
-          duration: 0.75,
-          ease: "power4.out",
-        })
+        .to(questionTitle, { scale: 1.018, duration: 0.42 }, 0)
+        .to(questionTitle, { scale: 1, duration: 0.48 }, 0.42)
         .from(
           questionRule,
           {
@@ -108,20 +96,15 @@ export default function PurposeStatement() {
         )
         .to(progress, { scaleX: 0.48, duration: 1.05 }, 0)
         .to(
-          questionLetters,
+          question,
           {
             autoAlpha: 0,
-            yPercent: -145,
-            stagger: 0.018,
-            duration: 0.48,
+            y: -12,
+            scale: 0.985,
+            duration: 0.38,
             ease: "power3.in",
           },
           1.08,
-        )
-        .to(
-          questionKicker,
-          { autoAlpha: 0, y: -18, duration: 0.25 },
-          1.02,
         )
         .to(
           questionRule,
@@ -144,14 +127,12 @@ export default function PurposeStatement() {
           1.36,
         )
         .to(
-          answerLetters,
+          answerTitle,
           {
             autoAlpha: 1,
-            yPercent: 0,
             rotate: 0,
             scale: 1,
-            stagger: 0.032,
-            duration: 0.82,
+            duration: 0.68,
             ease: "expo.out",
           },
           1.39,

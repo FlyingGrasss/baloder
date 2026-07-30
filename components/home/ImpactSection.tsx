@@ -53,8 +53,8 @@ export default function ImpactSection() {
         </div>
 
         <div className="grid auto-rows-[minmax(220px,auto)] gap-5 lg:grid-cols-12">
-          <article className="group relative overflow-hidden rounded-[2rem] bg-dark-gray text-white lg:col-span-7 lg:row-span-2">
-            <div className="grid h-full min-h-[570px] md:grid-cols-[1.05fr_0.95fr]">
+          <article className="group relative overflow-hidden rounded-[2rem] bg-dark-gray text-white lg:col-span-8 lg:row-span-2">
+            <div className="grid h-full min-h-[570px] md:grid-cols-[1fr_1.15fr] lg:grid-cols-2">
               <div className="relative z-10 flex flex-col justify-between p-8 sm:p-10">
                 <div>
                   <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10">
@@ -63,7 +63,7 @@ export default function ImpactSection() {
                   <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-white/50">
                     2025–2026 boyunca
                   </p>
-                  <h3 className="text-4xl font-black leading-none tracking-tight sm:text-5xl">
+                  <h3 className="text-4xl font-black leading-none tracking-tight md:text-[2.5rem] lg:text-5xl">
                     BAL Öğrenci Kooperatifi
                   </h3>
                   <p className="mt-6 max-w-xl text-base font-medium leading-7 text-white/70">
@@ -83,10 +83,10 @@ export default function ImpactSection() {
                 </Link>
               </div>
 
-              <div className="relative min-h-[330px] overflow-hidden border-t border-white/10 md:min-h-0 md:border-l md:border-t-0">
+              <div className="relative min-h-[330px] overflow-hidden bg-[#9f1728] border-t border-white/10 md:min-h-0 md:border-l md:border-t-0">
                 <Image
                   alt="BAL Öğrenci Kooperatifi fiyat listesi"
-                  className="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
+                  className="object-contain object-center transition duration-700 group-hover:scale-[1.02]"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   src="/coop-menu.png"
@@ -102,7 +102,7 @@ export default function ImpactSection() {
             </div>
           </article>
 
-          <article className="relative overflow-hidden rounded-[2rem] bg-bordeaux p-8 text-white sm:p-10 lg:col-span-5">
+          <article className="relative overflow-hidden rounded-[2rem] bg-bordeaux p-8 text-white sm:p-10 lg:col-span-4">
             <Droplets
               aria-hidden="true"
               className="absolute -bottom-12 -right-10 text-white/10"
@@ -120,7 +120,7 @@ export default function ImpactSection() {
             </p>
           </article>
 
-          <article className="rounded-[2rem] border border-gray-200 bg-white p-8 sm:p-10 lg:col-span-5">
+          <article className="rounded-[2rem] border border-gray-200 bg-white p-8 sm:p-10 lg:col-span-4">
             <div className="flex items-start justify-between gap-6">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
                 <Newspaper aria-hidden="true" size={25} />
@@ -144,7 +144,7 @@ export default function ImpactSection() {
             </p>
           </article>
 
-          <article className="rounded-[2rem] bg-[#e7dfd2] p-8 sm:p-10 lg:col-span-5">
+          <article className="rounded-[2rem] bg-[#e7dfd2] p-8 sm:p-10 lg:col-span-4">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-dark-gray text-white">
               <Eye aria-hidden="true" size={25} />
             </div>
