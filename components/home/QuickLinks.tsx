@@ -1,62 +1,79 @@
 "use client";
 
-import { Bell, UserPlus, Wallet, ArrowUpRight } from "lucide-react";
+import { Bell, HandHeart, UserPlus, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 const links = [
   {
-    title: "Duyurular",
-    desc: "Okul ve dernek hakkındaki en güncel haberleri takip edin.",
+    title: "Gündemi takip et",
+    desc: "Okul ve dernek hakkındaki güncel duyuruları tek yerde gör.",
     icon: Bell,
     href: "/duyurular",
-    color: "bg-blue-500"
+    color: "bg-blue-600",
   },
   {
-    title: "Üyelik Başvurusu",
-    desc: "BALÖDER ailesine katılmak için başvurunuzu hemen yapın.",
+    title: "Derneğe katıl",
+    desc: "Fikrini, zamanını ve emeğini öğrenciler için çalışan ekibe kat.",
     icon: UserPlus,
     href: "/auth/signup",
-    color: "bg-bordeaux"
+    color: "bg-bordeaux",
   },
   {
-    title: "Dijital Cüzdan",
-    desc: "Kantin ve diğer harcamalarınızı kolayca yönetin.",
-    icon: Wallet,
-    href: "/cuzdan",
-    color: "bg-emerald-500"
-  }
+    title: "Bağış & şeffaflık",
+    desc: "Desteğin nereye gittiğini bütçe ve işlem kayıtlarıyla takip et.",
+    icon: HandHeart,
+    href: "/bagis",
+    color: "bg-emerald-600",
+  },
 ];
 
 export default function QuickLinks({ user }: { user?: unknown }) {
-  const filteredLinks = links.filter(link => !(user && link.href === "/auth/signup"));
+  const filteredLinks = links.filter(
+    (link) => !(user && link.href === "/auth/signup"),
+  );
 
   return (
-    <section className={`max-w-7xl mx-auto px-6 mt-12 relative z-20 grid grid-cols-1 ${filteredLinks.length === 2 ? 'md:grid-cols-2 max-w-4xl' : 'md:grid-cols-3'} gap-8`}>
-      {filteredLinks.map((link, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 + idx * 0.1 }}
-        >
-          <Link
-            href={link.href}
-            className="group block bg-white p-6 md:p-8 rounded-3xl md:rounded-4xl shadow-2xl hover:shadow-bordeaux/5 border border-gray-100 transition-all hover:-translate-y-2 cursor-pointer"
+    <section className="bg-white px-5 py-20 sm:px-6">
+      <div
+        className={`mx-auto grid max-w-7xl grid-cols-1 gap-5 ${
+          filteredLinks.length === 2 ? "md:max-w-4xl md:grid-cols-2" : "md:grid-cols-3"
+        }`}
+      >
+        {filteredLinks.map((link, index) => (
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            key={link.href}
+            transition={{ delay: index * 0.08 }}
+            viewport={{ once: true, amount: 0.25 }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
-            <div className="flex justify-between items-start mb-6 md:mb-8">
-              <div className={`w-14 h-14 md:w-16 md:h-16 ${link.color} text-white rounded-[1.25rem] flex items-center justify-center shadow-lg transform group-hover:rotate-6 transition-transform`}>
-                <link.icon className="w-6 h-6 md:w-7 md:h-7" />
+            <Link
+              className="group block h-full rounded-[1.75rem] border border-gray-200 bg-white p-7 transition hover:-translate-y-1 hover:border-gray-300 hover:shadow-xl"
+              href={link.href}
+            >
+              <div className="flex items-start justify-between">
+                <div
+                  className={`flex h-13 w-13 items-center justify-center rounded-2xl ${link.color} text-white`}
+                >
+                  <link.icon aria-hidden="true" size={23} />
+                </div>
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="text-gray-300 transition group-hover:text-bordeaux"
+                  size={21}
+                />
               </div>
-              <div className="bg-gray-50 p-2 rounded-full text-gray-400 group-hover:text-bordeaux transition-colors">
-                <ArrowUpRight size={20} />
-              </div>
-            </div>
-            <h2 className="text-2xl font-black text-dark-gray mb-3 tracking-tight group-hover:text-bordeaux transition-colors">{link.title}</h2>
-            <p className="text-gray-600 font-medium leading-relaxed">{link.desc}</p>
-          </Link>
-        </motion.div>
-      ))}
+              <h2 className="mt-8 text-2xl font-black tracking-tight text-dark-gray">
+                {link.title}
+              </h2>
+              <p className="mt-3 font-medium leading-7 text-gray-600">
+                {link.desc}
+              </p>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }

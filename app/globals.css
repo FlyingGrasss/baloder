@@ -20,3 +20,223 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.purpose-manifesto {
+  position: relative;
+  height: 270svh;
+  background: #151515;
+}
+
+.purpose-stage {
+  position: sticky;
+  top: 4rem;
+  height: calc(100svh - 4rem);
+  min-height: 34rem;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    #151515;
+  background-size: 42px 42px;
+  color: white;
+  isolation: isolate;
+}
+
+.purpose-stage::before {
+  position: absolute;
+  inset: 12% auto auto 72%;
+  width: min(44vw, 38rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 6rem rgba(255, 255, 255, 0.018),
+    0 0 0 12rem rgba(255, 255, 255, 0.012);
+  content: "";
+  z-index: -1;
+}
+
+.purpose-coordinate {
+  position: absolute;
+  top: 2rem;
+  z-index: 4;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.purpose-coordinate-left {
+  left: clamp(1.25rem, 4vw, 4rem);
+}
+
+.purpose-coordinate-right {
+  right: clamp(1.25rem, 4vw, 4rem);
+}
+
+.purpose-progress {
+  position: absolute;
+  right: clamp(1.25rem, 4vw, 4rem);
+  bottom: 2.25rem;
+  left: clamp(1.25rem, 4vw, 4rem);
+  z-index: 5;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.purpose-progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #ff6b79;
+}
+
+.purpose-question,
+.purpose-answer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.25rem, 5vw, 5rem);
+}
+
+.purpose-question {
+  align-items: center;
+  text-align: center;
+}
+
+.purpose-question-kicker,
+.purpose-answer-kicker {
+  margin-bottom: clamp(1.2rem, 3vw, 2.5rem);
+  font-size: clamp(0.62rem, 1vw, 0.75rem);
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.purpose-question h2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.25em;
+  max-width: 76rem;
+  overflow: hidden;
+  font-size: clamp(3.2rem, 9.3vw, 9rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.065em;
+}
+
+.purpose-question-rule {
+  display: block;
+  width: min(72vw, 54rem);
+  height: clamp(0.35rem, 0.8vw, 0.7rem);
+  margin-top: clamp(1.5rem, 4vw, 3.5rem);
+  background: #a21a2a;
+}
+
+.purpose-word {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.purpose-letter {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.purpose-answer {
+  align-items: flex-start;
+}
+
+.purpose-answer h2 {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: clamp(4.4rem, 13.5vw, 13rem);
+  font-weight: 950;
+  line-height: 0.72;
+  letter-spacing: -0.075em;
+  color: #fff;
+}
+
+.purpose-answer h2 .purpose-word:last-child {
+  color: #ff6b79;
+}
+
+.purpose-answer-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 46rem;
+  margin-top: clamp(2rem, 5vw, 4.5rem);
+  padding-left: 1.25rem;
+  border-left: 4px solid #ff6b79;
+  font-size: clamp(0.95rem, 1.7vw, 1.35rem);
+  font-weight: 650;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.purpose-impact-ring {
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  width: min(62vw, 52rem);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border: clamp(0.8rem, 2vw, 1.7rem) solid #a21a2a;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .purpose-manifesto {
+    height: 235svh;
+  }
+
+  .purpose-stage {
+    min-height: 31rem;
+  }
+
+  .purpose-stage::before {
+    inset: 18% auto auto 60%;
+    width: 75vw;
+  }
+
+  .purpose-question h2 {
+    gap: 0.08em 0.18em;
+  }
+
+  .purpose-answer h2 {
+    line-height: 0.78;
+  }
+
+  .purpose-answer-copy {
+    max-width: 22rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .purpose-manifesto {
+    height: auto;
+  }
+
+  .purpose-stage {
+    position: relative;
+    top: 0;
+    min-height: 44rem;
+  }
+}
