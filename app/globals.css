@@ -35,7 +35,8 @@ html {
   position: sticky;
   top: 4rem;
   height: calc(100svh - 4rem);
-  min-height: 34rem;
+  height: calc(100dvh - 4rem);
+  min-height: 0;
   overflow: hidden;
   background:
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
@@ -103,7 +104,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(1.5rem, 6dvh, 4.5rem) clamp(1.25rem, 5vw, 5rem);
 }
 
 .purpose-question {
@@ -113,7 +114,7 @@ html {
 
 .purpose-question-kicker,
 .purpose-answer-kicker {
-  margin-bottom: clamp(1.2rem, 3vw, 2.5rem);
+  margin-bottom: clamp(0.75rem, 2.5dvh, 2.5rem);
   font-size: clamp(0.62rem, 1vw, 0.75rem);
   font-weight: 900;
   letter-spacing: 0.24em;
@@ -128,7 +129,7 @@ html {
   gap: 0 0.25em;
   max-width: 76rem;
   overflow: hidden;
-  font-size: clamp(3.2rem, 9.3vw, 9rem);
+  font-size: clamp(2.75rem, min(9.3vw, 17dvh), 9rem);
   font-weight: 900;
   line-height: 0.92;
   letter-spacing: -0.065em;
@@ -138,7 +139,7 @@ html {
   display: block;
   width: min(72vw, 54rem);
   height: clamp(0.35rem, 0.8vw, 0.7rem);
-  margin-top: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: clamp(1rem, 3.5dvh, 3.5rem);
   background: #a21a2a;
 }
 
@@ -162,9 +163,9 @@ html {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-size: clamp(4.4rem, 13.5vw, 13rem);
+  font-size: clamp(3.25rem, min(13.5vw, 22dvh), 13rem);
   font-weight: 950;
-  line-height: 0.72;
+  line-height: 0.76;
   letter-spacing: -0.075em;
   color: #fff;
 }
@@ -177,12 +178,12 @@ html {
   position: relative;
   z-index: 2;
   max-width: 46rem;
-  margin-top: clamp(2rem, 5vw, 4.5rem);
+  margin-top: clamp(1rem, 3.5dvh, 3rem);
   padding-left: 1.25rem;
   border-left: 4px solid #ff6b79;
-  font-size: clamp(0.95rem, 1.7vw, 1.35rem);
+  font-size: clamp(0.9rem, 1.55vw, 1.2rem);
   font-weight: 650;
-  line-height: 1.65;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.62);
 }
 
@@ -204,7 +205,7 @@ html {
   }
 
   .purpose-stage {
-    min-height: 31rem;
+    min-height: 0;
   }
 
   .purpose-stage::before {
@@ -222,6 +223,42 @@ html {
 
   .purpose-answer-copy {
     max-width: 22rem;
+  }
+}
+
+@media (max-height: 42rem) {
+  .purpose-coordinate {
+    top: 1rem;
+  }
+
+  .purpose-progress {
+    bottom: 1.25rem;
+  }
+
+  .purpose-question,
+  .purpose-answer {
+    padding-top: 2.75rem;
+    padding-bottom: 2rem;
+  }
+
+  .purpose-answer-copy {
+    max-width: 36rem;
+    margin-top: 1rem;
+    line-height: 1.45;
+  }
+}
+
+@media (max-height: 32rem) {
+  .purpose-question h2 {
+    font-size: clamp(2.4rem, min(9.3vw, 17dvh), 7rem);
+  }
+
+  .purpose-answer h2 {
+    font-size: clamp(2.8rem, min(13.5vw, 20dvh), 8rem);
+  }
+
+  .purpose-answer-copy {
+    display: none;
   }
 }
 
