@@ -59,20 +59,20 @@ const goals = [
 ];
 
 const secretariats = [
-  ["Kampüs Sekreterliği", "Boş"],
+  // ["Kampüs Sekreterliği", "Boş"],
   ["Dijitalleşme Sekreterliği", "Emre Bozkurt"],
   ["Finans Sekreterliği", "Emine Hazal Şahan"],
-  ["Halkla İlişkiler Sekreterliği", "Boş"],
+  // ["Halkla İlişkiler Sekreterliği", "Boş"],
   ["Kooperatif Sekreterliği", "Emre Bozkurt"],
-  ["Sandık Sekreterliği", "Boş"],
-  ["Organizasyon Sekreterliği", "Boş"],
-  ["Girişim Sekreterliği", "Boş"],
-  ["Yurtdışı Eğitim Sekreterliği", "Boş"],
-  ["İnsan Hakları Sekreterliği", "Boş"],
+  // ["Sandık Sekreterliği", "Boş"],
+  // ["Organizasyon Sekreterliği", "Boş"],
+  // ["Girişim Sekreterliği", "Boş"],
+  // ["Yurtdışı Eğitim Sekreterliği", "Boş"],
+  // ["İnsan Hakları Sekreterliği", "Boş"],
   ["Hariciye ve Mezun İlişkileri Sekreterliği", "Noyan Önder"],
-  ["Kültür ve Sanat Sekreterliği", "Boş"],
-  ["Spor Sekreterliği", "Boş"],
-  ["İçişleri Sekreterliği", "Boş"],
+  // ["Kültür ve Sanat Sekreterliği", "Boş"],
+  // ["Spor Sekreterliği", "Boş"],
+  // ["İçişleri Sekreterliği", "Boş"],
 ];
 
 const processSteps = [

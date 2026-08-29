@@ -4,38 +4,55 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  schemas  = ["baloder"]
 }
 
 enum UserRole {
   USER
   ADMIN
+
+  @@schema("baloder")
 }
 
 model User {
-  id             String    @id // Supabase Auth ID
-  email          String    @unique
-  name           String
-  tc             String?
-  schoolNumber   String?
-  graduationYear Int?
-  phoneNumber    String?
-  birthDate      DateTime?
-  role           UserRole  @default(USER)
-  verified       Boolean   @default(false)
-  isMember        Boolean   @default(false)
-  isSandikMember  Boolean   @default(false)
-  memberRequested Boolean   @default(false)
-  sandikRequested Boolean   @default(false)
-  balance        Float     @default(0)
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id               String   @id
+  email            String   @unique
+  name             String
+  picture          String?
+  tc               String?
+  schoolNumber     String?
+  graduationYear   Int?
+  phoneNumber      String?
+  birthDate        DateTime?
+  role             UserRole @default(USER)
+  verified         Boolean  @default(false)
+  isMember         Boolean  @default(false)
+  isSandikMember   Boolean  @default(false)
+  memberRequested  Boolean  @default(false)
+  sandikRequested  Boolean  @default(false)
+  balance          Float    @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
   depositRequests    DepositRequest[]
   walletTransactions WalletTransaction[]
   idCardOrders       IdCardOrder[]
   stockHistories     StockHistory[]
 
-  @@map("users")
+  @@map("baloder_profile_info")
+  @@schema("baloder")
+}
+
+model OAuthAttempt {
+  stateHash    String   @id
+  codeVerifier String
+  nextPath     String
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+
+  @@index([expiresAt])
+  @@map("oauth_attempts")
+  @@schema("baloder")
 }
 
 model Announcement {
@@ -47,6 +64,7 @@ model Announcement {
   createdAt DateTime @default(now())
 
   @@map("announcements")
+  @@schema("baloder")
 }
 
 model Budget {
@@ -57,6 +75,7 @@ model Budget {
   transactions Transaction[]
 
   @@map("budgets")
+  @@schema("baloder")
 }
 
 model Transaction {
@@ -69,6 +88,7 @@ model Transaction {
   budget    Budget   @relation(fields: [budgetId], references: [id])
 
   @@map("transactions")
+  @@schema("baloder")
 }
 
 model DepositRequest {
@@ -80,10 +100,11 @@ model DepositRequest {
   pathname    String?
   size        Int?
   contentType String?
-  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  status      String   @default("PENDING")
   createdAt   DateTime @default(now())
 
   @@map("deposit_requests")
+  @@schema("baloder")
 }
 
 model WalletTransaction {
@@ -95,6 +116,7 @@ model WalletTransaction {
   user      User     @relation(fields: [userId], references: [id])
 
   @@map("wallet_transactions")
+  @@schema("baloder")
 }
 
 model ContactMessage {
@@ -107,6 +129,7 @@ model ContactMessage {
   createdAt DateTime @default(now())
 
   @@map("contact_messages")
+  @@schema("baloder")
 }
 
 model ContactApplication {
@@ -125,6 +148,7 @@ model ContactApplication {
   createdAt  DateTime @default(now())
 
   @@map("contact_applications")
+  @@schema("baloder")
 }
 
 model IdCardOrder {
@@ -136,11 +160,12 @@ model IdCardOrder {
   department      String
   deliveryDetails String
   receiptUrl      String
-  status          String   @default("PENDING") // PENDING, APPROVED, REJECTED, PRINTED
+  status          String   @default("PENDING")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
   @@map("id_card_orders")
+  @@schema("baloder")
 }
 
 model MarketItem {
@@ -154,17 +179,19 @@ model MarketItem {
   stockHistory StockHistory[]
 
   @@map("market_items")
+  @@schema("baloder")
 }
 
 model StockHistory {
   id           String     @id @default(cuid())
   marketItemId String
   marketItem   MarketItem @relation(fields: [marketItemId], references: [id], onDelete: Cascade)
-  delta        Int        // positive = restock, negative = sold/removed
-  note         String?    // optional reason
+  delta        Int
+  note         String?
   createdAt    DateTime   @default(now())
-  updatedBy    String     // User.id
+  updatedBy    String
   user         User       @relation(fields: [updatedBy], references: [id])
 
   @@map("stock_history")
+  @@schema("baloder")
 }

@@ -1,215 +1,48 @@
-'use server'
+"use server";
 
-import { createClient } from '@/lib/supabase/server'
-import { isPasswordValid } from '@/lib/passwordValidation'
-import { prisma } from '@/lib/prisma'
-import { redirect } from 'next/navigation'
-import { revalidatePath } from 'next/cache'
+import { redirect } from "next/navigation";
+import { safePath } from "@/lib/bal-id-oauth";
+import { createClient } from "@/lib/supabase/server";
 
-export async function signInWithGoogle() {
-  const supabase = await createClient()
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const unifiedMessage = "Authentication is managed by BAL ID. Continue with BAL ID instead.";
 
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: `${siteUrl}/auth/callback`,
-    },
-  })
-
-  if (error) return { error: error.message }
-  if (data.url) redirect(data.url)
+export async function signInWithGoogle(): Promise<{ error?: string }> {
+  redirect("/auth/bal-id");
 }
 
-export async function completeGoogleProfile(formData: FormData) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (!user) return { error: 'Oturum bulunamadı. Lütfen tekrar giriş yapın.' }
-
-  // Verify no record already exists (idempotency guard)
-  const existing = await prisma.user.findUnique({
-    where: { id: user.id },
-    select: { id: true },
-  })
-  if (existing) {
-    revalidatePath('/', 'layout')
-    redirect('/')
-  }
-
-  const tc = formData.get('tc') as string
-  const schoolNumber = formData.get('schoolNumber') as string
-  const graduationYear = formData.get('graduationYear') as string
-  const phoneNumber = formData.get('phoneNumber') as string
-  const birthDate = formData.get('birthDate') as string
-
-  if (!tc || !schoolNumber || !graduationYear || !phoneNumber || !birthDate) {
-    return { error: 'Lütfen tüm zorunlu alanları doldurun.' }
-  }
-
-  try {
-    await prisma.user.create({
-      data: {
-        id: user.id,
-        email: user.email!,
-        name: user.user_metadata?.full_name || user.user_metadata?.name || '',
-        tc,
-        schoolNumber,
-        graduationYear: parseInt(graduationYear),
-        phoneNumber,
-        birthDate: new Date(birthDate),
-        role: 'USER',
-        verified: true,
-      },
-    })
-  } catch (dbError) {
-    console.error('completeGoogleProfile error:', dbError)
-    return { error: 'Profil oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.' }
-  }
-
-  revalidatePath('/', 'layout')
-  redirect('/')
+export async function completeGoogleProfile(formData: FormData): Promise<{ error?: string }> {
+  void formData;
+  return { error: unifiedMessage };
 }
 
-export async function signup(formData: FormData) {
-  const email = formData.get('email') as string
-  const password = formData.get('password') as string
-  const name = formData.get('name') as string
-  const tc = formData.get('tc') as string
-  const schoolNumber = formData.get('schoolNumber') as string
-  const graduationYear = formData.get('graduationYear') as string
-  const phoneNumber = formData.get('phoneNumber') as string
-  const birthDate = formData.get('birthDate') as string
-  const isMember = formData.get('isMember') === 'on'
-  const isSandikMember = formData.get('isSandikMember') === 'on' || formData.get('isSandikBoardMember') === 'on'
-
-  // Validation
-  if (!isPasswordValid(password)) return { error: "Şifre kriterlere uymuyor." }
-
-  const supabase = await createClient()
-
-  // 1. Supabase Signup
-  const { data, error: sbError } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        name,
-        tc,
-        school_number: schoolNumber,
-        graduation_year: graduationYear ? parseInt(graduationYear) : null,
-        phone_number: phoneNumber,
-        birth_date: birthDate,
-        is_member: isMember,
-        is_sandik_member: isSandikMember,
-      },
-    },
-  })
-
-  if (sbError) return { error: sbError.message }
-
-  if (data.user && data.user.identities && data.user.identities.length === 0) {
-    return { error: "Bu e-posta adresi zaten kullanımda." }
-  }
-
-  return { success: true }
+export async function signup(formData: FormData): Promise<{ error?: string; success?: boolean }> {
+  void formData;
+  return { error: unifiedMessage };
 }
 
-export async function login(formData: FormData) {
-  const email = formData.get('email') as string
-  const password = formData.get('password') as string
-  const callbackUrl = formData.get('callbackUrl') as string || '/'
-
-  const supabase = await createClient()
-
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-
-  if (error) return { error: "E-posta veya şifre hatalı." }
-
-  // Sync session state
-  revalidatePath('/', 'layout')
-  redirect(callbackUrl)
+export async function login(formData: FormData): Promise<{ error?: string }> {
+  const next = safePath(String(formData.get("callbackUrl") ?? "/"));
+  redirect(`/auth/bal-id?next=${encodeURIComponent(next)}`);
 }
 
 export async function logout() {
   const supabase = await createClient();
-  await supabase.auth.signOut();
-  revalidatePath('/', 'layout')
-  redirect('/');
+  await supabase.auth.signOut({ scope: "local" });
+  redirect("/");
 }
 
-export async function forgotPassword(formData: FormData) {
-  const email = formData.get('email') as string
-  const supabase = await createClient()
-
-  const { error } = await supabase.auth.resetPasswordForEmail(email)
-
-  if (error) return { error: error.message }
-
-  redirect(`/auth/reset-password?email=${encodeURIComponent(email)}`)
+export async function forgotPassword(formData: FormData): Promise<{ error?: string }> {
+  void formData;
+  return { error: unifiedMessage };
 }
 
-export async function verifyOtp(formData: FormData) {
-  const email = formData.get('email') as string
-  const code = formData.get('code') as string
-  const callbackUrl = formData.get('callbackUrl') as string || '/'
-
-  if (code.length !== 8) {
-    return { error: "Doğrulama kodu 8 haneli olmalıdır." }
-  }
-
-  const supabase = await createClient()
-
-  const { error } = await supabase.auth.verifyOtp({
-    email,
-    token: code,
-    type: 'signup',
-  })
-
-  if (error) {
-    return { error: "Doğrulama kodu hatalı veya süresi dolmuş." }
-  }
-
-  // 2. Prisma Sync (after verification)
-  const { data: { user } } = await supabase.auth.getUser()
-  if (user) {
-    const meta = user.user_metadata
-    try {
-      await prisma.user.upsert({
-        where: { id: user.id },
-        update: {}, // Don't overwrite if it already exists for some reason
-        create: {
-          id: user.id,
-          email: user.email!,
-          name: meta.name || '',
-          tc: meta.tc,
-          schoolNumber: meta.school_number,
-          graduationYear: meta.graduation_year ? parseInt(meta.graduation_year) : null,
-          phoneNumber: meta.phone_number,
-          birthDate: meta.birth_date ? new Date(meta.birth_date) : null,
-          role: 'USER',
-          verified: true,
-          isMember: meta.is_member || false,
-          isSandikMember: meta.is_sandik_member || false
-        }
-      })
-    } catch (dbError) {
-      console.error("Verification Sync Error:", dbError)
-      // We don't return error here because they verified successfully on Supabase
-    }
-  }
-
-  revalidatePath('/', 'layout')
-  redirect(callbackUrl)
+export async function verifyOtp(formData: FormData): Promise<{ error?: string }> {
+  void formData;
+  return { error: unifiedMessage };
 }
 
-export async function resendOtp(email: string, type: 'signup' | 'recovery' | 'email_change') {
-  const supabase = await createClient()
-  const { error } = await supabase.auth.resend({
-    type: type as any,
-    email,
-  })
-
-  if (error) return { error: error.message }
-  return { success: "Doğrulama kodu tekrar gönderildi." }
+export async function resendOtp(email: string, type: "signup" | "recovery" | "email_change"): Promise<{ error?: string; success?: string }> {
+  void email;
+  void type;
+  return { error: unifiedMessage };
 }

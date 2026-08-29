@@ -28,8 +28,8 @@ export default function DeleteAccountButton() {
       router.push("/");
       router.refresh();
       
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Bir hata oluştu.");
       setLoading(false);
     }
   };
@@ -41,7 +41,7 @@ export default function DeleteAccountButton() {
           <AlertTriangle size={24} className="shrink-0" />
           <div className="text-left">
             <p className="font-bold text-sm">Emin misiniz?</p>
-            <p className="text-xs">Hesabınız ve tüm verileriniz kalıcı olarak silinecek. Bu işlem geri alınamaz.</p>
+            <p className="text-xs">BALÖDER profiliniz ve BALÖDER verileriniz silinecek. BAL ID hesabınız ve diğer BAL uygulamaları etkilenmez.</p>
           </div>
         </div>
         <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -71,7 +71,7 @@ export default function DeleteAccountButton() {
       className="flex items-center gap-2 text-red-500 hover:text-red-700 font-bold uppercase tracking-widest text-[10px] transition-colors p-2 rounded-lg hover:bg-red-50"
     >
       <Trash2 size={14} />
-      Hesabımı Sil
+      BALÖDER Verilerimi Sil
     </button>
   );
 }
