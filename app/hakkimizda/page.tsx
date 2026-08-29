@@ -318,9 +318,9 @@ export default function AboutPage() {
                 Sekreterlikler ve sorumlular
               </h2>
             </div>
-            <p className="text-sm font-medium text-gray-500">
+            {/* <p className="text-sm font-medium text-gray-500">
               Boş görevleri de saklamıyoruz.
-            </p>
+            </p> */}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3">
