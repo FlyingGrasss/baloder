@@ -17,6 +17,14 @@ export const prisma =
       // Use the pooler URL at runtime to stay within connection limits.
       // DIRECT_URL is only needed for migrations (prisma migrate/db push).
       connectionString: process.env.DATABASE_URL,
+      // Some Supabase/pooler environments present a certificate chain that
+      // Node cannot validate locally. Keep the connection encrypted while
+      // allowing the database adapter to establish the connection.
+      ssl:
+        process.env.PGSSL === "false" ||
+        /localhost|127\.0\.0\.1/i.test(process.env.DATABASE_URL || "")
+          ? false
+          : { rejectUnauthorized: false },
       max: 2, // Keep the pg.Pool small; pgBouncer handles the rest
     }),
   });

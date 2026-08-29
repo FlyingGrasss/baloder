@@ -26,8 +26,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       "Bornova Anadolu Lisesi hakkında okulun eğitim yapısı, yabancı dil bölümleri, kampüsü, adresi ve öğrenci yaşamı bilgileri.",
     intro:
       "Bornova Anadolu Lisesi (BAL), İzmir'in Bornova ilçesinde bulunan, yabancı dil eğitimi ve köklü okul kültürüyle tanınan bir devlet Anadolu lisesidir. Bu sayfa, BAL hakkında temel bilgileri kaynak odaklı ve güncel tutulmaya çalışılan bir özet halinde sunar.",
-    updatedAt: "2026-07-12",
-    updatedLabel: "Temmuz 2026",
+    updatedAt: "2026-08-30",
+    updatedLabel: "Ağustos 2026",
     sections: [
       {
         title: "Okulun eğitim yapısı",
@@ -74,8 +74,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       "BAL Asistan, Bornova Anadolu Lisesi hakkında kaynaklı bilgi sunan BALÖDER destekli yapay zeka asistanıdır.",
     intro:
       "BAL Asistan, Bornova Anadolu Lisesi hakkında öğrencilerin, velilerin ve okulu merak edenlerin bilgiye daha hızlı ulaşabilmesi için hazırlanmış bağımsız bir öğrenci projesidir. Asistana soru sorabilir veya aşağıdaki konu sayfalarından doğrudan bilgi alabilirsiniz.",
-    updatedAt: "2026-07-12",
-    updatedLabel: "Temmuz 2026",
+    updatedAt: "2026-08-30",
+    updatedLabel: "Ağustos 2026",
     sections: [
       {
         title: "Nasıl çalışır?",
@@ -117,8 +117,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       "Bornova Anadolu Lisesi 2025 LGS taban puanları, bölüm bilgileri ve 2026 verilerinin açıklanma durumu.",
     intro:
       "Bornova Anadolu Lisesi'nin LGS taban puanları yabancı dil bölümüne göre değişir. Elimizdeki en güncel kesin veriler 2025 yerleştirme sonuçlarına aittir; 2026 LGS taban puanları henüz açıklanmamıştır.",
-    updatedAt: "2026-07-12",
-    updatedLabel: "Temmuz 2026",
+    updatedAt: "2026-08-30",
+    updatedLabel: "Ağustos 2026",
     sections: [
       {
         title: "2025 bölüm bazlı taban puanları",
@@ -157,8 +157,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       "Bornova Anadolu Lisesi hazırlık sınıfı, yabancı dil bölümleri, seviye belirleme sınavı ve hazırlık atlama bilgileri.",
     intro:
       "Bornova Anadolu Lisesi'nde hazırlık sınıfı, öğrencilerin seçtikleri birinci yabancı dilde yoğun eğitim aldığı bir yıldır. Hazırlık sistemi okulun eğitim süresini hazırlık dahil beş yıla çıkarır.",
-    updatedAt: "2026-07-12",
-    updatedLabel: "Temmuz 2026",
+    updatedAt: "2026-08-30",
+    updatedLabel: "Ağustos 2026",
     sections: [
       {
         title: "Hazırlık sınıfı ve yabancı dil bölümleri",
@@ -199,8 +199,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       "BALKOOP, BALÖDER bünyesinde öğrenciler tarafından yürütülen BAL Öğrenci Kooperatifi'dir.",
     intro:
       "BALKOOP, BAL Öğrenci Kooperatifi'nin kısa adıdır. BALÖDER bünyesinde yer alan ve öğrenciler tarafından yürütülen bu oluşum, öğrencilere uygun fiyatlı, kaliteli ve güvenilir gıda ve içecekler sunmayı amaçlar.",
-    updatedAt: "2026-07-12",
-    updatedLabel: "Temmuz 2026",
+    updatedAt: "2026-08-30",
+    updatedLabel: "Ağustos 2026",
     sections: [
       {
         title: "Kuruluşu ve amacı",
@@ -243,8 +243,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       "Bornova Anadolu Lisesi kulüpleri ve öğrenci toplulukları, katılım süreci ve 2025–2026 listesi.",
     intro:
       "BAL'da sosyal yaşam kulüpler ve öğrenci topluluklarıyla şekillenir. Listede yer alan bir kulüp veya topluluğun her yıl düzenli olarak aktif faaliyet gösterdiği anlamına gelmediği unutulmamalıdır.",
-    updatedAt: "2026-07-12",
-    updatedLabel: "2025–2026 listesi",
+    updatedAt: "2026-08-30",
+    updatedLabel: "Ağustos 2026",
     sections: [
       {
         title: "Faaliyet göstermiş kulüp ve topluluklar",
@@ -306,8 +306,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       "Bornova Anadolu Lisesi'nin tam adresi, telefon numarası, ulaşım seçenekleri, ders giriş-çıkış ve yemek saatleri.",
     intro:
       "Bornova Anadolu Lisesi'ni ziyaret etmek veya okula ulaşmak isteyenler için tam adres, iletişim bilgileri ve okul gününün temel saatleri aşağıda yer alır.",
-    updatedAt: "2026-07-12",
-    updatedLabel: "Temmuz 2026",
+    updatedAt: "2026-08-30",
+    updatedLabel: "Ağustos 2026",
     sections: [
       {
         title: "Tam adres ve telefon",
@@ -353,8 +353,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       "BALEV bursu, başvuru bilgileri ve Bornova Anadolu Lisesi öğrencilerine yönelik eğitim desteği hakkında genel bilgi.",
     intro:
       "BALEV, Bornova Anadolu Lisesi mezunları ve okul çevresinin oluşturduğu eğitim vakfıdır. BALEV bursları, maddi desteğe ihtiyaç duyan ve başarılı öğrencilerin eğitimlerini desteklemeyi amaçlar.",
-    updatedAt: "2026-07-12",
-    updatedLabel: "Temmuz 2026",
+    updatedAt: "2026-08-30",
+    updatedLabel: "Ağustos 2026",
     sections: [
       {
         title: "Burs türleri",

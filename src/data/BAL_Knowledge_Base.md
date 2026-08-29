@@ -1,6 +1,6 @@
 # Bornova Anadolu Lisesi (BAL) — Kapsamlı Bilgi Kaynağı
 
-> **Versiyon:** 2.4 | **Son Güncelleme:** 11 Temmuz 2026
+> **Versiyon:** 2.5 | **Son Güncelleme:** 30 Ağustos 2026
 > **Kaynak hiyerarşisi:** MEB resmî okul sayfası (izmirbal.meb.k12.tr) → tarih ve kapsamı açıkça belirtilmiş proje ekibi/öğrenci gözlemleri → BALEV/BALMED → doğrulanmış üçüncü parti kaynaklar → Wikipedia.
 > `[GÜNCEL VERİ GEREKLİ]` etiketiyle işaretlenen alanlar periyodik olarak güncellenmelidir.
 
@@ -1255,11 +1255,11 @@ BAL öğrencileri, LGS sınavında Türkiye genelinde üst sıralarda yer alan b
 
 ## Okul Öğretmen ve Müdür Kadrosu
 
-Kaynak: https://izmirbal.meb.k12.tr/35/06/164773/teskilat_semasi.html (11 Temmuz 2026 tarihinde erişildi). Aşağıdaki isimler resmî MEB teşkilat şemasıyla karşılaştırılmıştır.
+Kaynak: https://izmirbal.meb.k12.tr/35/06/164773/teskilat_semasi.html. Aşağıdaki isimler resmî MEB teşkilat şemasıyla karşılaştırılmıştır; okul müdürü bilgisi 30 Ağustos 2026 itibariyle güncellenmiştir.
 
-Okul Müdürü (11 Temmuz 2026 itibariyle): Aydın DOĞMUŞ
+Okul Müdürü (30 Ağustos 2026 itibariyle): Mahmut Yıldız
 
-2026–2027 eğitim-öğretim döneminden itibaren okul müdürlüğü görevini, şu anki İzmir Fen Lisesi Müdürü Mahmut Yıldız devralacaktır.
+Önceki okul müdürü Aydın Doğmuş yaklaşık dört yıl görev yapmıştır.
 
 Müdür Başyardımcısı: Ömer TÜRKER
 Pansiyon Müdür Yardımcısı: Çetin KOCAMAN
@@ -1372,7 +1372,7 @@ Beden Eğitimi Öğretmeni: Gonca YÜKSEL
 Bilişim Teknolojileri Öğretmeni (Bilgisayar Öğretmeni): Selçuk SAĞBAŞ
 Bilişim Teknolojileri Öğretmeni (Bilgisayar Öğretmeni): Murat YONCACI
 
-Resmî teşkilat şemasında yönetim, rehberlik ve branş öğretmenleri dahil **94 isim** listelenmektedir. Okul ana sayfasındaki ayrı istatistik ise **91 öğretmen** göstermektedir; bu iki sayı farklı kapsamları ifade eder. 11 Temmuz 2026 itibariyle okul müdürü Aydın DOĞMUŞ, müdür başyardımcısı Ömer TÜRKER'dir. 2026–2027 eğitim-öğretim döneminden itibaren okul müdürlüğü görevini Mahmut Yıldız devralacaktır.
+Resmî teşkilat şemasında yönetim, rehberlik ve branş öğretmenleri dahil **94 isim** listelenmektedir. Okul ana sayfasındaki ayrı istatistik ise **91 öğretmen** göstermektedir; bu iki sayı farklı kapsamları ifade eder. 30 Ağustos 2026 itibariyle okul müdürü Mahmut Yıldız, müdür başyardımcısı Ömer TÜRKER'dir. Önceki okul müdürü Aydın Doğmuş yaklaşık dört yıl görev yapmıştır.
 
 
 ---
@@ -1877,11 +1877,11 @@ Tercih yapılırken akademik hedefler, ulaşım, sosyal imkanlar, yabancı dil b
 
 
 
-## 15. Temmuz 2026 Güncel Doğrulamalar ve Yeni Bilgiler
+## 15. Ağustos 2026 Güncel Doğrulamalar ve Yeni Bilgiler
 
 ### 15.1 Güncel Okul Müdürü
 
-11 Temmuz 2026 itibariyle Bornova Anadolu Lisesi'nin mevcut okul müdürü **Aydın DOĞMUŞ**'tur. **2026–2027 eğitim-öğretim döneminden itibaren yerini, şu anki İzmir Fen Lisesi Müdürü Mahmut Yıldız alacaktır.** Tarih belirtilmeden “Şu an müdür kim?” diye sorulursa Aydın Doğmuş; gelecek eğitim-öğretim dönemi sorulursa Mahmut Yıldız yanıtı verilmelidir.
+30 Ağustos 2026 itibariyle Bornova Anadolu Lisesi'nin mevcut okul müdürü **Mahmut Yıldız**'dır. Önceki okul müdürü **Aydın Doğmuş** yaklaşık dört yıl görev yapmıştır. Tarih belirtilmeden “Şu an müdür kim?” diye sorulursa Mahmut Yıldız yanıtı verilmelidir.
 
 ### 15.2 Hazırlık Sınıfına Geçiş, Kuşaklar ve Sınıf Boşluğu
 

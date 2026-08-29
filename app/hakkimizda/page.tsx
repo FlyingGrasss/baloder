@@ -59,20 +59,10 @@ const goals = [
 ];
 
 const secretariats = [
-  // ["Kampüs Sekreterliği", "Boş"],
   ["Dijitalleşme Sekreterliği", "Emre Bozkurt"],
   ["Finans Sekreterliği", "Emine Hazal Şahan"],
-  // ["Halkla İlişkiler Sekreterliği", "Boş"],
   ["Kooperatif Sekreterliği", "Emre Bozkurt"],
-  // ["Sandık Sekreterliği", "Boş"],
-  // ["Organizasyon Sekreterliği", "Boş"],
-  // ["Girişim Sekreterliği", "Boş"],
-  // ["Yurtdışı Eğitim Sekreterliği", "Boş"],
-  // ["İnsan Hakları Sekreterliği", "Boş"],
   ["Hariciye ve Mezun İlişkileri Sekreterliği", "Noyan Önder"],
-  // ["Kültür ve Sanat Sekreterliği", "Boş"],
-  // ["Spor Sekreterliği", "Boş"],
-  // ["İçişleri Sekreterliği", "Boş"],
 ];
 
 const processSteps = [
@@ -318,26 +308,20 @@ export default function AboutPage() {
                 Sekreterlikler ve sorumlular
               </h2>
             </div>
-            {/* <p className="text-sm font-medium text-gray-500">
-              Boş görevleri de saklamıyoruz.
-            </p> */}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3">
             {secretariats.map(([title, name]) => {
-              const vacant = name === "Boş";
               return (
                 <article
-                  className="border-b border-gray-200 py-7 md:px-6 md:first:pl-0 lg:border-r lg:[&:nth-child(3n)]:border-r-0"
+                  className="border-b border-gray-200 py-7 md:px-6 lg:border-r lg:[&:nth-child(3n)]:border-r-0"
                   key={title}
                 >
                   <h3 className="text-xs font-black uppercase tracking-[0.15em] text-gray-400">
                     {title}
                   </h3>
                   <p
-                    className={`mt-3 text-lg font-black ${
-                      vacant ? "text-amber-600" : "text-dark-gray"
-                    }`}
+                    className="mt-3 text-lg font-black text-dark-gray"
                   >
                     {name}
                   </p>
