@@ -16,9 +16,9 @@ import Link from "next/link";
 const completedWork = [
   {
     icon: ShoppingBasket,
-    label: "Yıl boyunca",
+    label: "2025–2026 eğitim öğretim yılı",
     title: "BAL Öğrenci Kooperatifi",
-    text: "Güvenilir yiyecek ve içecekleri öğrenciler için daha erişilebilir fiyatlarla sunduk. Fiyat listesini açıkça yayımladık; suyu 5 TL'den sattık.",
+    text: "2025–2026 Eğitim Öğretim Yılında öğrencilere uygun fiyatlı gıda sağladık. Güncel menü ve fiyat listesini açıkça yayımladık; uygun fiyatlı içecekler sunduk ve suyu 5 TL'den sattık.",
   },
   {
     icon: Droplets,
@@ -54,31 +54,31 @@ const goals = [
   {
     icon: UsersRound,
     title: "Sınıf temsilciliği",
-    text: "Her sınıfın sorunlarını düzenli biçimde iletebileceği bir temsilci ağı kurmak ve takibi ilgili sekreterliklerle yapmak.",
+    text: "Her sınıfın sorunlarını düzenli biçimde iletebileceği bir temsilci ağı kurmak ve takibi ilgili çalışma ekibiyle yapmak.",
   },
 ];
 
 const secretariats = [
-  ["Kampüs Sekreterliği", "Can Oral"],
-  ["Dijitalleşme", "Emre Bozkurt"],
-  ["Finans", "Zeynep Gamze Özdemir"],
-  ["Halkla İlişkiler Sekreterliği", "Eylül Ada Yılmaz"],
-  ["Kooperatif", "Emre Bozkurt"],
-  ["Sandık", "Başkanlık tarafından yürütülüyor"],
-  ["Organizasyon Sekreterliği", "Görevlendirme sürecinde"],
-  ["Girişim Sekreterliği", "Onur Sanal"],
-  ["Yurtdışı Eğitim Sekreterliği", "Irmak Yılmaz"],
-  ["İnsan Hakları Sekreterliği", "Elif Mina Günaydın"],
-  ["Dışişleri Sekreterliği", "Görevlendirme sürecinde"],
-  ["Kültür ve Sanat Sekreterliği", "Batın Efe Aydoğan"],
-  ["Spor Sekreterliği", "Egemen Güven"],
-  ["İçişleri Sekreterliği", "Asya Pala"],
+  ["Kampüs Sekreterliği", "Boş"],
+  ["Dijitalleşme Sekreterliği", "Emre Bozkurt"],
+  ["Finans Sekreterliği", "Emine Hazal Şahan"],
+  ["Halkla İlişkiler Sekreterliği", "Boş"],
+  ["Kooperatif Sekreterliği", "Emre Bozkurt"],
+  ["Sandık Sekreterliği", "Boş"],
+  ["Organizasyon Sekreterliği", "Boş"],
+  ["Girişim Sekreterliği", "Boş"],
+  ["Yurtdışı Eğitim Sekreterliği", "Boş"],
+  ["İnsan Hakları Sekreterliği", "Boş"],
+  ["Hariciye ve Mezun İlişkileri Sekreterliği", "Noyan Önder"],
+  ["Kültür ve Sanat Sekreterliği", "Boş"],
+  ["Spor Sekreterliği", "Boş"],
+  ["İçişleri Sekreterliği", "Boş"],
 ];
 
 const processSteps = [
   ["01", "Dinle", "Sorunu yaşayan öğrenciden doğrudan dinleriz."],
   ["02", "Kaydet", "Konuyu somutlaştırır, kapsamını ve önceliğini belirleriz."],
-  ["03", "Sorumluluk ver", "İlgili sekreterlik veya çalışma grubu işi üstlenir."],
+  ["03", "Sorumluluk ver", "İlgili çalışma ekibi işi üstlenir."],
   ["04", "Sonucu paylaş", "Yapılanı, yapılamayanı ve nedeni açıkça anlatırız."],
 ];
 
@@ -325,7 +325,7 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3">
             {secretariats.map(([title, name]) => {
-              const vacant = name === "Görevlendirme sürecinde";
+              const vacant = name === "Boş";
               return (
                 <article
                   className="border-b border-gray-200 py-7 md:px-6 md:first:pl-0 lg:border-r lg:[&:nth-child(3n)]:border-r-0"
@@ -349,7 +349,7 @@ export default function AboutPage() {
           <div className="mt-14 flex flex-col gap-4 rounded-[2rem] bg-[#f4f7f9] p-8 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-2xl font-black text-dark-gray">
-                Bu yapının içinde yer almak ister misin?
+                Bu takımın içinde yer almak ister misin?
               </h2>
               <p className="mt-2 font-medium text-gray-600">
                 Üyelik başvurusu yapabilir veya doğrudan fikrini bize

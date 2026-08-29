@@ -80,8 +80,8 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       {
         title: "Nasıl çalışır?",
         paragraphs: [
-          "Asistan, Bornova Anadolu Lisesi için hazırlanmış kaynak veri setinde ilgili bölümleri arar ve soruya göre yanıt oluşturur. Proje kendi yapay zeka modelini eğitmez; yanıt üretiminde öncelikli olarak Gemini modellerinden yararlanır.",
-          "Kaynak metni okulun akademik yapısı, kampüsü, gelenekleri, ulaşımı, öğrenci yaşamı, kulüpleri ve sık sorulan sorularla ilgili bilgiler içerir. Veri seti yeni bilgiler geldikçe düzenlenip yeniden indekslenebilir.",
+          "Asistan, Bornova Anadolu Lisesi için hazırlanmış doğrulanmış bilgi kaynağını ve konuşma geçmişini kullanarak soruya göre yanıt oluşturur. Proje kendi yapay zeka modelini eğitmez; yanıt üretiminde Gemini modellerinden yararlanır.",
+          "Bilgi kaynağı okulun akademik yapısı, kampüsü, gelenekleri, ulaşımı, öğrenci yaşamı, kulüpleri, BALÖDER ve BALKOOP çalışmalarıyla ilgili bilgiler içerir. Yeni ve doğrulanmış bilgiler geldikçe kaynak düzenlenip hash kontrolüyle güncellenir.",
         ],
       },
       {
@@ -207,6 +207,12 @@ export const SEO_PAGES: Record<string, SeoPage> = {
         paragraphs: [
           "BAL Öğrenci Kooperatifi 2023 yılında Ege Tanrıverdi tarafından kurulmuştur. Kooperatif, öğrencilerin günlük okul yaşamında uygun fiyatlı ve güvenilir gıda ile içeceklere erişebilmesini hedefler.",
           "BALKOOP, BALÖDER bünyesinde bulunan, öğrenciler tarafından yürütülen bir oluşumdur; okul idaresi veya MEB adına resmî işlem yapan bir kurum değildir.",
+        ],
+      },
+      {
+        title: "2025–2026 faaliyetleri",
+        paragraphs: [
+          "BALKOOP, 2025–2026 Eğitim Öğretim Yılında öğrencilere uygun fiyatlı gıda sağladı. Güncel menü ve fiyat listesi yayımlandı; uygun fiyatlı içecekler sunuldu ve kooperatif suyu 5 TL'den sattı.",
         ],
       },
       {

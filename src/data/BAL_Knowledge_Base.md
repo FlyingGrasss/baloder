@@ -1,4 +1,4 @@
-# Bornova Anadolu Lisesi (BAL) — Kapsamlı RAG Bilgi Seti
+# Bornova Anadolu Lisesi (BAL) — Kapsamlı Bilgi Kaynağı
 
 > **Versiyon:** 2.4 | **Son Güncelleme:** 11 Temmuz 2026
 > **Kaynak hiyerarşisi:** MEB resmî okul sayfası (izmirbal.meb.k12.tr) → tarih ve kapsamı açıkça belirtilmiş proje ekibi/öğrenci gözlemleri → BALEV/BALMED → doğrulanmış üçüncü parti kaynaklar → Wikipedia.
@@ -876,7 +876,7 @@ Excel'de yer alan başkan adları ve toplulukların verdiği Instagram hesaplar�
 | Bornova Anadolu Lisesi Bando Takımı | Tansu Hiçyılmaz | `@bal.bando` |
 | BAL Klasik Müzik Topluluğu | Busem Akbaş | `balklasikmuzik` |
 | İktisadi ve İdari Bilimler Topluluğu | Çağan Çalışkan | `@baliibt` |
-| BAL Gastronomi Topluluğu | Irmak Yılmaz | `bal.gurme` |
+| BAL Gastronomi Topluluğu | Güncel sorumlu bilgisi belirtilmemiştir | `bal.gurme` |
 | Tanıtım Ekibi | Mehmet Tekin ve Sinemsu Hökelek | `Bal_tanitim` |
 | BAL FPS Topluluğu | Ada Ergüden | `Bal_FPS` |
 | Astronomi Topluluğu | Zeynep Uraslı | `bal.astronomi` |
@@ -886,7 +886,7 @@ Excel'de yer alan başkan adları ve toplulukların verdiği Instagram hesaplar�
 | BAL Mitoloji Topluluğu (BALMİT) | Efsa Kandemirci ve Zeynep Tunç | `@bal.mitoloji` |
 | BALART | Esma Ecrin Kılıç | `BAL ART` |
 | BAL Hip-Hop | Kaan Karabacak | `BAL Hip-Hop` |
-| BAL Game Development | Onur Sanal | `@balgamedevelopment` |
+| BAL Game Development | Güncel sorumlu bilgisi belirtilmemiştir | `@balgamedevelopment` |
 | BalDeutsch | Nisa Özsemerci | `bal_deutsch` |
 | BAL Sinema ve Kısa Film Topluluğu | Aslı Elif Uzun | `@balsinematoplulugu` |
 | Bornova Anadolu Lisesi Kamp Topluluğu | Kerem Okçu | `@balkamptoplulugu` |
@@ -896,7 +896,7 @@ Bu liste, toplulukların o yıl kayıtlı veya tanıtılmış olduğunu gösteri
 
 Öğrenciler eğitim-öğretim yılının başında sınıf öğretmenleri aracılığıyla **bir kulüp** seçer ve o kulübün üyesi kabul edilir. Bunun yanında istedikleri kadar öğrenci topluluğuna katılabilir; topluluklara yıl içinde girip çıkabilirler. Yeni hazırlık öğrencilerinin toplulukları tanıması için eğitim-öğretim yılının başında etkinlik, tanıtım toplantısı veya sınıf ziyaretleri düzenlenir.
 
-Excel dosyasındaki kişisel telefon numaraları kamuya açık RAG verisine aktarılmamıştır. Güncel iletişim bilgileri için ilgili topluluğun kendi Instagram hesabı veya okul duyuruları takip edilmelidir.
+Excel dosyasındaki kişisel telefon numaraları kamuya açık bilgi kaynağına aktarılmamıştır. Güncel iletişim bilgileri için ilgili topluluğun kendi Instagram hesabı veya okul duyuruları takip edilmelidir.
 
 #### Teknoloji, Bilim ve Akademik Topluluklar
 
@@ -1097,19 +1097,68 @@ Almanya Dışişleri Bakanlığı'nın PASCH (Schulen: Partner der Zukunft) ağ�
 
 ---
 
-### B.8 BALÖDER — BAL Öğrenci Derneği
+### B.8 BALÖDER — Bornova Anadolu Lisesi Öğrenci Derneği
 
-#### B.8.0 BAL Asistan Projesi ve Veri Hazırlama
+#### B.8.0 Kimlik, kuruluş ve amaç
 
-BAL Asistan'ın web sitesi Emre Bozkurt'28 tarafından Next.js ile geliştirilmiştir. Emre Bozkurt ayrıca veri setinin temizlenmesi ve son düzenlemelerine katkı vermiştir. Veri setinin yaklaşık üçte ikisi Burak Güldilek'29 tarafından hazırlanmış ve kaynak araştırmalarına katkı sağlanmıştır. Proje, web geliştirme ve veri hazırlama çalışmaları birlikte yürütülerek geliştirilmiştir.
+**Bornova Anadolu Lisesi Öğrenci Derneği**, kısa adlarıyla **BALÖDER** veya **BAL Öğrenci Derneği**, 1 Ağustos 2025 tarihinde kurulmuştur. BALÖDER; Bornova Anadolu Lisesi öğrencilerinin sosyal, kültürel ve akademik gelişimlerini desteklemek, haklarını savunmak ve okul içindeki dayanışmayı güçlendirmek amacıyla öğrenci öncülüğünde kurulmuş, bağımsız ve kâr amacı gütmeyen bir dernektir. Amacı, öğrencilerin okul hayatında karşılaştığı ve çözülebilecek sorunların öğrencinin üzerinde kalmamasına yardımcı olmaktır.
 
-**BALÖDER (BAL Öğrenci Derneği)** okulun veya MEB'in resmi öğrenci temsilciliği değildir; öğrenci öncülüğünde ve diğer kurumlardan bağımsız örgütlenen bir öğrenci oluşumudur. BALÖDER'in web sitesi **https://balogrenci.org**, resmi haber platformu **BAL Times** (**https://baltimes.org**), sosyal medya hesabı ise **https://www.instagram.com/balogrenci/** adresindedir. BALÖDER bağış kabul eder; bağış bilgileri **https://balogrenci.org/bagis** adresinde bulunabilir.
+BALÖDER'in kurucu ekibi **Ege Tanrıverdi, Emin Deniz Dilber, Ali Heval Korkut, Mehmet Enes Özaydın, Deniz Karanfil, Emre Bozkurt ve Onur Sanal**'dır.
 
-BALÖDER hakkındaki bilgiler derneğin kendi beyanlarına dayanır; okulun veya MEB'in resmi görüşü olarak sunulmamalıdır.
+BALÖDER okulun veya Millî Eğitim Bakanlığının resmî öğrenci temsilciliği değildir. Diğer kurumlardan bağımsız olarak öğrenci ihtiyaçlarına odaklanır. Vizyonu, dijitalleşen dünyada öğrenci birliğini modern araçlarla güçlendirmek ve BAL ruhunu gelecek nesillere taşımaktır. Değerleri şeffaflık, katılımcılık, yenilikçilik ve sarsılmaz okul aidiyetidir.
 
-#### B.8.1 BAL Öğrenci Kooperatifi
+2026–2027 dönemi başkanı **Ali Heval Korkut'29**, başkan yardımcısı **Emre Bozkurt'28**'dir.
 
-**BALKOOP**, BAL Öğrenci Kooperatifi'nin kullanılan kısa adıdır. BALÖDER bünyesinde yer alan ve öğrenciler tarafından yürütülen bu oluşum, öğrencilere uygun fiyatlı, kaliteli ve güvenilir gıda ve içecekler sunmayı amaçlar. 2023 yılında Ege Tanrıverdi tarafından kurulmuştur. Mevcut başkanı Emre Bozkurt'tur. Güncel çalışmalar ve iletişim için **https://balogrenci.org** takip edilebilir.
+BALÖDER'in web sitesi **https://balogrenci.org**, resmî haber platformu **BAL Times** (**https://baltimes.org**) ve sosyal medya hesabı **https://www.instagram.com/balogrenci/** adresindedir. BAL Asistan'ın web sitesi Emre Bozkurt'28 tarafından Next.js ile geliştirilmiştir. Emre Bozkurt ayrıca bilgi kaynağının temizlenmesi ve son düzenlemelerine katkı vermiş; kaynağın yaklaşık üçte ikisi Burak Güldilek'29 tarafından hazırlanmış ve kaynak araştırmalarına katkı sağlanmıştır.
+
+BALÖDER hakkındaki bilgiler derneğin kendi beyanlarına dayanır; okulun veya MEB'in resmî görüşü olarak sunulmamalıdır.
+
+#### B.8.1 Güncel sekreterlikler
+
+Güncel sorumlular:
+
+- Dijitalleşme Sekreterliği — Emre Bozkurt
+- Kooperatif Sekreterliği — Emre Bozkurt
+- Finans Sekreterliği — Emine Hazal Şahan
+- Hariciye ve Mezun İlişkileri Sekreterliği — Noyan Önder
+
+Şu görevlerde güncel olarak atanmış bir sorumlu bulunmamaktadır:
+
+- Kampüs Sekreterliği — Boş
+- Halkla İlişkiler Sekreterliği — Boş
+- Sandık Sekreterliği — Boş
+- Organizasyon Sekreterliği — Boş
+- Girişim Sekreterliği — Boş
+- Yurtdışı Eğitim Sekreterliği — Boş
+- İnsan Hakları Sekreterliği — Boş
+- Kültür ve Sanat Sekreterliği — Boş
+- Spor Sekreterliği — Boş
+- İçişleri Sekreterliği — Boş
+
+“Boş” ifadesi, o görev için güncel bir sorumlu atanmadığı anlamına gelir; bu görevlere kişi veya faaliyet atfedilmemelidir. Var olmayan sekreterliklerin işi üstlendiği varsayılmamalı, gerektiğinde “ilgili çalışma ekibi” ifadesi kullanılmalıdır.
+
+#### B.8.2 Tamamlanan çalışmalar
+
+BALÖDER'in öğrenci odaklı çalışmaları arasında şunlar bulunmaktadır:
+
+- **BALKOOP:** BALKOOP, 2025–2026 Eğitim Öğretim Yılında öğrencilere uygun fiyatlı gıda sağladı. Öğrencilerin güvenilir yiyecek ve içeceklere daha erişilebilir fiyatlarla ulaşabilmesi için yıl boyunca çalışıldı. Güncel menü ve fiyat listesi kamuya açık biçimde yayımlandı; uygun fiyatlı içecekler sunuldu ve kooperatif suyu 5 TL'den sattı. Mevcut bilgiye göre BALKOOP, 2023 yılında Ege Tanrıverdi tarafından kurulmuş ve mevcut başkanlığı Emre Bozkurt tarafından yürütülmüştür.
+- **BAL Times:** Okul ve dernek gündemini öğrencilerle paylaşmak için WhatsApp grubu/topluluğu ve web sitesi üzerinden dönemsel haberler yayımlandı.
+- **Ücretsiz su:** 2026 yılında BAL'26 öğrencilerinin mezuniyet töreninde 1.000'in üzerinde şişe su ücretsiz olarak dağıtıldı.
+- **Sorunları görünür kılma:** Öğrencileri etkileyen konuların dinlenmesi, kayda geçirilmesi ve açıkça konuşulabilmesi için görünürlük ve şeffaflık çalışmaları yapıldı.
+
+#### B.8.3 Bağışlar ve mali şeffaflık
+
+BALÖDER kâr amacı gütmeyen bir yapı olarak bağış kabul eder. Kamuya açık bağış bilgileri **https://balogrenci.org/bagis** adresindedir. Bağışlar öğrenci burs fonu, okul iyileştirme projeleri ve sosyal etkinlikler için kullanılabilir; dernek bağışların ve harcamaların şeffaf biçimde takip edilebilmesini amaçlar. 30 Temmuz 2026 itibarıyla derneğin fiziksel kasasında **8.000 TL** bulunmaktadır. Bu tutar tarihli bir mali durum bilgisidir; daha yeni bir açıklama olmadıkça güncel bakiye gibi sunulmamalıdır.
+
+#### B.8.4 Planlanan çalışmalar
+
+Aşağıdakiler tamamlanmış faaliyet değil, planlanan veya üzerinde çalışılan hedeflerdir:
+
+- BAL mezunu psikologlar ve psikoloji öğrencilerinin gönüllü desteğini ihtiyaç duyan öğrencilerle ücretsiz biçimde buluşturmak.
+- Notları, sınav konularını ve sınıfların işine yarayan akademik bilgileri ortak bir paylaşım merkezinde toplamak.
+- Her sınıfın sorunlarını düzenli biçimde iletebileceği bir temsilci ağı kurmak.
+
+Bu hedefler tamamlanmış çalışma gibi anlatılmamalıdır; durumları değiştikçe derneğin güncel açıklamaları esas alınmalıdır.
 
 ### B.9 Kulüplere ve Topluluklara Katılım
 

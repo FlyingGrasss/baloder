@@ -25,11 +25,7 @@ type ProviderResult = {
 };
 
 export function providerStatus() {
-  const provider = CONFIG.geminiApiKeys.length
-    ? "gemini"
-    : CONFIG.groqApiKeys.length
-      ? "groq"
-      : "none";
+  const provider = CONFIG.geminiApiKeys.length ? "gemini" : "none";
 
   return {
     provider,
@@ -38,13 +34,7 @@ export function providerStatus() {
     gemini_model_chain: CONFIG.geminiModelChain,
     google_search_grounding: CONFIG.geminiSearchGrounding,
     google_search_model: CONFIG.geminiSearchModel,
-    groq: CONFIG.groqApiKeys.length > 0,
-    groq_key_count: CONFIG.groqApiKeys.length,
-    groq_model_chain: CONFIG.groqModelChain,
-    model_name:
-      provider === "gemini"
-        ? CONFIG.geminiModelChain[0]
-        : CONFIG.groqModelChain[0] || null,
+    model_name: provider === "gemini" ? CONFIG.geminiModelChain[0] : null,
     status: provider === "none" ? "degraded" : "ok",
   };
 }
@@ -52,10 +42,13 @@ export function providerStatus() {
 export async function* streamChat(
   recentHistory: ChatMessage[],
   augmentedMessage: string,
-  options: { googleSearch?: boolean } = {},
+  options: { googleSearch?: boolean; knowledgeContext?: string } = {},
 ): AsyncGenerator<StreamEvent> {
+  const systemContent = options.knowledgeContext
+    ? `${SYSTEM_PROMPT}\n\n<knowledge_base>\n${options.knowledgeContext}\n</knowledge_base>`
+    : SYSTEM_PROMPT;
   const messages: ChatMessage[] = [
-    { role: "system", content: SYSTEM_PROMPT },
+    { role: "system", content: systemContent },
     ...recentHistory,
     { role: "user", content: augmentedMessage },
   ];
@@ -118,35 +111,6 @@ export async function* streamChat(
       return;
     }
 
-    if (CONFIG.groqApiKeys.length) {
-      yield {
-        model_fallback: {
-          from_model: CONFIG.geminiModelChain[0],
-          to_model: CONFIG.groqModelChain[0],
-          message: "Gemini kullanılamadığı için yedek modele geçildi.",
-        },
-      };
-    }
-  }
-
-  if (CONFIG.groqApiKeys.length) {
-    const groq = streamGroq(messages);
-    let result: ProviderResult | undefined;
-
-    while (true) {
-      const next = await groq.next();
-      if (next.done) {
-        result = next.value;
-        break;
-      }
-      yield next.value;
-    }
-
-    if (result && !result.failureInfo) {
-      yield { __full_response__: stripReasoningBlocks(result.fullResponse) };
-      return;
-    }
-
     yield {
       error: result?.fullResponse || "Dil modeli şu anda kullanılamıyor.",
       error_type: "technical",
@@ -155,7 +119,7 @@ export async function* streamChat(
   }
 
   yield {
-    error: "GEMINI_API_KEY veya GROQ_API_KEY ayarlı değil.",
+    error: "GEMINI_API_KEY ayarlı değil.",
     error_type: "technical",
   };
 }
@@ -256,9 +220,7 @@ async function* streamGeminiModel(
             : undefined,
           contents,
           generationConfig: {
-            temperature: CONFIG.llmTemperature,
             maxOutputTokens: CONFIG.llmMaxTokens,
-            topP: CONFIG.llmTopP,
           },
           tools: googleSearch ? [{ google_search: {} }] : undefined,
         }),
@@ -353,150 +315,6 @@ async function* streamGeminiModel(
   }
 }
 
-async function* streamGroq(
-  messages: ChatMessage[],
-): AsyncGenerator<StreamEvent, ProviderResult> {
-  let lastResult = failedResult("Groq API hatası.", {
-    retryable: true,
-    rotateKey: false,
-    model: CONFIG.groqModelChain[0],
-    keyIndex: 0,
-    reason: "not_attempted",
-  });
-
-  for (let modelIndex = 0; modelIndex < CONFIG.groqModelChain.length; modelIndex += 1) {
-    const model = CONFIG.groqModelChain[modelIndex];
-
-    for (let keyIndex = 0; keyIndex < CONFIG.groqApiKeys.length; keyIndex += 1) {
-      const apiKey = CONFIG.groqApiKeys[keyIndex];
-      const attempt = streamGroqModel(messages, model, apiKey, keyIndex + 1);
-      let result: ProviderResult | undefined;
-
-      while (true) {
-        const next = await attempt.next();
-        if (next.done) {
-          result = next.value;
-          break;
-        }
-        yield next.value;
-      }
-
-      if (!result) continue;
-      if (!result.failureInfo) {
-        if (modelIndex > 0) {
-          yield {
-            model_fallback: {
-              from_model: CONFIG.groqModelChain[0],
-              to_model: model,
-              message: "Yoğunluk nedeniyle yedek modele geçildi.",
-            },
-          };
-        }
-        return result;
-      }
-
-      lastResult = result;
-      logFailure("Groq", result.failureInfo);
-      if (result.emittedTokens) return result;
-      if (!result.failureInfo.retryable) break;
-    }
-  }
-
-  return lastResult;
-}
-
-async function* streamGroqModel(
-  messages: ChatMessage[],
-  model: string,
-  apiKey: string,
-  keyIndex: number,
-): AsyncGenerator<StreamEvent, ProviderResult> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), CONFIG.groqTimeoutMs);
-  let fullResponse = "";
-  let emittedTokens = false;
-
-  try {
-    const response = await fetch(CONFIG.groqUrl, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        Accept: "text/event-stream",
-      },
-      body: JSON.stringify({
-        model,
-        messages,
-        stream: true,
-        temperature: CONFIG.llmTemperature,
-        max_tokens: CONFIG.llmMaxTokens,
-        top_p: CONFIG.llmTopP,
-      }),
-      signal: controller.signal,
-    });
-
-    if (!response.ok) {
-      const text = await response.text().catch(() => "");
-      const statusCode = response.status;
-      const rotateKey = statusCode === 401 || statusCode === 403 || statusCode === 429;
-      return failedResult(`Groq API hatası: HTTP ${statusCode}${apiErrorMessage(text)}`, {
-        retryable: rotateKey || statusCode === 404 || statusCode === 408 || statusCode >= 500,
-        rotateKey,
-        model,
-        keyIndex,
-        reason: `http_${statusCode}`,
-        statusCode,
-      });
-    }
-
-    if (!response.body) {
-      return failedResult("Groq API yanıtı boş geldi.", {
-        retryable: true,
-        rotateKey: false,
-        model,
-        keyIndex,
-        reason: "empty_body",
-      });
-    }
-
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = "";
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() || "";
-
-      for (const line of lines) {
-        const token = parseGroqLine(line);
-        if (!token || token === "[DONE]") continue;
-        fullResponse += token;
-        emittedTokens = true;
-        yield { token };
-      }
-    }
-
-    return { fullResponse, failureInfo: null, emittedTokens };
-  } catch (error) {
-    const reason = error instanceof Error && error.name === "AbortError" ? "timeout" : "exception";
-    return {
-      ...failedResult(
-        reason === "timeout"
-          ? "Groq API zaman aşımına uğradı. Lütfen tekrar deneyin."
-          : "Groq API bağlantı hatası.",
-        { retryable: true, rotateKey: false, model, keyIndex, reason },
-      ),
-      emittedTokens,
-    };
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
 function parseGeminiLine(line: string) {
   if (!line.startsWith("data:")) return "";
   const dataText = line.slice(5).trim();
@@ -515,18 +333,6 @@ function parseGeminiLine(line: string) {
       .join("");
   } catch {
     return "";
-  }
-}
-
-function parseGroqLine(line: string) {
-  if (!line.startsWith("data: ")) return null;
-  const dataText = line.slice(6).trim();
-  if (dataText === "[DONE]") return "[DONE]";
-  try {
-    const data = JSON.parse(dataText) as { choices?: Array<{ delta?: { content?: string } }> };
-    return data.choices?.[0]?.delta?.content || "";
-  } catch {
-    return null;
   }
 }
 
@@ -552,13 +358,4 @@ function logFailure(provider: string, failure: FailureInfo) {
     statusCode: failure.statusCode,
     rotateKey: failure.rotateKey,
   });
-}
-
-function stripReasoningBlocks(text: string) {
-  return text
-    .replace(/<think\b[^>]*>[\s\S]*?<\/think>/gi, "")
-    .replace(/<thinking\b[^>]*>[\s\S]*?<\/thinking>/gi, "")
-    .replace(/<think\b[^>]*>[\s\S]*$/gi, "")
-    .replace(/<thinking\b[^>]*>[\s\S]*$/gi, "")
-    .trim();
 }

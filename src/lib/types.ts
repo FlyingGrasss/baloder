@@ -3,14 +3,6 @@ export type ChatMessage = {
   content: string;
 };
 
-export type RetrievedChunk = {
-  id: number;
-  text: string;
-  breadcrumb?: string;
-  section_title?: string;
-  relevance_score: number;
-};
-
 export type Identity = {
   subjectType: "user" | "fingerprint_fallback";
   subjectId: string;

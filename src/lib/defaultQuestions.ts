@@ -20,6 +20,7 @@ export const DEFAULT_QUESTIONS = new Set([
   "Ayran Günü nedir?",
   "Hangi kulüp ve topluluklar var?",
   "BALÖDER nedir?",
+  "BALÖDER ne zaman kuruldu?",
   "BALKOOP nedir?",
   "BALEV bursu hakkında bilgi ver",
   "BALPOD nedir?",

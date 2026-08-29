@@ -2,13 +2,12 @@ import { CONFIG } from "../../../src/lib/config";
 import { DEFAULT_QUESTIONS } from "../../../src/lib/defaultQuestions";
 import {
   buildAugmentedUserMessage,
-  buildRetrievalQuery,
+  buildConversationQuestion,
+  buildKnowledgeContext,
   buildSourcesPayload,
-  formatContext,
   isBalRelatedQuery,
-  retrieve,
   shouldUseGoogleSearch,
-} from "../../../src/lib/rag";
+} from "../../../src/lib/knowledge";
 import { sse, streamResponse } from "../../../src/lib/sse";
 import {
   appendTurn,
@@ -38,8 +37,8 @@ export const maxDuration = 60;
 
 // Token limits
 const MAX_MESSAGE_TOKENS = 500; // Max tokens per user message
-const MAX_TOTAL_REQUEST_TOKENS = 100000; // Message + RAG context + conversation history
-const DEFAULT_CACHE_VERSION = "9";
+const MAX_TOTAL_REQUEST_TOKENS = 100000; // Message + selected knowledge context + conversation history
+const DEFAULT_CACHE_VERSION = "10";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
@@ -135,27 +134,18 @@ export async function POST(request: Request) {
   const recentHistory = clientHistory.length
     ? clientHistory.slice(-(CONFIG.maxHistoryTurns * 2))
     : getRecentHistory(sessionId);
-  const retrievalQuery = buildRetrievalQuery(userMessage, recentHistory);
-
-  let retrieved;
-  try {
-    retrieved = isBalRelatedQuery(retrievalQuery)
-      ? await retrieve(retrievalQuery, CONFIG.retrievalTopK)
-      : [];
-  } catch {
-    return Response.json(
-      {
-        error: "Şu anda çok yoğumuz. Lütfen biraz sonra tekrar dene.",
-        error_type: "retry",
-      },
-      { status: 503 },
-    );
-  }
-
-  const context = formatContext(retrieved, CONFIG.retrievalScoreThreshold);
+  const resolvedQuestion = buildConversationQuestion(userMessage, recentHistory);
+  const balRelated = isBalRelatedQuery(resolvedQuestion);
+  const knowledgeContext = balRelated
+    ? buildKnowledgeContext(resolvedQuestion)
+    : "";
 
   // ============ NEW: Full request token validation ============
-  const totalTokens = estimateMessageTokens(userMessage, context, recentHistory);
+  const totalTokens = estimateMessageTokens(
+    userMessage,
+    knowledgeContext,
+    recentHistory,
+  );
   if (totalTokens > MAX_TOTAL_REQUEST_TOKENS) {
     return Response.json(
       {
@@ -167,7 +157,10 @@ export async function POST(request: Request) {
   }
   // ===========================================================
 
-  const augmentedMessage = buildAugmentedUserMessage(userMessage, context);
+  const augmentedMessage = buildAugmentedUserMessage(
+    userMessage,
+    resolvedQuestion,
+  );
 
   // Initialize the stream iterator before committing to 200 status
   let streamIterator: AsyncIterableIterator<Record<string, unknown>>;
@@ -175,7 +168,8 @@ export async function POST(request: Request) {
     streamIterator = streamChat(recentHistory, augmentedMessage, {
       googleSearch:
         CONFIG.geminiSearchGrounding &&
-        shouldUseGoogleSearch(retrievalQuery),
+        shouldUseGoogleSearch(resolvedQuestion),
+      knowledgeContext,
     })[
       Symbol.asyncIterator
     ]();
@@ -196,10 +190,7 @@ export async function POST(request: Request) {
       let hadError = false;
       let savedQuestionIndex: number | null = null;
       const active = incrementActiveRequests();
-      const responseSources = buildSourcesPayload(
-        retrieved,
-        CONFIG.retrievalScoreThreshold,
-      );
+      const responseSources = buildSourcesPayload(balRelated);
 
       try {
         if (active >= CONFIG.congestionThreshold) {

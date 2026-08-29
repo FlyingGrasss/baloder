@@ -19,11 +19,11 @@ export function estimateMessageTokens(
   // User message
   total += estimateTokens(userMessage);
 
-  // RAG context
+  // Knowledge base context
   total += estimateTokens(context);
 
-  // Recent history (last 3-5 messages)
-  const historyWindow = recentHistory.slice(-6); // ~3 turns
+  // The API keeps the last eight user/assistant turns (up to 16 messages).
+  const historyWindow = recentHistory.slice(-16);
   for (const msg of historyWindow) {
     total += estimateTokens(msg.content || "");
   }
