@@ -203,7 +203,6 @@ export default function Home() {
   }, []);
 
   const remainingDaily = Math.max(quota.daily_limit - quota.daily_used, 0);
-  const remainingMinute = Math.max(quota.minute_limit - quota.minute_used, 0);
 
   const addNotice = useCallback((notice: Notice) => {
     if (noticeIds.current.has(notice.id)) return;
@@ -275,26 +274,6 @@ export default function Home() {
       behavior: "smooth",
     });
   }, [messages]);
-
-  useEffect(() => {
-    if (remainingDaily <= 10) {
-      addNotice({
-        id: "quota-low-daily",
-        tone: "warning",
-        text:
-          remainingDaily === 0
-            ? "Günlük soru hakkın doldu."
-            : `Hakkın az kaldı. Bugün ${remainingDaily} soru hakkın var.`,
-      });
-    }
-    if (remainingMinute <= 1) {
-      addNotice({
-        id: "quota-low-minute",
-        tone: "warning",
-        text: "Dakikalık soru limitine yaklaştın. Birazdan tekrar deneyebilirsin.",
-      });
-    }
-  }, [addNotice, remainingDaily, remainingMinute]);
 
   useEffect(() => {
     const textarea = inputRef.current;

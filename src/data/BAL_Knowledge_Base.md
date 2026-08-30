@@ -253,7 +253,7 @@ BAL, Türkiye'de **Ultimate Frizbi** takımına sahip **tek lise** olma özelli�
 
 **PASCH Okullar Ağı (Schulen: Partner der Zukunft):** BAL, Almanya Dışişleri Bakanlığı'nın 2008'de başlattığı PASCH ağına dahildir. Bu ağ dünya genelinde Almanca öğrenimini destekleyen okulları birbirine bağlar.
 
-**DSD – Almanca Dil Diploması (Deutsches Sprachdiplom):** BAL, DSD okulu statüsüne sahiptir. 2008'den itibaren hak kazanan Almanca bölümü öğrencilerine resmi Almanca Dil Diploması verilmektedir. Bu diploma Almanya'daki üniversitelere başvuruda avantaj sağlar.
+**DSD – Almanca Dil Diploması (Deutsches Sprachdiplom):** BAL, DSD okulu statüsüne sahiptir. 2008'den itibaren hak kazanan Almanca bölümü öğrencilerine resmi Almanca Dil Diploması verilmektedir. Programda **DSD I (A2–B1)** ve **DSD II (B2–C1)** seviyeleri bulunur. Bu diploma Almanya'daki üniversitelere başvuruda avantaj sağlar.
 
 **eTwinning:** BAL, Avrupa'daki okullarla çevrimiçi işbirliği sunan eTwinning platformunda aktif projeler yürütmektedir.
 
@@ -420,10 +420,11 @@ Kantin fiyatları sürekli güncellenir. Aktif fiyat listesi kantinde bulunur ve
 **S1: BAL'a nasıl öğrenci alınır?**
 BAL, MEB tarafından düzenlenen LGS (Liselere Geçiş Sınavı) sonuçlarına göre merkezi sınavlı yerleştirmeyle öğrenci kabul eder. Okula doğrudan bireysel başvuru veya sınavsız geçiş imkânı kesinlikle bulunmamaktadır. Yerleştirme tamamen MEB'in merkezi sistemi üzerinden yapılır.
 
-**S2: 2025 LGS'de BAL'ın taban puanı neydi?**
+**S2: 2025 LGS'de BAL'ın bölüm taban puanı neydi?**
 2025 LGS verilerine göre: Almanca bölümü 484,1567 puan (%0,59), İngilizce bölümü 476,4021 puan (%1,13), Fransızca bölümü 480,1748 puan (%0.87).
 
-11 Temmuz 2026 itibariyle 2026 LGS taban puanları henüz açıklanmamıştır. Erişilebilen en güncel kesin veri 2025 yerleştirme sonuçlarıdır.
+**S2b: 2026 LGS taban puanları açıklandı mı?**
+Evet. 2026 LGS sonuçlarına göre Almanca bölümü **484,4618**, İngilizce bölümü **475,1813** taban puanıyla öğrenci almıştır.
 
 **S3: BAL Türkiye sıralamasında kaçıncı?**
 2025 LGS Almanca bölümü verisine göre Türkiye'nin en yüksek taban puanlı ilk 100 lisesi arasında **14. sırada** yer almaktadır. İzmir'de İzmir Fen Lisesi'nin hemen ardından gelir ve İzmir'in "büyük dörtlüsü"nden biridir.
@@ -483,7 +484,7 @@ Hazırlık sınıfına kayıt sırasında öğrenci ikinci yabancı dilini ve re
 [GÜNCEL VERİ GEREKLİ: O yılın seçmeli ders listesi ve form teslim tarihi okul duyurularından takip edilmelidir.]
 
 **S12: Almanca bölümü öğrencileri DSD diploması alabilir mi?**
-Evet. **2008'den** itibaren hak kazanan Almanca bölümü öğrencileri resmi Almanca Dil Diploması (DSD) alabilmektedir. Bu diploma Almanya'daki üniversitelere başvuruda avantaj sağlar.
+Evet. **2008'den** itibaren hak kazanan Almanca bölümü öğrencileri resmi Almanca Dil Diploması (DSD) alabilmektedir. DSD I **A2–B1**, DSD II ise **B2–C1** seviyelerini kapsar. Bu diploma Almanya'daki üniversitelere başvuruda avantaj sağlar.
 
 **S13: eTwinning ve uluslararası projeler var mı?**
 Evet. BAL, eTwinning platformunda aktif uluslararası projeler yürütmekte; ayrıca Almanya Dışişleri Bakanlığı destekli PASCH Okullar Ağı'na dahildir.
@@ -643,6 +644,7 @@ Evet. Okulun iletişim formu: https://izmirbal.meb.k12.tr/tema/iletisim.php
 Hafta içi Pazartesi–Cuma **08:00–17:00.** Cumartesi ve Pazar kapalıdır.
 
 **S37: BAL'a toplu taşımayla nasıl gidilir?**
+**Hangi otobüsler okula gidiyor?** Bornova Metro İstasyonu'ndan okula **267, 268, 368, 59 ve 505 numaralı** ESHOT/İZULAŞ otobüsleri gider.
 - **Metro + Otobüs:** Bornova Metro İstasyonu'ndan **267, 268, 368, 59 veya 505 numaralı** ESHOT/İZULAŞ otobüsleriyle yaklaşık **5 dakikada** ulaşılabilir.
 - **Minibüs:** Otogar yönüne seyreden **Alparslan–Yenigaraj** hattı minibüsleri okulun önünden geçmektedir.
 - **Yürüyüş:** İlçe merkezine yaklaşık **15 dakikadır.**
@@ -1207,6 +1209,9 @@ Tüm üç bölümde 2021'den 2025'e kesintisiz bir yükseliş trendi izlenmişti
 
 **S54: 2021 yılı LGS puanları neydi?**
 MEB İzmir İl Müdürlüğü kılavuz verilerine göre 2021 yılı taban puanları şöyle gerçekleşmiştir: İngilizce bölümü 449,1954 (%1,81 yüzdelik dilim), Almanca bölümü 447,5683 (%1,93), Fransızca bölümü 445,8431 (%2,08).
+
+**S55: 2026 LGS'de BAL'ın bölüm bazlı puanları neydi?**
+2026 LGS sonuçlarına göre Almanca bölümü **484,4618**, İngilizce bölümü **475,1813** taban puanına sahiptir.
 
 ---
 

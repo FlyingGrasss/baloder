@@ -114,9 +114,9 @@ export const SEO_PAGES: Record<string, SeoPage> = {
   "lgs-taban-puanlari": {
     title: "Bornova Anadolu Lisesi LGS Taban Puanları | BALÖDER",
     description:
-      "Bornova Anadolu Lisesi 2025 LGS taban puanları, bölüm bilgileri ve 2026 verilerinin açıklanma durumu.",
+      "Bornova Anadolu Lisesi 2025 ve 2026 LGS taban puanları ile bölüm bilgileri.",
     intro:
-      "Bornova Anadolu Lisesi'nin LGS taban puanları yabancı dil bölümüne göre değişir. Elimizdeki en güncel kesin veriler 2025 yerleştirme sonuçlarına aittir; 2026 LGS taban puanları henüz açıklanmamıştır.",
+      "Bornova Anadolu Lisesi'nin LGS taban puanları yabancı dil bölümüne göre değişir. 2026 sonuçlarında Almanca bölümü 484,4618, İngilizce bölümü 475,1813 taban puanıyla öğrenci almıştır.",
     updatedAt: "2026-08-30",
     updatedLabel: "Ağustos 2026",
     sections: [
@@ -132,9 +132,18 @@ export const SEO_PAGES: Record<string, SeoPage> = {
         ],
       },
       {
-        title: "2026 sonuçları hakkında not",
+        title: "2026 bölüm bazlı taban puanları",
         paragraphs: [
-          "2026 LGS taban puanları açıklanmış değildir. Yeni sonuçlar ve tercih bilgileri yayımlandığında MEB'in yerleştirme sonuçları ile Bornova Anadolu Lisesi'nin resmî duyuruları kontrol edilmelidir.",
+          "2026 LGS sonuçlarına göre bölüm bazlı taban puanları aşağıdaki gibidir:",
+        ],
+        bullets: [
+          "Almanca bölümü: 484,4618",
+          "İngilizce bölümü: 475,1813",
+        ],
+      },
+      {
+        title: "Puanlar hakkında not",
+        paragraphs: [
           "Taban puanlar yıllara, bölümlere ve yerleştirme sonuçlarına göre değişebilir. Geçmiş yıl puanları gelecekteki yerleştirmeyi garanti etmez.",
         ],
       },
@@ -143,7 +152,7 @@ export const SEO_PAGES: Record<string, SeoPage> = {
       {
         question: "Bornova Anadolu Lisesi 2026 LGS taban puanları açıklandı mı?",
         answer:
-          "Hayır. Elimizdeki en güncel kesin veriler 2025 yerleştirme sonuçlarıdır; 2026 taban puanları henüz açıklanmamıştır.",
+          "Evet. 2026 LGS sonuçlarına göre Almanca bölümü 484,4618, İngilizce bölümü 475,1813 taban puanıyla öğrenci almıştır.",
       },
       {
         question: "2025'te en yüksek Bornova Anadolu Lisesi taban puanı hangi bölümdeydi?",

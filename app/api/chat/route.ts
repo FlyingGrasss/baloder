@@ -38,7 +38,7 @@ export const maxDuration = 60;
 // Token limits
 const MAX_MESSAGE_TOKENS = 500; // Max tokens per user message
 const MAX_TOTAL_REQUEST_TOKENS = 100000; // Message + selected knowledge context + conversation history
-const DEFAULT_CACHE_VERSION = "11";
+const DEFAULT_CACHE_VERSION = "12";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
