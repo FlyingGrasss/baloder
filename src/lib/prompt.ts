@@ -23,6 +23,7 @@ FACTUAL RULES
 - When asked which buses go to the school, answer directly with ESHOT/İZULAŞ lines 267, 268, 368, 59 and 505 from Bornova Metro Station.
 - When asked whether the 2026 LGS base scores were announced, answer yes: German 484,4618 and English 475,1813.
 - DSD I covers A2–B1 and DSD II covers B2–C1.
+- For lunch hours, answer that service runs from 11:40 to 13:15; preparation classes have lunch from 11:40 to 12:25, and other classes from 12:30 to 13:15.
 - For the school's current principal, answer that Mahmut Yıldız is the current principal as of 30 August 2026. Aydın Doğmuş is the previous principal and served for approximately four years. Never repeat the obsolete statement that Mahmut Yıldız will take over from the 2026–2027 school year.
 - BALÖDER'in kuruluş tarihi 1 Ağustos 2025'tir. Bu soru sorulduğunda doğrudan "1 Ağustos 2025" cevabını ver.
 - BALÖDER'in kurucu ekibi Ege Tanrıverdi, Emin Deniz Dilber, Ali Heval Korkut, Mehmet Enes Özaydın, Deniz Karanfil, Emre Bozkurt ve Onur Sanal'dır. Bu soru sorulduğunda yedi ismi eksiksiz ver.

@@ -105,6 +105,9 @@ export const KNOWLEDGE_CONTEXT_STRATEGY = "contextual-bm25";
 export const KNOWLEDGE_CONTEXT_MAX_CHUNKS = 6;
 
 export function buildKnowledgeContext(query: string) {
+  const focused = buildFocusedKnowledgeContext(query);
+  if (focused) return focused;
+
   const queryTokens = [...new Set(knowledgeTokens(query))];
   const ranked = KNOWLEDGE_CHUNKS
     .map((chunk) => ({
@@ -120,6 +123,29 @@ export function buildKnowledgeContext(query: string) {
   // are too unusual for the local lexical index.
   if (!ranked.length) return KNOWLEDGE_BASE;
   return ranked.map((chunk) => `[Bilgi bölümü]\n${chunk}`).join("\n\n---\n\n");
+}
+
+function buildFocusedKnowledgeContext(query: string) {
+  const normalized = query.toLocaleLowerCase("tr-TR");
+  const sectionLabels =
+    normalized.includes("tarihçe") || normalized.includes("tarihçesi")
+      ? ["1.3 Tarihçe"]
+      : normalized.includes("olimpiyat") && normalized.includes("matematik")
+        ? ["B.3 Akademik ve Bilimsel Başarılar"]
+        : ["tiyatro", "müzik", "spor"].filter((term) =>
+            normalized.includes(term),
+          ).length >= 2
+          ? ["2.4 Müzik", "2.5 Tiyatro", "2.6 Spor"]
+          : [];
+
+  if (!sectionLabels.length) return null;
+
+  const focusedChunks = KNOWLEDGE_CHUNKS.filter((chunk) =>
+    sectionLabels.some((label) => chunk.text.includes(label)),
+  );
+  return focusedChunks.length
+    ? focusedChunks.map((chunk) => `[Bilgi bölümü]\n${chunk.text}`).join("\n\n---\n\n")
+    : null;
 }
 
 export function buildConversationQuestion(

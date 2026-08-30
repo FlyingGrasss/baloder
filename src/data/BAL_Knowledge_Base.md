@@ -736,7 +736,7 @@ Bornova Metro İstasyonu çıkışından **267, 268, 368, 59 veya 505 numaralı*
 
 ---
 
-## §A — LGS Taban Puanları: Yıllara Göre Tarihsel Tablo (2018–2025)
+## §A — LGS Taban Puanları: Yıllara Göre Tarihsel Tablo (2018–2026)
 
 ### A.1 Genel Notlar
 
@@ -763,6 +763,7 @@ Aşağıdaki tablolar, her yıl MEB tarafından yayımlanan "Sınavla Öğrenci 
 | 2023 | ~465–470 (tahmini) | ~%1,3–1,5 | 300 | |
 | 2024 | 473,5694 | ~%1,31–1,44 | 300 | karnehesaplama.com; MEB kaynaklı |
 | 2025 | 476,4021 | ~%1,13 | 300 | MEB yerleştirme kılavuzu; sorubak.com |
+| 2026 | 475,1813 | — | 180 | Güncel yerleştirme sonucu |
 
 ---
 
@@ -778,6 +779,7 @@ Aşağıdaki tablolar, her yıl MEB tarafından yayımlanan "Sınavla Öğrenci 
 | 2023 | ~468–472 (tahmini) | ~%1,1–1,3 | 60 | |
 | 2024 | 482,1700 | ~%0,67 | 60 | egitim.net.tr |
 | 2025 | 484,1567 | ~%0,59 | 60 | MEB yerleştirme kılavuzu — Türkiye'de 14. sıra |
+| 2026 | 484,4618 | — | 30 | Güncel yerleştirme sonucu |
 
 ---
 
@@ -798,11 +800,12 @@ Aşağıdaki tablolar, her yıl MEB tarafından yayımlanan "Sınavla Öğrenci 
 
 ### A.5 Genel Değerlendirme: Puan Trendi
 
-Tüm üç bölümde de LGS taban puanları 2021'den 2025'e kadar belirgin bir yükseliş trendi göstermiştir:
+2021–2025 döneminde üç bölümde de LGS taban puanları belirgin bir yükseliş trendi göstermiştir. 2026 sonuçlarında yeni öğrenci alımı yalnızca Almanca ve İngilizce bölümlerinde yapılmıştır:
 
 - **Almanca bölümü:** 447,5683 (2021) → 484,1567 (2025) — yaklaşık **+36,6 puan** artış
 - **İngilizce bölümü:** 449,1954 (2021) → 479,8728 (2025) — yaklaşık **+30,7 puan** artış
 - **Fransızca bölümü:** 445,8431 (2021) → 480,1748 (2025) — yaklaşık **+34,3 puan** artış
+- **2026:** Almanca bölümü **484,4618**, İngilizce bölümü **475,1813**
 
 Bu trendin temel nedenleri arasında 2023'te hazırlık sınıfının yeniden açılması, okulun Proje Okulu statüsü ve AP programının eklenmesiyle birlikte BAL'ın ulusal sıralamada yükselmesi ve tercih cazibesinin artması bulunmaktadır.
 
