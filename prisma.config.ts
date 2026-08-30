@@ -6,9 +6,12 @@ import { defineConfig, env } from "prisma/config";
 config({ path: ".env.local" });
 config();
 
-function directUrl(schema: string) {
+function migrationUrl() {
   const url = new URL(env("DIRECT_URL"));
-  if (!url.searchParams.has("schema")) url.searchParams.set("schema", schema);
+  // Migration files before the namespace migration intentionally create
+  // unqualified tables in public, then move them into baloder. Do not force
+  // the initial migrations into baloder through the connection URL.
+  url.searchParams.delete("schema");
   return url.toString();
 }
 
@@ -18,6 +21,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: directUrl("baloder"),
+    url: migrationUrl(),
   },
 });
