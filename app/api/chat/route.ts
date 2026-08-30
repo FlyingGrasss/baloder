@@ -38,7 +38,7 @@ export const maxDuration = 60;
 // Token limits
 const MAX_MESSAGE_TOKENS = 500; // Max tokens per user message
 const MAX_TOTAL_REQUEST_TOKENS = 100000; // Message + selected knowledge context + conversation history
-const DEFAULT_CACHE_VERSION = "13";
+const DEFAULT_CACHE_VERSION = "14";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
@@ -135,7 +135,8 @@ export async function POST(request: Request) {
     ? clientHistory.slice(-(CONFIG.maxHistoryTurns * 2))
     : getRecentHistory(sessionId);
   const resolvedQuestion = buildConversationQuestion(userMessage, recentHistory);
-  const balRelated = isBalRelatedQuery(resolvedQuestion);
+  const balRelated =
+    isBalRelatedQuery(resolvedQuestion) || DEFAULT_QUESTIONS.has(userMessage);
   const knowledgeContext = balRelated
     ? buildKnowledgeContext(resolvedQuestion)
     : "";

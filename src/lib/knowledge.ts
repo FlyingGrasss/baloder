@@ -59,6 +59,10 @@ const BAL_TOPIC_TERMS = [
   "kulüp",
   "topluluk",
   "ballama",
+  "tarihçe",
+  "olimpiyat",
+  "matematik",
+  "dsd",
 ] as const;
 
 const SEARCH_GROUNDING_PATTERNS = [
