@@ -18,7 +18,7 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser();
 
   return (
-    <main className="min-h-screen bg-[#f4f7f9]">
+    <main className="baloder-page-bg min-h-screen">
       <Hero user={user} />
       <PurposeStatement />
       <ImpactSection />

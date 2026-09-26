@@ -16,9 +16,23 @@
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 82% -10%, rgba(162, 26, 42, 0.1), transparent 30rem),
+    linear-gradient(rgba(162, 26, 42, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(162, 26, 42, 0.025) 1px, transparent 1px),
+    var(--background);
+  background-size: auto, 42px 42px, 42px 42px, auto;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.baloder-page-bg {
+  background:
+    radial-gradient(circle at 82% -10%, rgba(162, 26, 42, 0.1), transparent 30rem),
+    linear-gradient(rgba(162, 26, 42, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(162, 26, 42, 0.025) 1px, transparent 1px),
+    #f4f7f9;
+  background-size: auto, 42px 42px, 42px 42px, auto;
 }
 
 html {
